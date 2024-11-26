@@ -7,16 +7,15 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} AMADOU Ruchdane. All rights reserved.
 	<div class="social-links">
 		<GithubIconLink />
 		<LinkedinIconLink />
 		<MailIconLink />
 	</div>
+	&copy; {today.getFullYear()} AMADOU Ruchdane. All rights reserved.
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
 		background-color: var(--neutral-300);
 		text-align: center;
 	}
@@ -25,10 +24,5 @@ const today = new Date();
 		justify-content: center;
 		gap: 1em;
 		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-	}
-	.social-links a:hover {
 	}
 </style>
