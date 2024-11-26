@@ -1,8 +1,10 @@
 ---
 import IconLinks from "./IconLink.astro";
+const { class: className } = Astro.props
 ---
 
 <IconLinks
+  class={className}
   href="https://https://www.linkedin.com/in/ruchdane/"
   highlightBg="var(--accent-800)"
 >

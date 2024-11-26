@@ -1,7 +1,7 @@
 ---
-const {href, highlightBg} = Astro.props
+const {href, highlightBg, class: className } = Astro.props
 ---
-<a href={href} target="_blank">
+<a href={href} target="_blank" class={className}>
     <slot></slot>
 </a>
 <style define:vars={{highlightBg}}>
@@ -14,6 +14,7 @@ a {
     transition: box-shadow .5s ease-in;
     color: black;
     border-radius: 50%;
+    width: fit-content;
 }
 
 a:hover {
