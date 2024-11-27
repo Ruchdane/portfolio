@@ -1,0 +1,115 @@
+---
+import { Globe, Download, Code } from 'lucide-astro'
+import Carousel from '@/components/Carousel.astro'
+import TechnologieBadge from '@/components/TechnologieBadge.astro'
+interface Props extends Project {}
+
+const { slug, data: {title, description, technologies, thumbs, websiteUrl, downloadUrl, sourceUrl} } = Astro.props;
+---
+<div class="project-card">
+  <div class="thumbnail">
+    <Carousel width="300" height="120" images={thumbs}/>
+  </div>
+  <div class="content">
+    <h3 class="title">{title}</h3>
+    <p class="description">{description}</p>
+
+    <div class="technologies">
+      {technologies.map((tech) => <TechnologieBadge name={tech} />)}
+    </div>
+
+    <div class="actions">
+      {websiteUrl && (
+        <a
+          href={websiteUrl}
+          rel="noopener"
+          class="button secondary"
+        >
+          <Globe/>
+          Visit Website
+        </a>
+      )}
+      
+      {downloadUrl && (
+        <a
+          href={downloadUrl}
+          class="button secondary"
+        >
+         <Download/>
+          Download
+        </a>
+      )}
+
+      {sourceUrl && (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener"
+          class="button secondary"
+        >
+          <Code/>
+          View Source
+        </a>
+      )}
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+.project-card {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: var(--neutral-800) 0px 0px 0px 1px;
+  overflow: hidden;
+
+  :global(.dark) & {
+    background-color: #1f2937;
+  }
+}
+
+.carousel-container {
+  position: relative;
+  height: 12rem;
+
+  @media (min-width: 640px) {
+    height: 16rem;
+  }
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+
+  :global(.dark) & {
+    color: #fff;
+  }
+}
+
+.description {
+  color: #4b5563;
+  margin-bottom: 1rem;
+
+  :global(.dark) & {
+    color: #d1d5db;
+  }
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+</style>

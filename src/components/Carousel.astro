@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import type { Image } from "@/schema"
+
+interface Props {
+  width: number;
+  height: number;
+  images: Image[];
+}
+
+const { images, width, height } = Astro.props;
+---
+
+<div class="carousel-container">
+  <div class="carousel">
+    {images.map(({src, alt, width, height}) => (
+      <div class="carousel-slide">
+        <Image 
+        src={src} 
+        alt={alt} 
+        width={width} 
+        height={height} 
+        inferSize={true} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 1rem;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-slide {
+      flex: 0 0 50%;
+      min-width: 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-slide {
+      flex: 0 0 33.333%;
+      min-width: 33.333%;
+    }
+  }
+</style>
+
+<script>
+  const carousel = document.querySelector('.carousel');
+  let currentIndex = 0;
+
+  function slideCarousel() {
+    const slides = carousel.children;
+    currentIndex = (currentIndex + 1) % slides.length;
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  setInterval(slideCarousel, 5000);
+</script>
