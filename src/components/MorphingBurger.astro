@@ -23,7 +23,7 @@
 </svg>
 <style lang="scss">
     .cross-line {
-        transition: transform 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     .burger-line {
@@ -32,12 +32,21 @@
             opacity: 0;
         }
     }
+    #first-line, #second-line  {
+        opacity: 0;
+        .cross & {
+            opacity: 100%;
+        }
 
+    }
     .cross  {
+
         & #first-line {
+            transform-origin: center;
             transform: rotate(45deg);
         }
         & #second-line {
+            transform-origin: center;
             transform: rotate(-45deg);
         }
     }

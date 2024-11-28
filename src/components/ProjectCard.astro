@@ -1,17 +1,26 @@
 ---
-import { Globe, Download, Code } from 'lucide-astro'
+import { Globe, Download, Code, ArrowRight } from 'lucide-astro'
+import { type Project } from "@/schema";
 import Carousel from '@/components/Carousel.astro'
 import TechnologieBadge from '@/components/TechnologieBadge.astro'
-interface Props extends Project {}
+interface Props {
+  slug: string,
+  data: Project
+}
 
 const { slug, data: {title, description, technologies, thumbs, websiteUrl, downloadUrl, sourceUrl} } = Astro.props;
 ---
 <div class="project-card">
-  <div class="thumbnail">
-    <Carousel width="300" height="120" images={thumbs}/>
+  <div class="thumbnails">
+    <Carousel width={300} height={120} images={thumbs}/>
   </div>
   <div class="content">
-    <h3 class="title">{title}</h3>
+    <h3 class="title">
+      <span> {title}  </span>
+      <a class="icon-button" href={`/project/${slug}`}>
+        <ArrowRight>  
+      </a> 
+    </h3>
     <p class="description">{description}</p>
 
     <div class="technologies">
@@ -26,29 +35,29 @@ const { slug, data: {title, description, technologies, thumbs, websiteUrl, downl
           class="button secondary"
         >
           <Globe/>
-          Visit Website
+          <span> Visiter </span>
         </a>
       )}
       
       {downloadUrl && (
         <a
           href={downloadUrl}
-          class="button secondary"
+          class="button primary"
         >
          <Download/>
-          Download
+          Télécharger
         </a>
       )}
 
       {sourceUrl && (
         <a
-          href={sourceUrl}
-          target="_blank"
-          rel="noopener"
+        href={sourceUrl}
+        target="_blank"
+        rel="noopener"
           class="button secondary"
         >
           <Code/>
-          View Source
+          Code source
         </a>
       )}
     </div>
@@ -56,48 +65,49 @@ const { slug, data: {title, description, technologies, thumbs, websiteUrl, downl
 </div>
 
 <style lang="scss">
-.project-card {
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  box-shadow: var(--neutral-800) 0px 0px 0px 1px;
-  overflow: hidden;
-
-  :global(.dark) & {
-    background-color: #1f2937;
+  @use "../styles/media-query" as *;
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint(tablet) {
+      flex-direction: row;
+    }
+    background-color: var(--white);
+    padding: 16px;
+    border-radius: 0.5rem;
+    box-shadow: var(--neutral-800) 0px 4px 8px 0px;
+    overflow: hidden;
   }
-}
 
-.carousel-container {
+.thumbnails {
   position: relative;
   height: 12rem;
 
   @media (min-width: 640px) {
-    height: 16rem;
+    height: 100%;
+    width: 300px;
+    margin-inline: auto;
   }
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
   padding: 1.5rem;
 }
 
 .title {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.25rem;
   font-weight: 700;
   color: #111827;
   margin-bottom: 0.5rem;
-
-  :global(.dark) & {
-    color: #fff;
-  }
 }
 
 .description {
   color: #4b5563;
   margin-bottom: 1rem;
-
-  :global(.dark) & {
-    color: #d1d5db;
-  }
 }
 
 .technologies {
@@ -108,8 +118,23 @@ const { slug, data: {title, description, technologies, thumbs, websiteUrl, downl
 }
 
 .actions {
+  margin-top: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.75rem;
+  @include breakpoint(tablet) {
+    flex-direction: row;
+    .button {
+      width:  100%;
+    }
+  }
 }
+
+.icon-button {
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: translateX(5px)
+  }
+}
+
 </style>

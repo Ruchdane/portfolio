@@ -5,27 +5,42 @@ import HeaderLink from './HeaderLink.astro';
 <nav id="sidebar">
 	{NAVIGATION_LINKS.map(({link, title}) => <HeaderLink href={link}>{title}</HeaderLink>)}
 </nav>
+<div class="backdrop"></div>
 <style lang="scss">
 	@use "../styles/media-query" as *;
 	nav {
 		display: none;
 		background-color: var(--neutral-100);
 		position: absolute;
-		top: 68px;
-		z-index: 10;
+		top: 67px;
+		z-index: var(--z-index-sidebar-backdrop);
 		right: -100vh;
 		height: 100vh;
 		width: 45vw;
 		
 		transition: all 0.3s ease-in-out;
 		@include breakpoint(tablet){
-			display: none;
+			display: none !important;
 		}
 	}
+	.backdrop{
+		top: 67px;
+		display: none;
+	}
+
 	nav.show{
 		display: flex;
 		flex-direction: column;
 		padding: 36px;
 		right: 0;
+		&+.backdrop{
+			display: block;
+			position: fixed;
+			background-color: var(--neutral-700);
+			opacity: 50%;
+			inset: 67px 0 0 0;
+			content: "";
+			z-index: -1;
+		}
 	}
 </style>
