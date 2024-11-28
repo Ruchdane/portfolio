@@ -1,0 +1,17 @@
+---
+interface Props {
+  key: string;
+}
+
+const { key } = Astro.props;
+---
+
+<div data-tab-anchor={"#" + key} id={key} class="tab-pane">
+  <slot />
+</div>
+
+<style>
+  .tab-pane:not(.active) {
+    display: none;
+  }
+</style>

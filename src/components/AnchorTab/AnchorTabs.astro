@@ -1,0 +1,34 @@
+<slot />
+<script>
+  const tabs = document.querySelectorAll(".tab-link");
+  if (tabs.length > 0) {
+    tabs.forEach((tabLink) =>
+      tabLink.addEventListener("click", toggleTabContent)
+    );
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      const tabLink = document.querySelector(`[href="${hash}"]`);
+      if (tabLink) {
+        toggleContent(tabLink);
+      }
+    } else toggleContent(tabs[0]);
+  }
+  function toggleTabContent(e: Event) {
+    const targetTrigger = e.target;
+    e.preventDefault();
+    if (targetTrigger) toggleContent(targetTrigger);
+  }
+
+  function toggleContent(targetTrigger: EventTarget) {
+    const targetTabLink = targetTrigger.getAttribute("href");
+    const targetContent = document.querySelector(
+      `[data-tab-anchor="${targetTabLink}"]`
+    );
+    const activeTabTrigger = document.querySelector(`.tab-link.active`);
+    const activeTabContent = document.querySelector(`.tab-pane.active`);
+    activeTabTrigger?.classList.remove("active");
+    activeTabContent?.classList.remove("active");
+    targetTrigger?.classList.add("active");
+    targetContent?.classList.add("active");
+  }
+</script>

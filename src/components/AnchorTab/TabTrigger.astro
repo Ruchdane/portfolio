@@ -1,0 +1,25 @@
+---
+interface Props {
+  key: string;
+}
+
+const { key } = Astro.props;
+---
+
+<a href={"#"+ key} class="tab-link button secondary">
+    <slot />
+</a>
+
+<style>
+  .tab-link{
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+  }
+  .active {
+    box-shadow: var(--shadow-color) 0px 7px 0px 0px;
+    transform: translateY(5px);
+    background-color: var(--accent-500);
+    color: var(--white);
+  }
+</style>
