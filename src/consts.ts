@@ -170,7 +170,7 @@ export const TECHNOLOGIE_MAP: Record<Technologie, { name: string; icon: string }
     icon: "prisma-original"
   },
   aspnet: {
-    name: "AspNet",
+    name: "asp.net",
     icon: "aspnet"
   },
   winform: {

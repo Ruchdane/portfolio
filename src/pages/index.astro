@@ -1,111 +1,209 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import  ProjectCard from "@/components/ProjectCard.astro";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  CORE_STACK,
+  PLATFORME_MAP,
+} from "../consts";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import GithubIconLink from "../components/IconLinks/GithubIconLink.astro";
 import LinkedinIconLink from "../components/IconLinks/LinkedinIconLink.astro";
 import MailIconLink from "../components/IconLinks/MailIconLink.astro";
-import { getCollection } from 'astro:content';
-const featuredProject = (await getCollection('project')).filter(({data: project}) => project.isFeatured);
+import { getCollection } from "astro:content";
+const featuredProject = (await getCollection("project")).filter(
+  ({ data: project }) => project.isFeatured
+);
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section class="banner">
-				<div class="banner-image">
-					<img src="/images/banner_picture.png" alt="Photo de Ruchdane" />
-					<GithubIconLink class="github-icon-link"/>
-					<LinkedinIconLink class="linkedin-icon-link"/>
-					<MailIconLink class="mail-icon-link"/>			
-				</div>
-				<div class="banner-text">
-					<p> Salut, je suis AMADOU Ruchdane </p>
-					<strong>Dévellopeur web full-stack</strong>
-					<p>
-						Avec une solide expérience en développement full stack et en ingénierie DevOps au sein d'équipes agiles, j'ai travaillé sur des projets variés en assurant la conception, la mise en production et l'optimisation des solutions.
-					</p>
-					<p> 
-						Aujourd'hui, je souhaite mettre mes compétences techniques et ma compréhension des enjeux utilisateurs au service de la gestion de produit, pour contribuer à définir et réaliser des solutions innovantes et adaptées aux besoins des clients
-					</p>
-					<button class="primary"> Contacter moi </button>
-				</div>
-			</section>
-			<section class="Project">
-				<h2>Projets</h2>
-				<div class="project-container">
-					{featuredProject.map(data => <ProjectCard {...data}/>)}
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="banner">
+        <div class="banner-image">
+          <img src="/images/banner_picture.png" alt="Photo de Ruchdane" />
+          <GithubIconLink class="github-icon-link" />
+          <LinkedinIconLink class="linkedin-icon-link" />
+          <MailIconLink class="mail-icon-link" />
+        </div>
+        <div class="banner-text">
+          <p>Salut, je suis AMADOU Ruchdane</p>
+          <strong>Dévellopeur web full-stack</strong>
+          <button class="primary lg w-full"> Contacter moi </button>
+        </div>
+      </section>
+      <section class="project">
+        <h2>Projets</h2>
+        <div class="project-container">
+          {featuredProject.map((data) => <ProjectCard {...data} />)}
+        </div>
+      </section>
+      <section class="tech-stack">
+        <h2>Technologies</h2>
+		<div class="tech-stack-container">
+        {
+          Object.keys(CORE_STACK).map((key) => {
+            const plateforme = PLATFORME_MAP[key];
+            const stack = CORE_STACK[key];
+            const Icon = plateforme?.icon
+            return (
+              <div class="tech-stack-item">
+                <h3>
+                  <Icon class="tech-icon"/>
+                  <span>{plateforme?.name}</span>
+                </h3>
+                <div class="tech-stack-container">
+                  {stack.map((name) => (
+                    <TechnologieBadge name={name} />
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        }
+		</div>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
 <style lang="scss" is:global>
-	@use "../styles/media-query" as *;
-	.banner {
-		background-color: var(--primary-400);
-		font-family: "JetBrainsMono", monospace;
-		font-weight: 800;
-		font-size: var(--font-h5);
-		color: var(--neutral-50);
-		
-		padding: 32px;
+  @use "../styles/media-query" as *;
+  section {
+    padding: 2rem;
+    @include breakpoint(tablet) {
+      padding: 4rem;
+    }
+  }
+  .banner {
+    background-color: var(--primary-400);
+    font-family: "JetBrainsMono", monospace;
+    font-weight: 800;
+    font-size: var(--font-h5);
+    color: var(--neutral-50);
 
-		@include breakpoint(tablet) {
-			display: flex;
-			flex-direction: row-reverse;
-			gap: 32px;
-			justify-content: space-around
-		}
+    @include breakpoint(tablet) {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 32px;
+      justify-content: space-around;
+    }
 
-		&-image {
-			position: relative;
-			padding: 80px;
-			img {
-				border: 1px solid var(--accent-800);
-				border-radius: 100%;
-			}
-			.github-icon-link {
-				position: absolute;
-				bottom: 20%;
-				left: 0;
-				margin: 1rem;
-			}
-			.linkedin-icon-link {
-				position: absolute;
-				bottom: 0;
-				right: 40%;
-				margin: 1rem;
-			}
-			.mail-icon-link {
-				position: absolute;
-				bottom: 20%;
-				right: 0;
-				margin: 1rem;
+    &-image {
+      position: relative;
+      padding: 80px;
+      img {
+        border: 1px solid var(--accent-800);
+        border-radius: 100%;
+      }
+      .github-icon-link {
+        position: absolute;
+        bottom: 20%;
+        left: 0;
+        margin: 1rem;
+      }
+      .linkedin-icon-link {
+        position: absolute;
+        bottom: 0;
+        right: 40%;
+        margin: 1rem;
+      }
+      .mail-icon-link {
+        position: absolute;
+        bottom: 20%;
+        right: 0;
+        margin: 1rem;
+      }
+    }
+    &-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      strong {
+        color: var(--accent-800);
+        font-size: var(--font-h4);
+      }
+      button {
+        font-weight: 800;
+      }
+    }
+  }
 
-			}
- 
-		}
-		&-text {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			strong {
-				color: var(--accent-800);
-				font-size: var(--font-h4);
-			}
-			button {
-				font-weight: 800;
-				width: fit-content;
-			}
-		}
+  .project {
+    h2 {
+      font-size: var(--font-h3);
+      font-weight: 800;
+      margin-bottom: 32px;
+    }
+    .project-container {
+      @include breakpoint(tablet) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 32px;
+      }
+    }
+  }
+
+  .tech-stack{
+	margin-block: 36px;
+	h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+		width: 100%;
+		text-align: center;
+		margin-block: 18px;
+		text-transform: capitalize;
+    @include breakpoint(tablet) {
+      width: fit-content;
+			text-align: left;
+    }
+    @include breakpoint(desktop) {
+			text-align: center;
+    }
 	}
+
+  &-item {
+      :nth-child(n + 6){
+        display: none;
+      }  
+      @include breakpoint(tablet){
+        :nth-child(n + 6){
+          display: block;
+        }  
+        width: 100%;
+        margin: 36px 18px; 
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    @include breakpoint(desktop) {
+      flex-direction: column;
+    }
+  }
+
+	&-container{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 16px;
+      font-size: var(--font-h6);
+      @include breakpoint(tablet){
+        width: 100%;
+        justify-content: space-around;
+      }
+      @include breakpoint(desktop) {
+        justify-content: center;
+      }
+		}
+}
 </style>
