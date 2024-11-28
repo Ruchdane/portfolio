@@ -1,7 +1,10 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type { Technologie } from "@/schema";
+import type { Platforme, Technologie } from "@/schema";
+import { Platforme } from "@/schema";
+import type { JSX } from "astro/jsx-runtime";
+import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 
 export const SITE_LOGO = "/logo.svg";
 export const SITE_TITLE = "Ruchdane";
@@ -22,129 +25,174 @@ export const NAVIGATION_LINKS = [
   },
   {
     link: "/about",
-    title: "Blogs",
+    title: "A propos",
   },
 ];
 
+export const CORE_STACK: Partial<Record<Platforme, Technologie[]>> = {
+  web: [ "typescript", "c_sharp", "aspnet", "next","mithril", 
+    "react", "tailwindcss", "prisma", "postgresql", "mysql", "supabase", "netlify"],
+  mobile: ["flutter", "dart", "firebase"],
+  desktop: ["rust", "c", "c_sharp", "winform", "tauri"],
+}
+
 export const TECHNOLOGIE_MAP: Record<Technologie, { name: string; icon: string }> = {
-  "next": {
+  next: {
     name: "NextJS",
-    icon: "/next.svg"
+    icon: "nextjs-plain"
   },
   rust: {
     name: "rust",
-    icon: "rust"
+    icon: "rust-original"
   },
   dart: {
     name: "dart",
-    icon: "dart"
+    icon: "dart-plain colored"
   },
   typescript: {
     name: "typescript",
-    icon: "typescript"
+    icon: "typescript-plain colored"
   },
   javascript: {
     name: "javascript",
-    icon: "javascript"
+    icon: "javascript-plain colored"
   },
   c: {
     name: "c",
-    icon: "c"
+    icon: "c-plain"
   },
   c_sharp: {
-    name: "c_sharp",
-    icon: "c_sharp"
+    name: "C#",
+    icon: "csharp-plain"
   },
   php: {
     name: "php",
-    icon: "php"
+    icon: "php-plain colored"
   },
   html: {
     name: "html",
-    icon: "html"
+    icon: "html-plain colored"
   },
   css: {
     name: "css",
-    icon: "css"
+    icon: "css-plain colored"
   },
   sass: {
     name: "sass",
-    icon: "sass"
+    icon: "sass-plain colored"
   },
   react: {
     name: "react",
-    icon: "react"
+    icon: "react-plain colored"
   },
   mithril: {
     name: "mithril",
-    icon: "mithril"
+    icon: "mithril-original"
   },
   tauri: {
     name: "tauri",
-    icon: "tauri"
+    icon: "tauri-plain colored"
   },
   flutter: {
     name: "flutter",
-    icon: "flutter"
+    icon: "flutter-plain colored"
   },
   astro: {
     name: "astro",
-    icon: "astro"
+    icon: "astro-plain colored"
   },
   postgresql: {
     name: "postgresql",
-    icon: "postgresql"
+    icon: "postgresql-plain colored"
   },
   mysql: {
     name: "mysql",
-    icon: "mysql"
+    icon: "mysql-plain"
   },
   firebase: {
     name: "firebase",
-    icon: "firebase"
+    icon: "firebase-plain colored"
   },
   supabase: {
     name: "supabase",
-    icon: "supabase"
+    icon: "supabase-plain colored"
   },
   vercel: {
     name: "vercel",
-    icon: "vercel"
+    icon: "vercel-plain colored"
   },
   netlify: {
     name: "netlify",
-    icon: "netlify"
+    icon: "netlify-plain colored"
   },
   aws: {
     name: "aws",
-    icon: "aws"
+    icon: "aws-plain colored"
   },
   google_cloud: {
     name: "google_cloud",
-    icon: "google_cloud"
+    icon: "google_cloud-plain colored"
   },
   digital_ocean: {
     name: "digital_ocean",
-    icon: "digital_ocean"
+    icon: "digital_ocean-plain colored"
   },
   cloudflare: {
     name: "cloudflare",
-    icon: "cloudflare"
+    icon: "cloudflare-plain colored"
   },
   heroku: {
     name: "heroku",
-    icon: "heroku"
+    icon: "heroku-plain colored"
   },
   github: {
     name: "github",
-    icon: "github"
+    icon: "github-plain colored"
   },
   gitlab: {
     name: "gitlab",
-    icon: "gitlab"
+    icon: "gitlab-plain colored"
   },
   azure_devops: {
     name: "azure_devops",
-    icon: "azure_devops"
+    icon: "azure_devops-plain colored"
+  },
+  trello: {
+    name: "trello",
+    icon: "trello-plain colored"
+  },
+  tailwindcss: {
+    name: "tailwindcss",
+    icon: "tailwindcss-plain colored"
+  },
+  prisma: {
+    name: "prisma",
+    icon: "prisma-original"
+  },
+  aspnet: {
+    name: "AspNet",
+    icon: "aspnet"
+  },
+  winform: {
+    name: "winform",
+    icon: "winform"
+  }
+}
+
+export const PLATFORME_MAP: Partial<Record<Platforme, {
+  name: string;
+  icon: JSX.Element;
+}>> = {
+  web: {
+    icon: Globe,
+    name: "web",
+  },
+  desktop: {
+    icon: LaptopMinimal,
+    name: "Desktop",
+  },
+  mobile: {
+    icon: Smartphone,
+    name: "Mobile",
   }
 }
