@@ -1,0 +1,70 @@
+---
+import type { Education, Experience } from "@/schema";
+import FormattedDate from "./FormattedDate.astro";
+interface Props {
+  slug: string;
+  data: Education | Experience;
+}
+
+const {
+  data: {
+    image,
+    beginDate,
+    endDate,
+    name,
+    description,
+    role,
+    formation,
+    diplome,
+  },
+} = Astro.props;
+const dateFormat: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "short",
+};
+---
+
+<div class="history">
+  <div class="history-image">
+    <img src={image.src} alt={image.alt} class="history-logo" />
+  </div>
+  <div >
+    <p class="history-date">
+      <span>
+        <FormattedDate date={beginDate} format={dateFormat} />
+      </span>
+      {
+        endDate !== undefined ? (
+          <span>
+            {" - "}
+            <FormattedDate date={endDate} format={dateFormat} />
+          </span>
+        ) : null
+      }
+    </p>
+    <h4>{formation ?? ""} {diplome ?? ""}</h4>
+    <h4>{role ?? ""}</h4>
+    <string>{name}</h4>
+    <p>{description}</p>
+  </div>
+</div>
+<style lang="scss">
+  .history {
+    display: grid;
+    grid-template-columns: 115px auto;
+    gap: 10px;
+    align-items: center;
+    &-image {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    &-date {
+        color: var(--accent-600);
+        &:nth-child(2)::before {
+            content: " - "
+        }
+    }
+  }
+</style>
