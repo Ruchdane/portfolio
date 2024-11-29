@@ -61,7 +61,7 @@
 
   @include breakpoint(tablet) {
     // typescale major third
-    --font-h1: 3.815em;
+    --font-h1: 3em;
     --font-h2: 3.052em;
     --font-h3: 2.441em;
     --font-h4: 1.953em;
@@ -301,4 +301,12 @@ button:not(.icon-button), .button:not(.icon-button) {
     --shadow-color: var(--neutral-600);
     --text-color: var(--neutral-800);
   }
+}
+.text-body{
+  font-weight: normal;
+  font-size: var(--font-body);
+}
+
+.text-caption {
+  font-size: var(--font-caption);
 }

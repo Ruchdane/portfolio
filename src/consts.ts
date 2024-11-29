@@ -20,10 +20,6 @@ export const NAVIGATION_LINKS = [
     title: "Projets",
   },
   {
-    link: "/blog",
-    title: "Expériences",
-  },
-  {
     link: "/about",
     title: "A propos",
   },

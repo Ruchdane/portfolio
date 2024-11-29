@@ -15,9 +15,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
+				padding-top: 8rem;
 				width: calc(100% - 2em);
 				max-width: 100%;
-				margin: 0;
+				margin: 0 auto;
 			}
 			.hero-image {
 				width: 100%;
@@ -64,7 +65,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<div class="prose">
 					<div class="title">
 						<div class="date">
-							<FormattedDate date={pubDate} />
+							{pubDate &&<FormattedDate date={pubDate} />}
 							{
 								updatedDate && (
 									<div class="last-updated-on">
