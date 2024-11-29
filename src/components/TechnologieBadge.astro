@@ -9,7 +9,7 @@ const { name: key } = Astro.props;
 const { name, icon} = TECHNOLOGIE_MAP[key];
 ---
 
-<a class="badge" href={`projects?technologie=${name}`}>
+<a class="badge" href={`/project?technologie=${name}`}>
   <i class={`devicon-${icon}`}></i>
   <span>{name}</span>
 </a>

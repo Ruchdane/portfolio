@@ -33,7 +33,7 @@ const educationList = (await getCollection("education")).sort(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
@@ -72,9 +72,9 @@ const educationList = (await getCollection("education")).sort(
         <div>
         <h2>
           <span> Projets</span>
-          <a class="icon-button" href="/projects"><SquareArrowOutUpRight/></a>
+          <a class="icon-button" href="/project"><SquareArrowOutUpRight/></a>
         </h2>
-        <p class="text-caption">Quelque Projets sur lequel j'ai travaillé</p>
+        <p class="text-body">Quelque Projets sur lequel j'ai travaillé</p>
         </div>
         <div class="project-container">
           {featuredProject.map((data) => <ProjectCard {...data} />)}
@@ -82,7 +82,7 @@ const educationList = (await getCollection("education")).sort(
       </section>
       <section class="tech-stack">
         <h2>Technologies</h2>
-        <p class="text-caption">Mes technologie de prédilection</p>
+        <p class="text-body">Mes technologie de prédilection</p>
         <div class="tech-stack-container">
           {
             Object.keys(CORE_STACK).map((key) => {
@@ -139,11 +139,13 @@ const educationList = (await getCollection("education")).sort(
     background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
+      padding-top: 7rem;
     @include breakpoint(desktop) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 38px;
+      padding: 10rem;
     }
     &-content {
       @include breakpoint(desktop) {
@@ -154,13 +156,16 @@ const educationList = (await getCollection("education")).sort(
       margin-inline: auto;
       width: fit-content;
       position: relative;
-      padding: 80px;
       @include breakpoint(desktop) {
+        padding: 80px;
         order: 1;
       }
       img {
+        @include breakpoint(tablet) {
+          width: 80%;
+        }
         @include breakpoint(desktop) {
-          width: 75%;
+          width: 100%;
         }
         border: 1px solid var(--accent-800);
         border-radius: 100%;

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   viewBox="0 0 525 525"
+   id="svg59"
+   sodipodi:docname="akojo-swirl-light.svg"
+   width="525"
+   height="525"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   inkscape:export-filename="akojo-swirl-light.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs59">
+    <linearGradient
+       id="linearGradient65"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#0073c1;stop-opacity:1;"
+         offset="0"
+         id="stop65" />
+      <stop
+         style="stop-color:#e4f0f8;stop-opacity:1;"
+         offset="1"
+         id="stop66" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient65"
+       id="linearGradient66"
+       x1="744.1629"
+       y1="109.78532"
+       x2="764.34229"
+       y2="135.45656"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview59"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.7245662"
+     inkscape:cx="260.15566"
+     inkscape:cy="146.29443"
+     inkscape:window-width="1918"
+     inkscape:window-height="1036"
+     inkscape:window-x="0"
+     inkscape:window-y="42"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg59"
+     showgrid="false" />
+  <g
+     id="g70"
+     transform="matrix(2.381102,0,0,2.3606852,-1517.7953,-96.550117)">
+    <path
+       style="fill:url(#linearGradient66);fill-opacity:1;stroke:none"
+       d="m 746.17957,139.41361 c -0.0452,-15.14238 3.79457,-32.25971 14.88959,-38.79632 11.34649,-6.684759 22.48438,-9.592279 38.80238,-1.611514 5.53048,4.528224 11.13904,8.886964 16.22753,14.260444 l 19.8946,19.0201 c 8.55022,13.57697 7.9337,23.84945 4.02625,31.31357 -3.81716,-28.43385 -29.62453,-42.86406 -48.17651,-44.42261 -32.54716,-0.0655 -37.371,22.13221 -41.65786,30.16863 -0.58555,1.09771 -0.85584,2.11968 -1.09238,2.8045 11.66602,-9.01739 21.46636,-19.53373 45.28338,-16.33752 15.42911,4.01389 29.16484,14.08943 35.49773,39.49957 l 2.05028,23.08199 c 7.06043,-7.45491 15.39131,-14.03306 20.32684,-22.9544 5.38631,-10.26587 7.08886,-20.84137 5.48555,-31.51427 -1.34877,-7.80651 -5.33405,-14.89066 -9.41125,-20.82489 -11.80564,-13.64669 -25.47078,-25.985309 -38.20617,-38.977959 -8.23872,-7.45455 -16.54356,-9.2691 -24.92483,-10.0243 -20.18401,-1.73082 -44.84365,14.70205 -49.93027,37.958409 -0.4843,9.88464 4.49364,20.63328 10.91514,27.35657 z"
+       id="path61"
+       sodipodi:nodetypes="cscccccsccccccccccc" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path61"
+       id="use68"
+       transform="rotate(90,748.41615,154.18662)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use68"
+       id="use69"
+       transform="rotate(90,749.28459,152.62946)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use69"
+       id="use70"
+       transform="rotate(90,748.51013,152.37369)" />
+  </g>
+</svg>
