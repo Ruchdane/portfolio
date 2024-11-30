@@ -22,6 +22,12 @@ import MorphingBurger from './MorphingBurger.astro';
 </header>
 <style lang="scss">
 	@use "../styles/media-query" as *;
+	:global(main) {
+		padding-block: 5rem 1rem;
+		@include breakpoint(tablet){
+			padding-block: 7rem 3rem;
+		}
+	}
 	header {
 		position: fixed;
 		z-index: var(--z-index-header);
@@ -29,7 +35,6 @@ import MorphingBurger from './MorphingBurger.astro';
 		margin: 0;
 		background: var(--neutral-100);
 		box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-
 	}
 	h2 {
 		margin: 0;

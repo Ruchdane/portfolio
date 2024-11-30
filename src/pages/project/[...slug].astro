@@ -1,20 +1,29 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-
+import { Image } from 'astro:assets';
+import BasePage from "@/layouts/BasePage.astro";
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
+	const project = await getCollection('project');
+	return project.map((project) => ({
+		params: { slug: project.slug },
+		props: project,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'project'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const projectEntry = Astro.props;
+const {logo, title, description, thumbs} = projectEntry.data;
+const { Content } = await projectEntry.render();
+import Carousel from '@/components/Carousel.astro'
+
 ---
 
-<BlogPost {...post.data}>
+<BasePage title={title} description={description}>
+	<Carousel width={300} height={120} images={thumbs}/>
+	<h1>
+		<Image src={logo} width="24" height="24" alt={title[0]} />
+		<span> {title} </span>
+	</h1>
+	<p> {description} </p>
 	<Content />
-</BlogPost>
+</BasePage>
