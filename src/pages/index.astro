@@ -5,10 +5,7 @@ import {
   CORE_STACK,
   PLATFORME_MAP,
 } from "../consts";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import ProjectCard from "@/components/ProjectCard.astro";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import GithubIconLink from "../components/IconLinks/GithubIconLink.astro";
@@ -20,111 +17,108 @@ import TabTrigger from "@/components/AnchorTab/TabTrigger.astro";
 import TabContent from "@/components/AnchorTab/TabContent.astro";
 import HistoryElement from "@/components/HistoryElement.astro";
 import { SquareArrowOutUpRight } from "lucide-astro";
+import type { Education, Experience } from "@/schema";
+import BasePage from "@/layouts/BasePage.astro";
 const featuredProject = (await getCollection("project")).filter(
   ({ data: project }) => project.isFeatured
 );
+const orderByBeginDate = (
+  a: { data: Education | Experience },
+  b: { data: Education | Experience }
+): number => b.data.beginDate.getTime() - a.data.beginDate.getTime();
 const experienceList = (await getCollection("experience")).sort(
-  (a, b) => b.data.beginData - a.data.beginData
+  orderByBeginDate
 );
-
-const educationList = (await getCollection("education")).sort(
-  (a, b) => b.data.beginData - a.data.beginData
-);
+const educationList = (await getCollection("education")).sort(orderByBeginDate);
 ---
 
-<!doctype html>
-<html lang="fr">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <section class="banner">
-        <div class="banner-image">
-          <Image src="/images/banner_picture.jpg" width={243} height={265} alt="Photo de Ruchdane" />
+<BasePage title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="banner">
+    <div class="banner-image">
+      <Image
+        src="/images/banner_picture.jpg"
+        width={243}
+        height={265}
+        alt="Photo de Ruchdane"
+      />
+    </div>
+    <div class="banner-content">
+      <div class="banner-text">
+        <p>
+          <span class="text-body">Salut, je suis</span> AMADOU Ruchdane
+        </p>
+        <strong> Développeur web full-stack </strong>
+        <span class="text-body">
+          Passionné par l'innovation et la résolution de problèmes utilisateurs
+        </span>
+        <div class="banner-links">
+          <GithubIconLink class="github-icon-link" />
+          <LinkedinIconLink class="linkedin-icon-link" />
+          <MailIconLink class="mail-icon-link" />
         </div>
-        <div class="banner-content">
-          
-          <div class="banner-text">
-            <p>
-              <span class="text-body">Salut, je suis</span> AMADOU Ruchdane
-            </br>
-              <strong> Développeur web full-stack </strong>
-            </br>
-            <span class="text-body">
-              Passionné par l'innovation et la résolution de problèmes
-              utilisateurs
-            </span>
-            </p>
-          </div>
-          <div class="banner-links">
-            <GithubIconLink class="github-icon-link" />
-            <LinkedinIconLink class="linkedin-icon-link" />
-            <MailIconLink class="mail-icon-link" />
-          </div>
-        </div>
-      </section>
-      <section class="project">
-        <div>
-        <h2>
-          <span> Projets</span>
-          <a class="icon-button" href="/project"><SquareArrowOutUpRight/></a>
-        </h2>
-        <p class="text-body">Quelques projets sur lesquels j'ai travaillé</p>
-        </div>
-        <div class="project-container">
-          {featuredProject.map((data) => <ProjectCard {...data} />)}
-        </div>
-      </section>
-      <section class="tech-stack">
-        <h2>Technologies</h2>
-        <p class="text-body"> Mes technologies de prédilection </p>
-        <div class="tech-stack-container">
-          {
-            Object.keys(CORE_STACK).map((key) => {
-              const plateforme = PLATFORME_MAP[key];
-              const stack = CORE_STACK[key];
-              const Icon = plateforme?.icon;
-              return (
-                <div class="tech-stack-item">
-                  <h3>
-                    <Icon class="tech-icon" />
-                    <span>{plateforme?.name}</span>
-                  </h3>
-                  <div class="tech-stack-container">
-                    {stack.map((name) => (
-                      <TechnologieBadge name={name} />
-                    ))}
-                  </div>
-                </div>
-              );
-            })
-          }
-        </div>
-      </section>
-      <section class="history">
-        <AnchorTabs>
-          <div class="history-trigger">
-            <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
-            <TabTrigger key="education">Parcours Scolaire</TabTrigger>
-          </div>
-          <div class="history-content">
-            <TabContent key="experience">
-              {experienceList.map((data) => <HistoryElement {...data} />)}
-            </TabContent>
-            <TabContent key="education">
-              {educationList.map((data) => <HistoryElement {...data} />)}
-            </TabContent>
-          </div>
-        </AnchorTabs>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
-<style lang="scss" is:global>
+      </div>
+    </div>
+  </section>
+  <section class="project">
+    <div>
+      <h2>
+        <span> Projets</span>
+        <a class="icon-button" href="/project"><SquareArrowOutUpRight /></a>
+      </h2>
+      <p class="text-body">Quelques projets sur lesquels j'ai travaillé</p>
+    </div>
+    <div class="project-container">
+      {featuredProject.map((data) => <ProjectCard {...data} />)}
+    </div>
+  </section>
+  <section class="tech-stack">
+    <h2>Technologies</h2>
+    <p class="text-body">Mes technologies de prédilection</p>
+    <div class="tech-stack-container">
+      {
+        Object.keys(CORE_STACK).map((key) => {
+          const plateforme = PLATFORME_MAP[key];
+          const stack = CORE_STACK[key];
+          const Icon = plateforme?.icon;
+          return (
+            <div class="tech-stack-item">
+              <h3>
+                <Icon class="tech-icon" />
+                <span>{plateforme?.name}</span>
+              </h3>
+              <div class="tech-stack-container">
+                {stack.map((name) => (
+                  <TechnologieBadge name={name} />
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+  <section class="history">
+    <AnchorTabs>
+      <div class="history-trigger">
+        <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
+        <TabTrigger key="education">Parcours Scolaire</TabTrigger>
+      </div>
+      <div class="history-content">
+        <TabContent key="experience">
+          {experienceList.map((data) => <HistoryElement {...data} />)}
+        </TabContent>
+        <TabContent key="education">
+          {educationList.map((data) => <HistoryElement {...data} />)}
+        </TabContent>
+      </div>
+    </AnchorTabs>
+  </section>
+</BasePage>
+<style lang="scss">
   @use "../styles/media-query" as *;
+  :global(main) {
+    padding-top: 0;
+  }
   section {
     padding: 2rem;
     @include breakpoint(tablet) {
@@ -136,7 +130,7 @@ const educationList = (await getCollection("education")).sort(
     background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
-      padding-top: 7rem;
+    padding-top: 7rem;
     @include breakpoint(desktop) {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -188,7 +182,7 @@ const educationList = (await getCollection("education")).sort(
   }
 
   .project {
-    &-header{
+    &-header {
       h2 {
         font-size: var(--font-h3);
         font-weight: 800;
