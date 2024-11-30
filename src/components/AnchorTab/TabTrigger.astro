@@ -10,13 +10,13 @@ const { key } = Astro.props;
     <slot />
 </a>
 
-<style>
-  .tab-link{
+<style lang="scss">
+  a.tab-link{
     font-weight: 600;
     text-align: center;
     width: 100%;
   }
-  .active {
+  a.active {
     box-shadow: var(--shadow-color) 0px 7px 0px 0px;
     transform: translateY(5px);
     background-color: var(--accent-500);
