@@ -50,14 +50,11 @@ const educationList = (await getCollection("education")).sort(
             <p>
               <span class="text-body">Salut, je suis</span> AMADOU Ruchdane
             </br>
-              <strong>Dévellopeur web full-stack</strong>
+              <strong> Développeur web full-stack </strong>
             </br>
             <span class="text-body">
               Passionné par l'innovation et la résolution de problèmes
-              utilisateurs, 
-              <!-- je souhaite désormais mettre mes compétences
-              techniques au service de la gestion de produit pour créer des
-              solutions adaptées et performantes. -->
+              utilisateurs
             </span>
             </p>
           </div>
@@ -74,7 +71,7 @@ const educationList = (await getCollection("education")).sort(
           <span> Projets</span>
           <a class="icon-button" href="/project"><SquareArrowOutUpRight/></a>
         </h2>
-        <p class="text-body">Quelque Projets sur lequel j'ai travaillé</p>
+        <p class="text-body">Quelques projets sur lesquels j'ai travaillé</p>
         </div>
         <div class="project-container">
           {featuredProject.map((data) => <ProjectCard {...data} />)}
@@ -82,7 +79,7 @@ const educationList = (await getCollection("education")).sort(
       </section>
       <section class="tech-stack">
         <h2>Technologies</h2>
-        <p class="text-body">Mes technologie de prédilection</p>
+        <p class="text-body"> Mes technologies de prédilection </p>
         <div class="tech-stack-container">
           {
             Object.keys(CORE_STACK).map((key) => {
@@ -109,8 +106,8 @@ const educationList = (await getCollection("education")).sort(
       <section class="history">
         <AnchorTabs>
           <div class="history-trigger">
-            <TabTrigger key="experience">Expériences professionels</TabTrigger>
-            <TabTrigger key="education">Parcours Scholaire</TabTrigger>
+            <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
+            <TabTrigger key="education">Parcours Scolaire</TabTrigger>
           </div>
           <div class="history-content">
             <TabContent key="experience">
