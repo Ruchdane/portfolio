@@ -4,21 +4,23 @@ import {
   SITE_DESCRIPTION,
   CORE_STACK,
   PLATFORME_MAP,
-} from "../consts";
+} from "@/consts";
 import { Image } from "astro:assets";
-import ProjectCard from "@/components/ProjectCard.astro";
-import TechnologieBadge from "@/components/TechnologieBadge.astro";
-import GithubIconLink from "../components/IconLinks/GithubIconLink.astro";
-import LinkedinIconLink from "../components/IconLinks/LinkedinIconLink.astro";
-import MailIconLink from "../components/IconLinks/MailIconLink.astro";
 import { getCollection } from "astro:content";
-import AnchorTabs from "@/components/AnchorTab/AnchorTabs.astro";
-import TabTrigger from "@/components/AnchorTab/TabTrigger.astro";
-import TabContent from "@/components/AnchorTab/TabContent.astro";
-import HistoryElement from "@/components/HistoryElement.astro";
-import { SquareArrowOutUpRight } from "lucide-astro";
 import type { Education, Experience } from "@/schema";
-import BasePage from "@/layouts/BasePage.astro";
+import { BasePage } from "@/layouts";
+import { SquareArrowOutUpRight } from "lucide-astro";
+import {
+  ProjectCard,
+  TechnologieBadge,
+  GithubIconLink,
+  LinkedinIconLink,
+  MailIconLink,
+  AnchorTabs,
+  TabTrigger,
+  TabContent,
+  HistoryElement,
+} from "@/components";
 const featuredProject = (await getCollection("project")).filter(
   ({ data: project }) => project.isFeatured
 );

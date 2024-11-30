@@ -1,14 +1,13 @@
 ---
-import Layout from "../layouts/BlogPost.astro";
+import {BasePage} from "@/layouts";
 import { getCollection } from "astro:content";
-import HistoryElement from "@/components/HistoryElement.astro";
+import { HistoryElement } from "@/components";
 const experienceList = await getCollection("experience");
 const educationList = await getCollection("education");
-const history = experienceList.concat(educationList)
-.sort((a, b) => b.data.beginData - a.data.beginData);
+const history = experienceList.concat(educationList).sort((a, b) => b.data.beginDate.getTime() - a.data.beginDate.getTime);
 ---
 
-<Layout
+<BasePage
   title="A propos de moi"
   description="Lorem ipsum dolor sit amet"
 >
@@ -26,4 +25,4 @@ const history = experienceList.concat(educationList)
   </p>
   <h3>Mon Parcours</h3>
   {history.map((data) => <HistoryElement {...data} />)}
-</Layout>
+</BasePage>

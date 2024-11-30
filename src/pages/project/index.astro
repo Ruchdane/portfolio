@@ -1,11 +1,14 @@
 ---
-import ProjectCard from "@/components/ProjectCard.astro";
-import BasePage from "@/layouts/BasePage.astro";
+import { ProjectCard } from "@/components";
+import { BasePage } from "@/layouts";
 import { getCollection } from "astro:content";
 const project = await getCollection("project");
 ---
 
-<BasePage title="Mes projets" description="Quelques projets sur lesquels j'ai travaillé">
+<BasePage
+  title="Mes projets"
+  description="Quelques projets sur lesquels j'ai travaillé"
+>
   <section>
     <h1>Projets</h1>
     <div class="project-container">
@@ -13,25 +16,25 @@ const project = await getCollection("project");
     </div>
   </section>
 </BasePage>
-  <style lang="scss">
-    @use "../../styles/media-query" as *;
+<style lang="scss">
+  @use "../../styles/media-query" as *;
 
-    section{
-      padding: 1rem 2.5rem;
-      @include breakpoint(tablet){
-        padding: 2rem 5rem;
-      }
-      h1{
-        margin-bottom: 1rem;
-      }
+  section {
+    padding: 1rem 2.5rem;
+    @include breakpoint(tablet) {
+      padding: 2rem 5rem;
     }
-    .project-container {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      @include breakpoint(tablet) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      }
+    h1 {
+      margin-bottom: 1rem;
     }
-  </style>
+  }
+  .project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+  }
+</style>
