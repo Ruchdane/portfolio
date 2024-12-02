@@ -7,7 +7,7 @@ import {
 } from "@/consts";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import type { Education, Experience } from "@/schema";
+import type { Education, Experience, Platforme } from "@/schema";
 import { BasePage } from "@/layouts";
 import { SquareArrowOutUpRight } from "lucide-astro";
 import {
@@ -78,15 +78,20 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
     <p class="text-body">Mes technologies de prédilection</p>
     <div class="tech-stack-container">
       {
-        Object.keys(CORE_STACK).map((key) => {
-          const plateforme = PLATFORME_MAP[key];
+        (Object.keys(CORE_STACK) as Platforme[]).map((key: Platforme) => {
+          const platforme = PLATFORME_MAP[key];
           const stack = CORE_STACK[key];
-          const Icon = plateforme?.icon;
+          if(platforme === undefined) throw new Error(`key ${key} is not defined in the platforme map`);
+          if(stack === undefined || stack.length === 0) {
+            console.warn(`Platforme ${platforme} has an entry in CORE stack but no technologie inside of it`)
+            return null
+          };
+          const Icon = platforme?.icon;
           return (
             <div class="tech-stack-item">
               <h3>
                 <Icon class="tech-icon" />
-                <span>{plateforme?.name}</span>
+                <span>{platforme?.name}</span>
               </h3>
               <div class="tech-stack-container">
                 {stack.map((name) => (

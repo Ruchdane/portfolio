@@ -13,9 +13,7 @@ const {
     endDate,
     name,
     description,
-    role,
-    formation,
-    diplome,
+    ...props
   },
 } = Astro.props;
 const dateFormat: Intl.DateTimeFormatOptions = {
@@ -42,8 +40,8 @@ const dateFormat: Intl.DateTimeFormatOptions = {
         ) : null
       }
     </p>
-    <h4>{formation ?? ""} {diplome ?? ""}</h4>
-    <h4>{role ?? ""}</h4>
+    {"formation" in props ? <h4>{props.formation} {props?.diplome ?? ""}</h4> : null}
+    {"role" in props ? <h4>{props?.role ?? ""}</h4> : null}
     <string>{name}</h4>
     <p>{description}</p>
   </div>

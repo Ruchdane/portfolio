@@ -2,8 +2,6 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 import type { Platforme, Technologie } from "@/schema";
-import { Platforme } from "@/schema";
-import type { JSX } from "astro/jsx-runtime";
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 
 export const SITE_LOGO = "/logo.svg";
@@ -177,7 +175,7 @@ export const TECHNOLOGIE_MAP: Record<Technologie, { name: string; icon: string }
 
 export const PLATFORME_MAP: Partial<Record<Platforme, {
   name: string;
-  icon: JSX.Element;
+  icon: typeof Globe;
 }>> = {
   web: {
     icon: Globe,

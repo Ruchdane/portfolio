@@ -3,7 +3,11 @@
   const tabs = document.querySelectorAll(".tab-link");
   if (tabs.length > 0) {
     tabs.forEach((tabLink) =>
-      tabLink.addEventListener("click", toggleTabContent)
+      tabLink.addEventListener("click", (e) => {
+        const targetTrigger = e.target;
+        e.preventDefault();
+        if (targetTrigger instanceof HTMLElement) toggleContent(targetTrigger);
+      })
     );
     if (window.location.hash) {
       const hash = window.location.hash;
@@ -11,15 +15,10 @@
       if (tabLink) {
         toggleContent(tabLink);
       }
-    } else toggleContent(tabs[0]);
-  }
-  function toggleTabContent(e: Event) {
-    const targetTrigger = e.target;
-    e.preventDefault();
-    if (targetTrigger) toggleContent(targetTrigger);
+    } else if (tabs[0] !== undefined) toggleContent(tabs[0]);
   }
 
-  function toggleContent(targetTrigger: EventTarget) {
+  function toggleContent(targetTrigger: Element) {
     const targetTabLink = targetTrigger.getAttribute("href");
     const targetContent = document.querySelector(
       `[data-tab-anchor="${targetTabLink}"]`

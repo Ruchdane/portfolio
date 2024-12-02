@@ -4,7 +4,10 @@ import { getCollection } from "astro:content";
 import { HistoryElement } from "@/components";
 const experienceList = await getCollection("experience");
 const educationList = await getCollection("education");
-const history = experienceList.concat(educationList).sort((a, b) => b.data.beginDate.getTime() - a.data.beginDate.getTime);
+const history = experienceList
+// @ts-ignore
+.concat(educationList)
+.sort((a, b) => b.data.beginDate.getTime() - a.data.beginDate.getTime());
 ---
 
 <BasePage
