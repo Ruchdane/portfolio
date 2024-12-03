@@ -123,9 +123,7 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
 </BasePage>
 <style lang="scss">
   @use "../styles/media-query" as *;
-  :global(main) {
-    padding-top: 0;
-  }
+  
   section {
     padding: 2rem;
     @include breakpoint(tablet) {
@@ -137,13 +135,12 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
     background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
-    padding-top: 7rem;
     @include breakpoint(desktop) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 38px;
-      padding: 10rem;
+      padding: 6rem;
     }
     &-content {
       @include breakpoint(desktop) {
@@ -155,7 +152,6 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
       width: fit-content;
       position: relative;
       @include breakpoint(desktop) {
-        padding: 80px;
         order: 1;
       }
       img {
