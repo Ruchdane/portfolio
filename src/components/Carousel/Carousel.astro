@@ -86,40 +86,42 @@ const images = Astro.props.images.slice(0, 3);
 </style>
 
 <script>
-  document.querySelectorAll('[data-carousel]')
-  .forEach(carousel => {
-  let currentIndex = 0;
-  let direction = 1;
-  const slides = carousel.querySelectorAll(".carousel-slide");
-  const triggers = carousel.querySelectorAll(".carousel-trigger");
-  let intervalTimer = setInterval(switchToNext, 1000);
-  function setActiveSlide(target: unknown) {
-    if (!(target instanceof HTMLButtonElement)) return;
-    const index = parseInt(target.dataset.index ?? "0");
+  	document.addEventListener('astro:page-load', () => { 
+      document.querySelectorAll('[data-carousel]')
+      .forEach(carousel => {
+      let currentIndex = 0;
+      let direction = 1;
+      const slides = carousel.querySelectorAll(".carousel-slide");
+      const triggers = carousel.querySelectorAll(".carousel-trigger");
+      let intervalTimer = setInterval(switchToNext, 1000);
+      function setActiveSlide(target: unknown) {
+        if (!(target instanceof HTMLButtonElement)) return;
+        const index = parseInt(target.dataset.index ?? "0");
 
-    slides.forEach((slide) => {
-      slide.classList.remove("active")
-      slide.style.transform = `translateX(${-1 * index * 100}%)`;
-    });
-    triggers.forEach((trigger) => trigger.classList.remove("active"));
+        slides.forEach((slide) => {
+          slide.classList.remove("active")
+          slide.style.transform = `translateX(${-1 * index * 100}%)`;
+        });
+        triggers.forEach((trigger) => trigger.classList.remove("active"));
 
-    slides[index]?.classList.add("active");
-    triggers[index]?.classList.add("active");
+        slides[index]?.classList.add("active");
+        triggers[index]?.classList.add("active");
 
-    currentIndex = index;
-  }
-  triggers.forEach(trigger => trigger.addEventListener("click", e => {
-    clearInterval(intervalTimer);
-    setActiveSlide(e.target);
-    intervalTimer = setInterval(switchToNext, 1000);
-  }));
-  function switchToNext() {
-    currentIndex = (currentIndex + direction * 1);
-    if (currentIndex < 0 || currentIndex >= slides.length) {
-      direction *= -1;
-      currentIndex = (currentIndex + direction * 2);
-    }
-    setActiveSlide(triggers[currentIndex]);
-  }
+        currentIndex = index;
+      }
+      triggers.forEach(trigger => trigger.addEventListener("click", e => {
+        clearInterval(intervalTimer);
+        setActiveSlide(e.target);
+        intervalTimer = setInterval(switchToNext, 1000);
+      }));
+      function switchToNext() {
+        currentIndex = (currentIndex + direction * 1);
+        if (currentIndex < 0 || currentIndex >= slides.length) {
+          direction *= -1;
+          currentIndex = (currentIndex + direction * 2);
+        }
+        setActiveSlide(triggers[currentIndex]);
+      }
+    })
 })
 </script>

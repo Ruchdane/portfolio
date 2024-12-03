@@ -1,33 +1,39 @@
 <slot />
 <script>
-  const tabs = document.querySelectorAll(".tab-link");
-  if (tabs.length > 0) {
-    tabs.forEach((tabLink) =>
-      tabLink.addEventListener("click", (e) => {
-        const targetTrigger = e.target;
-        e.preventDefault();
-        if (targetTrigger instanceof HTMLElement) toggleContent(targetTrigger);
-      })
-    );
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      const tabLink = document.querySelector(`[href="${hash}"]`);
-      if (tabLink) {
-        toggleContent(tabLink);
-      }
-    } else if (tabs[0] !== undefined) toggleContent(tabs[0]);
-  }
+  document.addEventListener('astro:page-load', () => {
+    const tabs = document.querySelectorAll(".tab-link");
+    if (tabs.length > 0) {
+      tabs.forEach((tabLink) =>
+        tabLink.addEventListener("click", (e) => {
+          const targetTrigger = e.target;
+          e.preventDefault();
+          if (targetTrigger instanceof HTMLElement) {
+            window.location.hash = targetTrigger.getAttribute("href") ?? "";
+            toggleContent(targetTrigger)
+          };
+        })
+      );
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        const tabLink = document.querySelector(`[href="${hash}"]`);
+        if (tabLink) {
+          toggleContent(tabLink);
+        }
+        else if (tabs[0] !== undefined) toggleContent(tabs[0]);
+      } else if (tabs[0] !== undefined) toggleContent(tabs[0]);
+    }
 
-  function toggleContent(targetTrigger: Element) {
-    const targetTabLink = targetTrigger.getAttribute("href");
-    const targetContent = document.querySelector(
-      `[data-tab-anchor="${targetTabLink}"]`
-    );
-    const activeTabTrigger = document.querySelector(`.tab-link.active`);
-    const activeTabContent = document.querySelector(`.tab-pane.active`);
-    activeTabTrigger?.classList.remove("active");
-    activeTabContent?.classList.remove("active");
-    targetTrigger?.classList.add("active");
-    targetContent?.classList.add("active");
+    function toggleContent(targetTrigger: Element) {
+      const targetTabLink = targetTrigger.getAttribute("href");
+      const targetContent = document.querySelector(
+        `[data-tab-anchor="${targetTabLink}"]`
+      );
+      const activeTabTrigger = document.querySelector(`.tab-link.active`);
+      const activeTabContent = document.querySelector(`.tab-pane.active`);
+      activeTabTrigger?.classList.remove("active");
+      activeTabContent?.classList.remove("active");
+      targetTrigger?.classList.add("active");
+      targetContent?.classList.add("active");
   }
+})
 </script>

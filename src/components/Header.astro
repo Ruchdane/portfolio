@@ -77,10 +77,12 @@ import MorphingBurger from './MorphingBurger.astro';
 
 </style>
 <script>
-	const sidebar = document.getElementById('sidebar');
-	const trigger = document.getElementById('burger-trigger');
-	trigger?.addEventListener('click', () => {
-			sidebar?.classList.toggle('show');
-			trigger?.firstElementChild?.classList.toggle('cross');
-	});
+	document.addEventListener('astro:page-load', () => {
+		const sidebar = document.getElementById('sidebar');
+		const trigger = document.getElementById('burger-trigger');
+		trigger?.addEventListener('click', () => {
+				sidebar?.classList.toggle('show');
+				trigger?.firstElementChild?.classList.toggle('cross');
+		});
+	})
 </script>
