@@ -72,16 +72,16 @@ const { slug, data: {logo, title, description, technologies, thumbs, websiteUrl,
   @use "../styles/media-query" as *;
   .project{
     &-card {
-      display: flex;
-      flex-direction: column;
-      @include breakpoint(tablet) {
-        flex-direction: row;
-      }
       background-color: var(--white);
       padding: 16px;
       border-radius: 0.5rem;
       box-shadow: var(--neutral-800) 0px 4px 8px 0px;
+      display: flex;
       overflow: hidden;
+      flex-direction: column;
+      @include breakpoint(tablet) {
+        flex-direction: row;
+      }
     }
     
     &-thumbnails {

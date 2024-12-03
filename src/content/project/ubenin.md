@@ -9,6 +9,18 @@ thumbs:
       alt: "ubenin discover screen",
       width: 720,
       height: 1600,
+     },
+      {
+      src: "/images/ubenin/thumb-diiscover-screen.jpg",
+      alt: "ubenin discover screen",
+      width: 720,
+      height: 1600,
+     },
+      {
+      src: "/images/akojo/thumb-shop-interface.jpg",
+      alt: "ubenin discover screen",
+      width: 720,
+      height: 1600,
      }
     #,{
     #   src: "/images/ubenin/thumb-diiscover-screen.jpg",

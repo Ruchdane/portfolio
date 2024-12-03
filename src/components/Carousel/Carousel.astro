@@ -1,24 +1,20 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 import { type CarouselProps } from "./carousel-props";
 interface Props extends CarouselProps {}
 
 const images = Astro.props.images.slice(0, 3);
+
 ---
 
 <div class="carousel" data-carousel>
   {
     (
       <div class="carousel-slides">
-        {images.map(({ src, alt, width, height }, index) => (
-          <Image
-            class:list={["carousel-slide", { active: index === 0 }]}
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-          />
-        ))}
+        {images.map(({ src, alt, width, height }, index) => {
+          const className = "carousel-slide" + (index === 0 ? " active" : "" )
+          return <Image class={className} src={src}  alt={alt} width={width ?? 0} height={height ?? 0} />
+        })}
       </div>
     )
   }
@@ -99,6 +95,7 @@ const images = Astro.props.images.slice(0, 3);
         const index = parseInt(target.dataset.index ?? "0");
 
         slides.forEach((slide) => {
+          if(!(slide instanceof HTMLElement)) return;
           slide.classList.remove("active")
           slide.style.transform = `translateX(${-1 * index * 100}%)`;
         });

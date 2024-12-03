@@ -159,14 +159,14 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
         order: 1;
       }
       img {
+        border: 1px solid var(--accent-800);
+        border-radius: 100%;
         @include breakpoint(tablet) {
           width: 80%;
         }
         @include breakpoint(desktop) {
           width: 100%;
         }
-        border: 1px solid var(--accent-800);
-        border-radius: 100%;
       }
     }
     &-text {
