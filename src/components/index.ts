@@ -1,8 +1,8 @@
 export * from "./AnchorTab"
 export * from "./IconLinks"
+export * from "./Carousel"
 
 export {default as BaseHead} from "./BaseHead.astro"
-export {default as Carousel} from "./Carousel.astro"
 export {default as Footer} from "./Footer.astro"
 export {default as FormattedDate} from "./FormattedDate.astro"
 export {default as Header} from "./Header.astro"

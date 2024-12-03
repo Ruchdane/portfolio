@@ -14,7 +14,7 @@ type Props = CollectionEntry<'project'>;
 const projectEntry = Astro.props;
 const {logo, title, description, thumbs} = projectEntry.data;
 const { Content } = await projectEntry.render();
-import Carousel from '@/components/Carousel.astro'
+import { Carousel } from '@/components/Carousel'
 
 ---
 
