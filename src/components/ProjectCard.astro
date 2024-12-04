@@ -9,7 +9,8 @@ interface Props {
   data: Project
 }
 
-const { slug, data: {logo, title, description, technologies, thumbs, websiteUrl, downloadUrl, sourceUrl} } = Astro.props;
+const { slug, data: {logo, title, description, technologies: rawTechnologies, thumbs, websiteUrl, downloadUrl, sourceUrl} } = Astro.props;
+const technologies = rawTechnologies.sort((techA, techB) => techA.length - techB.length);
 ---
 <div class="project-card">
   <div class="project-thumbnails">
@@ -86,19 +87,23 @@ const { slug, data: {logo, title, description, technologies, thumbs, websiteUrl,
     
     &-thumbnails {
       position: relative;
-      height: 12rem;
-
-      @media (min-width: 640px) {
-        height: 100%;
-        width: 300px;
-        margin-inline: auto;
+      margin-block: auto;
+      & :global(img) {
+        max-height: 300px;
       }
+      @include breakpoint(desktop) {
+        max-width: 300px;
+      }
+
     }
       
   &-content {
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
+    @include breakpoint(desktop) {
+        width: 100%;
+      }
   }
 
   &-title {
@@ -129,7 +134,11 @@ const { slug, data: {logo, title, description, technologies, thumbs, websiteUrl,
     margin-top: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.75rem;
+    .button {
+      max-width: 300px;
+    }
     @include breakpoint(tablet) {
       flex-direction: row;
       .button {

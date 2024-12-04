@@ -49,9 +49,12 @@ const images = Astro.props.images.slice(0, 3);
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: transform 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      margin-block: auto;
 
       &.active {
+        opacity: 1;
       }
     }
 
