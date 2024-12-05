@@ -1,29 +1,44 @@
 ---
-import { Globe, Download, Code, ArrowRight } from 'lucide-astro'
-import { Image } from 'astro:assets';
+import { Globe, Download, Code, ArrowRight } from "lucide-astro";
+import { Image } from "astro:assets";
 import { type Project } from "@/schema";
-import { Carousel } from '@/components/Carousel'
-import TechnologieBadge from '@/components/TechnologieBadge.astro'
+import { Carousel } from "@/components/Carousel";
+import TechnologieBadge from "@/components/TechnologieBadge.astro";
 interface Props {
-  slug: string,
-  data: Project
+  slug: string;
+  data: Project;
 }
 
-const { slug, data: {logo, title, description, technologies: rawTechnologies, thumbs, websiteUrl, downloadUrl, sourceUrl} } = Astro.props;
-const technologies = rawTechnologies.sort((techA, techB) => techA.length - techB.length);
+const {
+  slug,
+  data: {
+    logo,
+    title,
+    description,
+    technologies: rawTechnologies,
+    thumbs,
+    websiteUrl,
+    downloadUrl,
+    sourceUrl,
+  },
+} = Astro.props;
+const technologies = rawTechnologies.sort(
+  (techA, techB) => techA.length - techB.length
+);
 ---
+
 <div class="project-card">
   <div class="project-thumbnails">
-    <Carousel width={300} height={120} images={thumbs}/>
+    <Carousel limit={3} images={thumbs} />
   </div>
   <div class="project-content">
     <div class="project-title">
       <h3>
         <Image src={logo} height="36" width="36" alt={title[0]} />
-        <span> {title}  </span>
+        <span> {title} </span>
       </h3>
       <a class="icon-button" href={`/project/${slug}`}>
-        <ArrowRight>
+        <ArrowRight />
       </a>
     </div>
     <p class="project-description">{description}</p>
@@ -33,45 +48,44 @@ const technologies = rawTechnologies.sort((techA, techB) => techA.length - techB
     </div>
 
     <div class="project-actions">
-      {websiteUrl && (
-        <a
-          href={websiteUrl}
-          rel="noopener"
-          class="button secondary"
-        >
-          <Globe/>
-          <span> Visiter </span>
-        </a>
-      )}
-      
-      {downloadUrl && (
-        <a
-          href={downloadUrl}
-          class="button primary"
-        >
-         <Download/>
-          Télécharger
-        </a>
-      )}
+      {
+        websiteUrl && (
+          <a href={websiteUrl} rel="noopener" class="button secondary">
+            <Globe />
+            <span> Visiter </span>
+          </a>
+        )
+      }
 
-      {sourceUrl && (
-        <a
-        href={sourceUrl}
-        target="_blank"
-        rel="noopener"
-          class="button secondary"
-        >
-          <Code/>
-          Source
-        </a>
-      )}
+      {
+        downloadUrl && (
+          <a href={downloadUrl} class="button primary">
+            <Download />
+            Télécharger
+          </a>
+        )
+      }
+
+      {
+        sourceUrl && (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener"
+            class="button secondary"
+          >
+            <Code />
+            Source
+          </a>
+        )
+      }
     </div>
   </div>
 </div>
 
 <style lang="scss">
   @use "../styles/media-query" as *;
-  .project{
+  .project {
     &-card {
       background-color: var(--white);
       padding: 16px;
@@ -84,7 +98,7 @@ const technologies = rawTechnologies.sort((techA, techB) => techA.length - techB
         flex-direction: row;
       }
     }
-    
+
     &-thumbnails {
       position: relative;
       margin-block: auto;
@@ -94,66 +108,63 @@ const technologies = rawTechnologies.sort((techA, techB) => techA.length - techB
       @include breakpoint(desktop) {
         max-width: 300px;
       }
-
     }
-      
-  &-content {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    @include breakpoint(desktop) {
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      @include breakpoint(desktop) {
         width: 100%;
       }
-  }
-
-  &-title {
-    display: flex;
-    justify-content: space-between;
-    h3 {
-      font-size: var(--font-h4);
     }
-    align-items: center;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 0.5rem;
-  }
 
-  &-description {
-    color: #4b5563;
-    margin-bottom: 1rem;
-  }
-
-  &-technologies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  &-actions {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.75rem;
-    .button {
-      max-width: 300px;
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        font-size: var(--font-h4);
+      }
+      align-items: center;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.5rem;
     }
-    @include breakpoint(tablet) {
-      flex-direction: row;
+
+    &-description {
+      color: #4b5563;
+      margin-bottom: 1rem;
+    }
+
+    &-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &-actions {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
       .button {
-        width:  100%;
+        max-width: 300px;
+      }
+      @include breakpoint(tablet) {
+        flex-direction: row;
+        .button {
+          width: 100%;
+        }
       }
     }
   }
-}
 
-
-.icon-button {
-  transition: transform 0.3s ease-in-out;
-  &:hover {
-    transform: translateX(5px)
+  .icon-button {
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: translateX(5px);
+    }
   }
-}
-
 </style>

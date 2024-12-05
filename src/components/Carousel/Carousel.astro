@@ -1,19 +1,30 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import { type CarouselProps } from "./carousel-props";
 interface Props extends CarouselProps {}
 
-const images = Astro.props.images.slice(0, 3);
-
+let { images, limit, class: className } = Astro.props;
+if (limit !== undefined) {
+  images = images.slice(0, limit);
+}
 ---
 
-<div class="carousel" data-carousel>
+<div class:list={["carousel", className]} data-carousel>
   {
     (
       <div class="carousel-slides">
         {images.map(({ src, alt, width, height }, index) => {
-          const className = "carousel-slide" + (index === 0 ? " active" : "" )
-          return <Image class={className} src={src}  alt={alt} width={width ?? 0} height={height ?? 0} />
+          const className = "carousel-slide" + (index === 0 ? " active" : "");
+          return (
+            <div class={className}>
+              <Image
+                src={src}
+                alt={alt}
+                width={width ?? 0}
+                height={height ?? 0}
+              />
+            </div>
+          );
         })}
       </div>
     )
@@ -40,7 +51,6 @@ const images = Astro.props.images.slice(0, 3);
 
     &-slides {
       display: flex;
-      transition: transform 0.5s ease-in-out;
     }
 
     &-slide {
@@ -49,10 +59,12 @@ const images = Astro.props.images.slice(0, 3);
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.8s ease-in;
       opacity: 0;
       margin-block: auto;
-
+      img {
+        width: auto;
+      }
       &.active {
         opacity: 1;
       }
@@ -85,21 +97,21 @@ const images = Astro.props.images.slice(0, 3);
 </style>
 
 <script>
-  	document.addEventListener('astro:page-load', () => { 
-      document.querySelectorAll('[data-carousel]')
-      .forEach(carousel => {
+  const carouselDuration = 3000;
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
       let currentIndex = 0;
       let direction = 1;
       const slides = carousel.querySelectorAll(".carousel-slide");
       const triggers = carousel.querySelectorAll(".carousel-trigger");
-      let intervalTimer = setInterval(switchToNext, 1000);
+      let intervalTimer = setInterval(switchToNext, carouselDuration);
       function setActiveSlide(target: unknown) {
         if (!(target instanceof HTMLButtonElement)) return;
         const index = parseInt(target.dataset.index ?? "0");
 
         slides.forEach((slide) => {
-          if(!(slide instanceof HTMLElement)) return;
-          slide.classList.remove("active")
+          if (!(slide instanceof HTMLElement)) return;
+          slide.classList.remove("active");
           slide.style.transform = `translateX(${-1 * index * 100}%)`;
         });
         triggers.forEach((trigger) => trigger.classList.remove("active"));
@@ -109,19 +121,21 @@ const images = Astro.props.images.slice(0, 3);
 
         currentIndex = index;
       }
-      triggers.forEach(trigger => trigger.addEventListener("click", e => {
-        clearInterval(intervalTimer);
-        setActiveSlide(e.target);
-        intervalTimer = setInterval(switchToNext, 1000);
-      }));
+      triggers.forEach((trigger) =>
+        trigger.addEventListener("click", (e) => {
+          clearInterval(intervalTimer);
+          setActiveSlide(e.target);
+          intervalTimer = setInterval(switchToNext, carouselDuration);
+        })
+      );
       function switchToNext() {
-        currentIndex = (currentIndex + direction * 1);
+        currentIndex = currentIndex + direction * 1;
         if (currentIndex < 0 || currentIndex >= slides.length) {
           direction *= -1;
-          currentIndex = (currentIndex + direction * 2);
+          currentIndex = currentIndex + direction * 2;
         }
         setActiveSlide(triggers[currentIndex]);
       }
-    })
-})
+    });
+  });
 </script>
