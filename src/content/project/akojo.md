@@ -5,14 +5,38 @@ description: "Optimisez la gestion de vos stocks avec notre application efficace
 thumbs:
   [
     {
-      src: "/images/akojo/thumb-shop-interface.jpg",
-      alt: "akojo shop management",
-      width: 1920,
-      height: 1080,
+      src: /images/akojo/login-white.png,
+      alt: "login white",
+      width: 1280,
+      height: 800,
+    },
+    {
+      src: /images/akojo/slip-creation-dark.png,
+      alt: "slip creation-dark",
+      width: 1280,
+      height: 800,
+    },
+    {
+      src: /images/akojo/slip-creation-white.png,
+      alt: "slip creation-white",
+      width: 1081,
+      height: 2401,
+    },
+    {
+      src: /images/akojo/user-management-stats-open-mobile-white.png,
+      alt: "user management-stats-open-mobile-white",
+      width: 1280,
+      height: 800,
+    },
+    {
+      src: /images/akojo/user-management-stats-open-white.png,
+      alt: "user management-stats-open-white",
+      width: 1280,
+      height: 800,
     },
   ]
 websiteUrl: https://inventory-manuel.vercel.app/docs
-technologies: ["next", "typescript", "github" ,"supabase", "prisma"]
+technologies: ["next", "typescript", "github", "supabase", "prisma"]
 platformes: ["web"]
 isFeatured: true
 ---
