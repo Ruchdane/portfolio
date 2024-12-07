@@ -10,7 +10,7 @@ const project = await getCollection("project");
   description="Quelques projets sur lesquels j'ai travaillé"
 >
   <section>
-    <h1>Projets</h1>
+    <h1 transition:name="project-section-title">Projets</h1>
     <div class="project-container">
       {project.map((data) => <ProjectCard {...data} />)}
     </div>
@@ -34,7 +34,7 @@ const project = await getCollection("project");
     gap: 32px;
     @include breakpoint(tablet) {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     }
   }
 </style>

@@ -63,7 +63,7 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
   </section>
   <section class="project">
     <div>
-      <h2>
+      <h2 transition:name="project-section-title">
         <span> Projets</span>
         <a class="icon-button" href="/project"><SquareArrowOutUpRight /></a>
       </h2>
@@ -81,11 +81,14 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
         (Object.keys(CORE_STACK) as Platforme[]).map((key: Platforme) => {
           const platforme = PLATFORME_MAP[key];
           const stack = CORE_STACK[key];
-          if(platforme === undefined) throw new Error(`key ${key} is not defined in the platforme map`);
-          if(stack === undefined || stack.length === 0) {
-            console.warn(`Platforme ${platforme} has an entry in CORE stack but no technologie inside of it`)
-            return null
-          };
+          if (platforme === undefined)
+            throw new Error(`key ${key} is not defined in the platforme map`);
+          if (stack === undefined || stack.length === 0) {
+            console.warn(
+              `Platforme ${platforme} has an entry in CORE stack but no technologie inside of it`
+            );
+            return null;
+          }
           const Icon = platforme?.icon;
           return (
             <div class="tech-stack-item">
@@ -123,7 +126,7 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
 </BasePage>
 <style lang="scss">
   @use "../styles/media-query" as *;
-  
+
   section {
     padding: 2rem;
     @include breakpoint(tablet) {
@@ -192,7 +195,7 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
       }
       margin-bottom: 32px;
     }
-    .project-container {
+    &-container {
       display: flex;
       flex-direction: column;
       gap: 32px;

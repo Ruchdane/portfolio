@@ -1,23 +1,24 @@
 ---
 interface Props {
-    title: string,
-    description: string
+  title: string;
+  description: string;
 }
-import { BaseHead ,Header,Footer } from '@/components';
-import { slide } from 'astro:transitions';
+import { BaseHead, Header, Footer } from "@/components";
+import { slide } from "astro:transitions";
 
-const {title, description} = Astro.props;
+const { title, description } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="fr">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<Header />
-		<main transition:animate={slide({duration: '0.5s'})}>
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Header />
+    <main transition:animate={slide()}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

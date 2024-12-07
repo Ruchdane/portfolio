@@ -27,7 +27,7 @@ const technologies = rawTechnologies.sort(
 );
 ---
 
-<div class="project-card">
+<div class="project-card" transition:name={`project-card-${slug}`}>
   <div class="project-thumbnails">
     <Carousel limit={3} images={thumbs} />
   </div>
@@ -50,7 +50,12 @@ const technologies = rawTechnologies.sort(
     <div class="project-actions">
       {
         websiteUrl && (
-          <a href={websiteUrl} target="_blank"  rel="noopener" class="button secondary">
+          <a
+            href={websiteUrl}
+            target="_blank"
+            rel="noopener"
+            class="button secondary"
+          >
             <Globe />
             <span> Visiter </span>
           </a>
@@ -59,7 +64,7 @@ const technologies = rawTechnologies.sort(
 
       {
         downloadUrl && (
-          <a href={downloadUrl} target="_blank"  class="button primary">
+          <a href={downloadUrl} target="_blank" class="button primary">
             <Download />
             Télécharger
           </a>
@@ -69,7 +74,8 @@ const technologies = rawTechnologies.sort(
       {
         sourceUrl && (
           <a
-            href={sourceUrl}target="_blank"  
+            href={sourceUrl}
+            target="_blank"
             target="_blank"
             rel="noopener"
             class="button secondary"
