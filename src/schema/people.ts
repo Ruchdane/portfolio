@@ -1,7 +1,7 @@
 import { ImageSchema } from "./image";
 import { z } from "astro:content";
 const Socials = z.object({
-  website: z.string().url(),
+  website: z.string().url().optional(),
   mail: z.string().email().optional(),
   github: z.string().url().optional(),
   linkedin: z.string().url().optional(),

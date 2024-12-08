@@ -13,14 +13,13 @@ import { SquareArrowOutUpRight } from "lucide-astro";
 import {
   ProjectCard,
   TechnologieBadge,
-  GithubIconLink,
-  LinkedinIconLink,
-  MailIconLink,
+  SocialLinks,
   AnchorTabs,
   TabTrigger,
   TabContent,
   HistoryElement,
 } from "@/components";
+import { getEntry } from "astro:content";
 const featuredProject = (await getCollection("project")).filter(
   ({ data: project }) => project.isFeatured
 );
@@ -32,6 +31,7 @@ const experienceList = (await getCollection("experience")).sort(
   orderByBeginDate
 );
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
+const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
 ---
 
 <BasePage title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -54,9 +54,7 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
           Passionné par l'innovation et la résolution de problèmes utilisateurs
         </span>
         <div class="banner-links">
-          <GithubIconLink class="github-icon-link" />
-          <LinkedinIconLink class="linkedin-icon-link" />
-          <MailIconLink class="mail-icon-link" />
+          <SocialLinks {...mySocials} />
         </div>
       </div>
     </div>
@@ -181,8 +179,6 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
       }
     }
     &-links {
-      display: flex;
-      gap: 16px;
       margin-top: 16px;
     }
   }

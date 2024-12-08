@@ -1,7 +1,8 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 import { Image } from "astro:assets";
 import BasePage from "@/layouts/BasePage.astro";
+import { Carousel, PeopleProfile } from "@/components";
 export async function getStaticPaths() {
   const project = await getCollection("project");
   return project.map((project) => ({
@@ -13,8 +14,12 @@ type Props = CollectionEntry<"project">;
 
 const projectEntry = Astro.props;
 const { logo, title, description, thumbs } = projectEntry.data;
+const collaborators = await Promise.all(
+  projectEntry.data.collaborators.map(
+    async (entry) => (await getEntry("people", entry.id))?.data
+  )
+);
 const { Content } = await projectEntry.render();
-import { Carousel } from "@/components/Carousel";
 ---
 
 <BasePage title={title} description={description}>
@@ -24,6 +29,9 @@ import { Carousel } from "@/components/Carousel";
     <span> {title} </span>
   </h1>
   <p>{description}</p>
+  <ul>
+    {collaborators.map((collaborator) => <PeopleProfile {...collaborator} />)}
+  </ul>
   <Content />
 </BasePage>
 <style lang="scss" is:global>
@@ -32,7 +40,8 @@ import { Carousel } from "@/components/Carousel";
       max-height: 70vh;
     }
   }
-  h1, p {
+  h1,
+  p {
     margin: 2rem;
   }
 </style>
