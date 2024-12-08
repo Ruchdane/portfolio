@@ -36,7 +36,15 @@ thumbs:
     },
   ]
 websiteUrl: https://inventory-manuel.vercel.app/docs
-technologies: ["next", "typescript", "github", "supabase", "prisma"]
+technologies:
+  - next
+  - typescript
+  - github
+  - supabase
+  - prisma
+
 platformes: ["web"]
+collaborators:
+  - ruchdane
 isFeatured: true
 ---

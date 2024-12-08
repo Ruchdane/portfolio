@@ -1,4 +1,4 @@
-import { z } from "astro:content";
+import { reference, z } from "astro:content";
 import { ImageSchema } from "@/schema/image";
 import { TechnologieEnum, PlatformeEnum } from "@/schema/enum";
 export const ProjectSchema = z.object({
@@ -14,6 +14,7 @@ export const ProjectSchema = z.object({
   technologies: z.array(TechnologieEnum).min(1),
   platformes: z.array(PlatformeEnum).min(1),
 
+  collaborators: z.array(reference("people")),
   isFeatured: z.boolean().optional(),
 });
 

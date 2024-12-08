@@ -7,5 +7,7 @@ thumbs:
 sourceUrl: https://github.com/Ruchdane/zender
 technologies: ["rust", "tauri", "mithril", "typescript", "sass"]
 platformes: ["desktop"]
+collaborators:
+  - ruchdane
 isFeatured: true
 ---

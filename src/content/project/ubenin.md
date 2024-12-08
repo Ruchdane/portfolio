@@ -32,5 +32,7 @@ thumbs:
 websiteUrl: https://ubenin.dinyad.fr/
 technologies: ["flutter", "firebase", "dart", "trello"]
 platformes: ["android"]
+collaborators:
+  - ruchdane
 isFeatured: true
 ---

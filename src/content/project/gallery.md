@@ -8,5 +8,7 @@ sourceUrl: https://github.com/Ruchdane/Gallery
 downloadUrl: https://github.com/Ruchdane/Gallery/releases/tag/app-v0.0.2
 technologies: ["rust", "tauri", "mithril", "typescript", "sass"]
 platformes: ["web"]
+collaborators:
+  - ruchdane
 isFeatured: true
 ---
