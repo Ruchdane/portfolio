@@ -30,6 +30,7 @@ const { profil, name, socials } = Astro.props;
   </dialog>
 </div>
 <style lang="scss">
+  @use "../styles/media-query" as *;
   .profil {
     &-trigger {
       border: 2px solid transparent;
@@ -61,7 +62,9 @@ const { profil, name, socials } = Astro.props;
       border-radius: 1rem;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 4rem;
+      @include breakpoint(tablet) {
+        padding: 2rem 4rem;
+      }
       p {
         font-family: "JetBrainsMono";
         font-size: var(--font-h2);
