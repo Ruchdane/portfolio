@@ -1,0 +1,20 @@
+---
+import type { Socials } from "@/schema";
+import { GithubIconLink, LinkedinIconLink, MailIconLink } from "./IconLinks";
+
+interface Props extends Socials {}
+const { github, linkedin, website, mail } = Astro.props;
+---
+
+<div>
+  {github ? <GithubIconLink href={github} /> : null}
+  {linkedin ? <LinkedinIconLink href={linkedin} /> : null}
+  {mail ? <MailIconLink href={`mailto:${mail}`} /> : null}
+  {website ? <MailIconLink href={website} /> : null}
+</div>
+<style>
+  div {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

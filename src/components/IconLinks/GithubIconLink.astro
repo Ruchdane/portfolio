@@ -1,15 +1,9 @@
 ---
 import IconLinks from "./IconLink.astro";
-const { class: className } = Astro.props
-
+const { href } = Astro.props;
 ---
 
-<IconLinks
-  class={className}
-  href="https://github.com/ruchdane"
-  highlightBg="#18181b"
-  highlightText="#fff"
->
+<IconLinks href={href} highlightBg="#18181b" highlightText="#fff">
   <svg viewBox="0 0 128 128" width="24" height="24">
     <g class="github-icon-group">
       <path
@@ -28,7 +22,7 @@ const { class: className } = Astro.props
 <style lang="scss" is:global>
   .github-icon-group {
     fill: #181616;
-    transition: fill .5s ease-in;
+    transition: fill 0.5s ease-in;
   }
   a:hover .github-icon-group {
     fill: white;
