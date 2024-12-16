@@ -74,6 +74,7 @@
     --font-tiny: 0.64em;
   }
 }
+
 @font-face {
   font-family: JetBrainsMono;
   font-display: swap;
@@ -89,6 +90,7 @@
 html {
   height: 100%;
 }
+
 body {
   font-family: "Figtree", sans-serif;
   margin: 0;
@@ -119,39 +121,50 @@ h6 {
   color: rgb(var(--black));
   line-height: 1.2;
 }
+
 h1 {
   font-size: var(--font-h1);
 }
+
 h2 {
   font-size: var(--font-h2);
 }
+
 h3 {
   font-size: var(--font-h3);
 }
+
 h4 {
   font-size: var(--font-h4);
 }
+
 h5 {
   font-size: var(--font-h5);
 }
+
 strong,
 b {
   font-weight: 700;
 }
+
 a {
   color: var(--accent-600);
+
   &:hover,
   &:focus {
     color: var(--accent-400);
   }
+
   &:active {
     color: var(--accent-800);
   }
 
-  &.button, &.icon-button {
+  &.button,
+  &.icon-button {
     text-decoration: none;
   }
 }
+
 p {
   margin-bottom: 1em;
 
@@ -164,35 +177,43 @@ textarea {
   width: 100%;
   font-size: var(--font-body);
 }
+
 input {
   font-size: var(--font-body);
 }
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
+
 code {
   padding: 2px 5px;
   background-color: rgb(var(--gray-light));
   border-radius: 2px;
 }
+
 pre {
   padding: 1.5em;
   border-radius: 8px;
-  & > code {
+
+  &>code {
     all: unset;
   }
 }
+
 blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;
 }
+
 hr {
   border: none;
   border-top: 1px solid rgb(var(--neutral-600));
@@ -213,9 +234,11 @@ input {
   line-height: 1.42857;
   padding: 8px 6px;
   height: 36px;
+
   &:hover {
     background-color: rgb(235, 236, 240);
   }
+
   &:focus {
     background-color: rgb(255, 255, 255);
     border-color: rgb(76, 154, 255);
@@ -243,19 +266,22 @@ input {
 .hidden {
   display: none !important;
 }
-.icon-button{
+
+.icon-button {
   background-color: transparent;
   cursor: pointer;
   border: none;
-  &:hover{
+
+  &:hover {
     color: var(--accent-600);
   }
+
   &:active {
     color: var(--accent-700);
   }
 }
 
-button:not(.icon-button), .button:not(.icon-button) {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,13 +294,13 @@ button:not(.icon-button), .button:not(.icon-button) {
   background-color: var(--bg-color);
   box-shadow: var(--shadow-color) 0px 10px 0px 0px;
   color: var(--text-color);
-  
+
   padding: 8px 16px;
   font-size: var(--font-body);
 
   &.lg {
-      padding: 17px 40px;
-      font-size: var(--font-h6);  
+    padding: 17px 40px;
+    font-size: var(--font-h6);
   }
 
   &:hover {
@@ -302,7 +328,8 @@ button:not(.icon-button), .button:not(.icon-button) {
     --text-color: var(--neutral-800);
   }
 }
-.text-body{
+
+.text-body {
   font-weight: normal;
   font-size: var(--font-body);
 }
