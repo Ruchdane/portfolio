@@ -1,29 +1,27 @@
 ---
-import GithubIconLink from "./IconLinks/GithubIconLink.astro";
-import LinkedinIconLink from "./IconLinks/LinkedinIconLink.astro";
-import MailIconLink from "./IconLinks/MailIconLink.astro";
+import { getEntry } from "astro:content";
+import { SocialLinks } from "@/components";
 
 const today = new Date();
+const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
 ---
 
 <footer>
-	<div class="social-links">
-		<GithubIconLink />
-		<LinkedinIconLink />
-		<MailIconLink />
-	</div>
-	&copy; {today.getFullYear()} AMADOU Ruchdane. All rights reserved.
+  <div class="social-links">
+    <SocialLinks {...mySocials} />
+  </div>
+  &copy; {today.getFullYear()} AMADOU Ruchdane. All rights reserved.
 </footer>
 <style>
-	footer {
-		margin-top: auto;
-		background-color: var(--neutral-300);
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
+  footer {
+    margin-top: auto;
+    background-color: var(--neutral-300);
+    text-align: center;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-block: 1em;
+  }
 </style>

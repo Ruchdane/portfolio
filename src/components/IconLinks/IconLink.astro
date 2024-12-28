@@ -1,7 +1,7 @@
 ---
-const {href, highlightBg, class: className } = Astro.props
+const {href, highlightBg, class: className ,ariaLabel} = Astro.props
 ---
-<a href={href} target="_blank" class={className}>
+<a href={href} target="_blank" class={className} aria-label={ariaLabel} >
     <slot></slot>
 </a>
 <style define:vars={{highlightBg}}>

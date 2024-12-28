@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Education, Experience } from "@/schema";
 import FormattedDate from "./FormattedDate.astro";
 interface Props {
@@ -24,7 +25,7 @@ const dateFormat: Intl.DateTimeFormatOptions = {
 
 <div class="history">
   <div class="history-image">
-    <img src={image.src} alt={image.alt} class="history-logo" />
+    <Image src={image.src} alt={image.alt ?? name} class="history-logo" width="83" height="83"/>
   </div>
   <div >
     <p class="history-date">

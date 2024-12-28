@@ -27,18 +27,18 @@ const technologies = rawTechnologies.sort(
 );
 ---
 
-<div class="project-card" transition:name={`project-card-${slug}`}>
+<article class="project-card" transition:name={`project-card-${slug}`}>
   <div class="project-thumbnails">
     <Carousel limit={3} images={thumbs} />
   </div>
   <div class="project-content">
     <div class="project-title">
-      <h3>
+      <h1>
         <Image src={logo} height="36" width="36" alt={title[0]} />
         <span> {title} </span>
-      </h3>
-      <a class="icon-button" href={`/project/${slug}`}>
-        <ArrowRight />
+      </h1>
+      <a class="icon-button" href={`/project/${slug}`} title="Lire plus" aria-label="Lire plus">
+        <ArrowRight alt="Lire plus"/>
       </a>
     </div>
     <p class="project-description">{description}</p>
@@ -87,7 +87,7 @@ const technologies = rawTechnologies.sort(
       }
     </div>
   </div>
-</div>
+</article>
 
 <style lang="scss">
   @use "../styles/media-query" as *;
@@ -128,7 +128,7 @@ const technologies = rawTechnologies.sort(
     &-title {
       display: flex;
       justify-content: space-between;
-      h3 {
+      h1 {
         font-size: var(--font-h4);
       }
       align-items: center;

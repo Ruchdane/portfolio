@@ -35,6 +35,7 @@ if (limit !== undefined) {
         {images.map((_image, index) => (
           <button
             class:list={["carousel-trigger", { active: index === 0 }]}
+            aria-label={`Afficher l'image ${index + 1}`}
             data-index={index}
           />
         ))}
