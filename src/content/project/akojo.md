@@ -46,5 +46,6 @@ technologies:
 platformes: ["web"]
 collaborators:
   - ruchdane
+  - fawaz
 isFeatured: true
 ---

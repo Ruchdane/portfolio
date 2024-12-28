@@ -39,6 +39,7 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
     <div class="banner-image">
       <Image
         src="/images/banner_picture.jpg"
+        loading="eager"
         width={243}
         height={265}
         alt="Photo de Ruchdane"
@@ -46,9 +47,9 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
     </div>
     <div class="banner-content">
       <div class="banner-text">
-        <p>
-          <span class="text-body">Salut, je suis</span> AMADOU Ruchdane
-        </p>
+        <h2 class="text-body">
+          Salut, je suis<strong> AMADOU Ruchdane</strong>
+        </h2>
         <strong> Développeur web full-stack </strong>
         <span class="text-body">
           Passionné par l'innovation et la résolution de problèmes utilisateurs
@@ -63,7 +64,7 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
     <div>
       <h2 transition:name="project-section-title">
         <span> Projets</span>
-        <a class="icon-button" href="/project"><SquareArrowOutUpRight /></a>
+        <a class="icon-button" href="/project" aria-label="Voir tous les projets"><SquareArrowOutUpRight /></a>
       </h2>
       <p class="text-body">Quelques projets sur lesquels j'ai travaillé</p>
     </div>

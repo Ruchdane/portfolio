@@ -1,29 +1,45 @@
-- id: ruchdane
+---
+ewinsou:
+  name: EWINSOU Roméo
+  profil:
+    alt: Roméo
+    src: /profiles/ewinsou.jpg
+  socials:
+    github: https://github.com/Ewins518
+    linkedin: https://linkedin.com/in/ewinsou
+    mail: ewinsouromeo@gmail.com
+fawaz:
+  name: CHABI BOUKARI Fawaz
+  profil:
+    alt: Fawaz
+    src: /profiles/fawaz.jpg
+  socials:
+    github: https://github.com/fawaz27
+    linkedin: https://www.linkedin.com/in/fawaz-chabi-boukari-31a504249/
+    mail: boukarifawas27@gmail.com
+jules:
+  name: Ghislain Jules
+  profil:
+    alt: Jules
+    src: /profiles/jules.jpg
+  socials:
+    github: https://github.com/EDA-Ghislain-jules
+    linkedin: https://www.linkedin.com/in/ghislain-jules-eda-29596522a/
+ruchdane:
   name: AMADOU Ruchdane
   profil:
-    src: /images/banner_picture.jpg
     alt: Ruchdane
+    src: /profiles/ruchdane.jpg
   socials:
     github: https://github.com/Ruchdane/
-    mail: ruchdaneabiodun@gmail.com
     linkedin: https://www.linkedin.com/in/ruchdane/
-- id: ruchdane-2
-  name: AMADOU Ruchdane
+    mail: ruchdaneabiodun@gmail.com
+yeto:
+  name: YETO Donatien
   profil:
-    src: ./ruchdane.jpg
-    alt: R
+    alt: Donatien
+    src: /profiles/yeto.jpg
   socials:
-    website: https://ruchdane.netlify.app/
-    github: https://github.com/Ruchdane/
-    mail: ruchdaneabiodun@gmail.com
-    linkedin: https://www.linkedin.com/in/ruchdane/
-- id: ruchdane-3
-  name: AMADOU Ruchdane
-  profil:
-    src: ./ruchdane.jpg
-    alt: R
-  socials:
-    website: https://ruchdane.netlify.app/
-    github: https://github.com/Ruchdane/
-    mail: ruchdaneabiodun@gmail.com
-    linkedin: https://www.linkedin.com/in/ruchdane/
+    github: https://github.com/dinyad-prog00
+    linkedin: https://www.linkedin.com/in/donatien-yeto-3b3486223/
+    mail: Donatien.yeto@gmail.com
