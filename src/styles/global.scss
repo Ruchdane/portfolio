@@ -142,10 +142,6 @@ h5 {
   font-size: var(--font-h5);
 }
 
-.text-body {
-  font-size: var(--font-body)
-}
-
 strong,
 b {
   font-weight: 700;
@@ -321,7 +317,7 @@ input {
   }
 
   &.primary {
-    --bg-color: var(--accent-500);
+    --bg-color: var(--accent-600);
     --shadow-color: var(--accent-800);
     --text-color: var(--neutral-100);
   }
@@ -336,6 +332,9 @@ input {
 .text-body {
   font-weight: normal;
   font-size: var(--font-body);
+}
+.text-bold {
+  font-weight: normal;
 }
 
 .text-caption {

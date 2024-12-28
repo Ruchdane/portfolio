@@ -13,16 +13,21 @@ const { profil, name, socials } = Astro.props;
     <Image
       class="profil-trigger"
       src={profil.src}
-      alt={name.slice(0, 1)}
+      alt={profil.alt}
       width={profil.width ?? 45}
       height={profil.height ?? 45}
     />
   </button>
   <dialog class="profil-content">
     <form method="dialog">
-      <button class="profil-close icon-button"> <X /> </button>
+      <button
+        class="profil-close icon-button"
+        aria-label={`dismiss profil ${profil.alt}`}
+      >
+        <X />
+      </button>
     </form>
-    <Image src={profil.src} alt={name.slice(0, 1)} width={100} height={100} />
+    <Image src={profil.src} alt={profil.alt} width={100} height={100} />
     <p>{name}</p>
     <div class="profil-social-links">
       <SocialLinks {...socials} />
