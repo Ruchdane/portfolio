@@ -9,11 +9,9 @@ import {
 
 const blog = defineCollection({
   type: "content",
-  // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
@@ -22,21 +20,21 @@ const blog = defineCollection({
 
 const project = defineCollection({
   type: "content",
-  schema: ProjectSchema,
+  schema: ({ image }) => ProjectSchema(image),
 });
 
 const experience = defineCollection({
   type: "content",
-  schema: ExperienceSchema,
+  schema: ({ image }) => ExperienceSchema(image),
 });
 
 const education = defineCollection({
   type: "content",
-  schema: EducationSchema,
+  schema: ({ image }) => EducationSchema(image),
 });
 
 const people = defineCollection({
   loader: file("src/content/people/peoples.yml"),
-  schema: PeopleSchema,
+  schema: ({ image }) => PeopleSchema(image),
 });
 export const collections = { blog, project, experience, education, people };

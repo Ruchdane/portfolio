@@ -13,15 +13,13 @@ if (limit !== undefined) {
   {
     (
       <div class="carousel-slides">
-        {images.map(({ src, alt, width, height }, index) => {
+        {images.map(({ src, alt }, index) => {
           const className = "carousel-slide" + (index === 0 ? " active" : "");
           return (
             <div class={className}>
               <Image
                 src={src}
                 alt={alt}
-                width={width ?? 0}
-                height={height ?? 0}
               />
             </div>
           );

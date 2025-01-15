@@ -1,5 +1,6 @@
 ---
 import "../styles/global.scss";
+import "../assets/style/devicon.min.css";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -34,8 +35,6 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
   type="font/ttf"
   crossorigin
 />
-
-<link rel="stylesheet" href="/style/devicon.min.css" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

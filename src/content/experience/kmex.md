@@ -1,8 +1,8 @@
 ---
-beginDate: '01/08/2022'
-endDate: '01/11/2022'
+beginDate: "01/08/2022"
+endDate: "01/11/2022"
 name: KMEX
-image: {src: /icons/kmex.png, alt: KMEX logo}
+image: { src: ../../assets/icons/kmex.png, alt: KMEX logo }
 role: C# Developer
 description: J'ai travaillé sur un projet WinForms, où j'étais chargé de corriger des bugs, ajouter de nouvelles fonctionnalités et assurer la stabilité de l'application. J'ai analysé en profondeur l'architecture du code pour identifier et résoudre les problèmes tout en évitant toute régression
 ---

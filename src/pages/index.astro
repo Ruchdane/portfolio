@@ -5,6 +5,7 @@ import {
   CORE_STACK,
   PLATFORME_MAP,
 } from "@/consts";
+import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { Education, Experience, Platforme } from "@/schema";
@@ -38,7 +39,7 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
   <section class="banner">
     <div class="banner-image">
       <Image
-        src="/images/banner_picture.jpg"
+        src={banner_picture}
         loading="eager"
         width={243}
         height={265}

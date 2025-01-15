@@ -3,8 +3,8 @@
 
 import type { Platforme, Technologie } from "@/schema";
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
-
-export const SITE_LOGO = "/logo.svg";
+import logo from "./assets/icons/logo.svg";
+export const SITE_LOGO = logo;
 export const SITE_TITLE = "Ruchdane";
 export const SITE_DESCRIPTION = "Hi I'm AMADOU Ruchdane a software engineer";
 
@@ -24,159 +24,179 @@ export const NAVIGATION_LINKS = [
 ];
 
 export const CORE_STACK: Partial<Record<Platforme, Technologie[]>> = {
-  web: [ "typescript", "c_sharp", "aspnet", "next","mithril", 
-    "react", "tailwindcss", "prisma", "postgresql", "mysql", "supabase", "netlify"],
+  web: [
+    "typescript",
+    "c_sharp",
+    "aspnet",
+    "next",
+    "mithril",
+    "react",
+    "tailwindcss",
+    "prisma",
+    "postgresql",
+    "mysql",
+    "supabase",
+    "netlify",
+  ],
   mobile: ["flutter", "dart", "firebase"],
   desktop: ["rust", "c", "c_sharp", "winform", "tauri"],
-}
+};
 
-export const TECHNOLOGIE_MAP: Record<Technologie, { name: string; icon: string }> = {
+export const TECHNOLOGIE_MAP: Record<
+  Technologie,
+  { name: string; icon: string }
+> = {
   next: {
     name: "NextJS",
-    icon: "nextjs-plain"
+    icon: "nextjs-plain",
   },
   rust: {
     name: "rust",
-    icon: "rust-original"
+    icon: "rust-original",
   },
   dart: {
     name: "dart",
-    icon: "dart-plain colored"
+    icon: "dart-plain colored",
   },
   typescript: {
     name: "typescript",
-    icon: "typescript-plain colored"
+    icon: "typescript-plain colored",
   },
   javascript: {
     name: "javascript",
-    icon: "javascript-plain colored"
+    icon: "javascript-plain colored",
   },
   c: {
     name: "c",
-    icon: "c-plain"
+    icon: "c-plain",
   },
   c_sharp: {
     name: "C#",
-    icon: "csharp-plain"
+    icon: "csharp-plain",
   },
   php: {
     name: "php",
-    icon: "php-plain colored"
+    icon: "php-plain colored",
   },
   html: {
     name: "html",
-    icon: "html-plain colored"
+    icon: "html-plain colored",
   },
   css: {
     name: "css",
-    icon: "css-plain colored"
+    icon: "css-plain colored",
   },
   sass: {
     name: "sass",
-    icon: "sass-plain colored"
+    icon: "sass-plain colored",
   },
   react: {
     name: "react",
-    icon: "react-plain colored"
+    icon: "react-plain colored",
   },
   mithril: {
     name: "mithril",
-    icon: "mithril-original"
+    icon: "mithril-original",
   },
   tauri: {
     name: "tauri",
-    icon: "tauri-plain colored"
+    icon: "tauri-plain colored",
   },
   flutter: {
     name: "flutter",
-    icon: "flutter-plain colored"
+    icon: "flutter-plain colored",
   },
   astro: {
     name: "astro",
-    icon: "astro-plain colored"
+    icon: "astro-plain colored",
   },
   postgresql: {
     name: "postgresql",
-    icon: "postgresql-plain colored"
+    icon: "postgresql-plain colored",
   },
   mysql: {
     name: "mysql",
-    icon: "mysql-plain"
+    icon: "mysql-plain",
   },
   firebase: {
     name: "firebase",
-    icon: "firebase-plain colored"
+    icon: "firebase-plain colored",
   },
   supabase: {
     name: "supabase",
-    icon: "supabase-plain colored"
+    icon: "supabase-plain colored",
   },
   vercel: {
     name: "vercel",
-    icon: "vercel-plain colored"
+    icon: "vercel-plain colored",
   },
   netlify: {
     name: "netlify",
-    icon: "netlify-plain colored"
+    icon: "netlify-plain colored",
   },
   aws: {
     name: "aws",
-    icon: "aws-plain colored"
+    icon: "aws-plain colored",
   },
   google_cloud: {
     name: "google_cloud",
-    icon: "google_cloud-plain colored"
+    icon: "google_cloud-plain colored",
   },
   digital_ocean: {
     name: "digital_ocean",
-    icon: "digital_ocean-plain colored"
+    icon: "digital_ocean-plain colored",
   },
   cloudflare: {
     name: "cloudflare",
-    icon: "cloudflare-plain colored"
+    icon: "cloudflare-plain colored",
   },
   heroku: {
     name: "heroku",
-    icon: "heroku-plain colored"
+    icon: "heroku-plain colored",
   },
   github: {
     name: "github",
-    icon: "github-plain colored"
+    icon: "github-plain colored",
   },
   gitlab: {
     name: "gitlab",
-    icon: "gitlab-plain colored"
+    icon: "gitlab-plain colored",
   },
   azure_devops: {
     name: "azure_devops",
-    icon: "azure_devops-plain colored"
+    icon: "azure_devops-plain colored",
   },
   trello: {
     name: "trello",
-    icon: "trello-plain colored"
+    icon: "trello-plain colored",
   },
   tailwindcss: {
     name: "tailwindcss",
-    icon: "tailwindcss-plain colored"
+    icon: "tailwindcss-plain colored",
   },
   prisma: {
     name: "prisma",
-    icon: "prisma-original"
+    icon: "prisma-original",
   },
   aspnet: {
     name: "asp.net",
-    icon: "aspnet"
+    icon: "aspnet",
   },
   winform: {
     name: "winform",
-    icon: "winform"
-  }
-}
+    icon: "winform",
+  },
+};
 
-export const PLATFORME_MAP: Partial<Record<Platforme, {
-  name: string;
-  icon: typeof Globe;
-}>> = {
+export const PLATFORME_MAP: Partial<
+  Record<
+    Platforme,
+    {
+      name: string;
+      icon: typeof Globe;
+    }
+  >
+> = {
   web: {
     icon: Globe,
     name: "web",
@@ -188,5 +208,5 @@ export const PLATFORME_MAP: Partial<Record<Platforme, {
   mobile: {
     icon: Smartphone,
     name: "Mobile",
-  }
-}
+  },
+};

@@ -1,10 +1,9 @@
-import { z } from "astro:content";
+import { z, type ImageFunction } from "astro:content";
 
-export const ImageSchema = z.object({
-	src: z.string(),
-	alt: z.string(),
-	width: z.number().optional(),
-	height: z.number().optional(),
-});
+export const ImageSchema = (image: ImageFunction) =>
+  z.object({
+    src: image(),
+    alt: z.string(),
+  });
 
-export type Image = z.infer<typeof ImageSchema>;
+export type Image = z.infer<ReturnType<typeof ImageSchema>>;

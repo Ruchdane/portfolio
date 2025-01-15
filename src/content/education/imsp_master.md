@@ -1,12 +1,9 @@
 ---
-beginDate: 10/01/2021 
-endDate: 06/01/2023 
+beginDate: 10/01/2021
+endDate: 06/01/2023
 name: IMSP | Institut de Mathématiques et de Sciences Physiques logo
 formation: Master TIC | Technologie de l'information et de la communication
-image: {
-    src: "/icons/imsp.jpg",
-    alt: "IMSP logo"
-}
+image: { src: "../../assets/icons/imsp.jpg", alt: "IMSP logo" }
 description: Ce master m'a permis de développer une expertise approfondie en technologies numériques, en me concentrant sur l'architecture des systèmes informatiques et le développement logiciel, avec des compétences pratiques en conception de logiciels et gestion de bases de données relationnelles et non relationnelles.
 ---
 

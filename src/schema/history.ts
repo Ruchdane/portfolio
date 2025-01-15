@@ -1,22 +1,25 @@
-import { z } from "astro:content";
+import { z, type ImageFunction } from "astro:content";
 import { ImageSchema } from "./image";
 
-const BaseHistoryItemSchema = z.object({
+const BaseHistoryItemSchema = (image: ImageFunction) =>
+  z.object({
     beginDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     name: z.string(),
-    image: ImageSchema,
-    description: z.string()
-});
+    image: ImageSchema(image),
+    description: z.string(),
+  });
 
-export const EducationSchema = BaseHistoryItemSchema.extend({
+export const EducationSchema = (image: ImageFunction) =>
+  BaseHistoryItemSchema(image).extend({
     formation: z.string(),
-    diplome: z.string().optional()
-});
+    diplome: z.string().optional(),
+  });
 
-export const ExperienceSchema = BaseHistoryItemSchema.extend({
-    role: z.string()
-});
+export const ExperienceSchema = (image: ImageFunction) =>
+  BaseHistoryItemSchema(image).extend({
+    role: z.string(),
+  });
 
-export type Education = z.infer<typeof EducationSchema>;
-export type Experience = z.infer<typeof ExperienceSchema>;
+export type Education = z.infer<ReturnType<typeof EducationSchema>>;
+export type Experience = z.infer<ReturnType<typeof ExperienceSchema>>;

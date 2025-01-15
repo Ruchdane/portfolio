@@ -1,10 +1,10 @@
 ---
-beginDate: '01/09/2023'
-endDate: '01/11/2024'
+beginDate: "01/09/2023"
+endDate: "01/11/2024"
 name: CICEC Afrique
-image: {src: /icons/cicec.png, alt: Cicec logo}
+image: { src: ../../assets/icons/cicec.png, alt: Cicec logo }
 role: C# Developer | DevOps Engineer
-description: Au sein d'une équipe agile, j'ai contribué au développement d'une plateforme web en tant que développeur full-stack et ingénieur DevOps, en participant à toutes les étapes, de l'inception du projet et la gestion du backlog produit jusqu'au déploiement. 
+description: Au sein d'une équipe agile, j'ai contribué au développement d'une plateforme web en tant que développeur full-stack et ingénieur DevOps, en participant à toutes les étapes, de l'inception du projet et la gestion du backlog produit jusqu'au déploiement.
 ---
 
 Au sein d'une équipe agile, j'ai participé au développement d'une application web en jouant des rôles de développeur full-stack et ingénieur DevOps. J'ai contribué à la création du front-end et du back-end de l'application en utilisant des technologies telles que ASP.NET, React, HTML et JavaScript.

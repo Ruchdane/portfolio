@@ -1,29 +1,29 @@
 ---
-logo: "/icons/ubenin.png"
+logo: "../../assets/icons/ubenin.png"
 title: "Ubenin"
 description: "Répertoire des établissements universitaires du Bénin"
 thumbs:
   [
     {
-      src: /images/ubenin/thumb-alumni-chat.jpg,
+      src: ../../assets/images/ubenin/thumb-alumni-chat.jpg,
       alt: "thumb alumni chat",
       width: 720,
       height: 1600,
     },
     {
-      src: /images/ubenin/thumb-diiscover-screen.jpg,
+      src: ../../assets/images/ubenin/thumb-diiscover-screen.jpg,
       alt: "thumb diiscover screen",
       width: 720,
       height: 1600,
     },
     {
-      src: /images/ubenin/thumb-school-feed.jpg,
+      src: ../../assets/images/ubenin/thumb-school-feed.jpg,
       alt: "thumb school feed",
       width: 720,
       height: 1600,
     },
     {
-      src: /images/ubenin/thumb-school-profile.jpg,
+      src: ../../assets/images/ubenin/thumb-school-profile.jpg,
       alt: "thumb school profile",
       width: 720,
       height: 1600,

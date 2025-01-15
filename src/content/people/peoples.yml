@@ -3,7 +3,7 @@ ewinsou:
   name: EWINSOU Roméo
   profil:
     alt: Roméo
-    src: /profiles/ewinsou.jpg
+    src: ../../assets/profiles/ewinsou.jpg
   socials:
     github: https://github.com/Ewins518
     linkedin: https://linkedin.com/in/ewinsou
@@ -12,7 +12,7 @@ fawaz:
   name: CHABI BOUKARI Fawaz
   profil:
     alt: Fawaz
-    src: /profiles/fawaz.jpg
+    src: ../../assets/profiles/fawaz.jpg
   socials:
     github: https://github.com/fawaz27
     linkedin: https://www.linkedin.com/in/fawaz-chabi-boukari-31a504249/
@@ -21,7 +21,7 @@ jules:
   name: Ghislain Jules
   profil:
     alt: Jules
-    src: /profiles/jules.jpg
+    src: ../../assets/profiles/jules.jpg
   socials:
     github: https://github.com/EDA-Ghislain-jules
     linkedin: https://www.linkedin.com/in/ghislain-jules-eda-29596522a/
@@ -29,7 +29,7 @@ ruchdane:
   name: AMADOU Ruchdane
   profil:
     alt: Ruchdane
-    src: /profiles/ruchdane.jpg
+    src: ../../assets/profiles/ruchdane.jpg
   socials:
     github: https://github.com/Ruchdane/
     linkedin: https://www.linkedin.com/in/ruchdane/
@@ -38,7 +38,7 @@ yeto:
   name: YETO Donatien
   profil:
     alt: Donatien
-    src: /profiles/yeto.jpg
+    src: ../../assets/profiles/yeto.jpg
   socials:
     github: https://github.com/dinyad-prog00
     linkedin: https://www.linkedin.com/in/donatien-yeto-3b3486223/

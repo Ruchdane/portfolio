@@ -34,11 +34,22 @@ const technologies = rawTechnologies.sort(
   <div class="project-content">
     <div class="project-title">
       <h1>
-        <Image src={logo} height="36" width="36" alt={title[0]} />
+        {
+          logo === undefined ? (
+            title[0]
+          ) : (
+            <Image src={logo} height="36" width="36" alt={title[0]} />
+          )
+        }
         <span> {title} </span>
       </h1>
-      <a class="icon-button" href={`/project/${slug}`} title="Lire plus" aria-label="Lire plus">
-        <ArrowRight alt="Lire plus"/>
+      <a
+        class="icon-button"
+        href={`/project/${slug}`}
+        title="Lire plus"
+        aria-label="Lire plus"
+      >
+        <ArrowRight alt="Lire plus" />
       </a>
     </div>
     <p class="project-description">{description}</p>
