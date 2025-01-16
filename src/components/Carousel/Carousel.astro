@@ -17,10 +17,7 @@ if (limit !== undefined) {
           const className = "carousel-slide" + (index === 0 ? " active" : "");
           return (
             <div class={className}>
-              <Image
-                src={src}
-                alt={alt}
-              />
+              <Image src={src} alt={alt} />
             </div>
           );
         })}
@@ -103,7 +100,7 @@ if (limit !== undefined) {
       let direction = 1;
       const slides = carousel.querySelectorAll(".carousel-slide");
       const triggers = carousel.querySelectorAll(".carousel-trigger");
-      let intervalTimer = setInterval(switchToNext, carouselDuration);
+      let intervalTimer = window.setInterval(switchToNext, carouselDuration);
       function setActiveSlide(target: unknown) {
         if (!(target instanceof HTMLButtonElement)) return;
         const index = parseInt(target.dataset.index ?? "0");
@@ -124,7 +121,7 @@ if (limit !== undefined) {
         trigger.addEventListener("click", (e) => {
           clearInterval(intervalTimer);
           setActiveSlide(e.target);
-          intervalTimer = setInterval(switchToNext, carouselDuration);
+          intervalTimer = window.setInterval(switchToNext, carouselDuration);
         })
       );
       function switchToNext() {

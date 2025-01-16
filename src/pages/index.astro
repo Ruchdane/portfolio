@@ -38,13 +38,7 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
 <BasePage title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section class="banner">
     <div class="banner-image">
-      <Image
-        src={banner_picture}
-        loading="eager"
-        width={243}
-        height={265}
-        alt="Photo de Ruchdane"
-      />
+      <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
     </div>
     <div class="banner-content">
       <div class="banner-text">
