@@ -57,11 +57,6 @@ const { profil, name, socials } = Astro.props;
       right: 1rem;
     }
     &-content {
-      transition:
-        opacity 0.7s ease-out,
-        transform 0.7s ease-out,
-        overlay 0.7s ease-out allow-discrete,
-        display 0.7s ease-out allow-discrete;
       background-color: var(--neutral-200);
       border: none;
       border-radius: 1rem;
@@ -93,11 +88,26 @@ const { profil, name, socials } = Astro.props;
   }
 </style>
 <script>
+  function addDismissModalForBackdropClick(dialog: HTMLDialogElement) {
+    dialog.addEventListener("click", function (event) {
+      var rect = dialog?.getBoundingClientRect();
+      var isInDialog =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+      if (!isInDialog) dialog?.close();
+    });
+  }
+
   document.addEventListener("astro:page-load", () => {
     document.querySelectorAll("[data-profil]").forEach((profil) => {
       const dialog = profil.querySelector("dialog");
       const button = profil.querySelector("button");
-      button?.addEventListener("click", () => dialog?.showModal());
+      if (dialog !== null && button !== null) {
+        addDismissModalForBackdropClick(dialog);
+        button.addEventListener("click", () => dialog.showModal());
+      }
     });
   });
 </script>

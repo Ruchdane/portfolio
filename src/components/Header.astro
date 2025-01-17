@@ -93,10 +93,13 @@ import MorphingBurger from "./MorphingBurger.astro";
 <script>
   document.addEventListener("astro:page-load", () => {
     const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
     const trigger = document.getElementById("burger-trigger");
-    trigger?.addEventListener("click", () => {
+    const toggleSidebarVisibility = () => {
       sidebar?.classList.toggle("show");
       trigger?.firstElementChild?.classList.toggle("cross");
-    });
+    };
+    trigger?.addEventListener("click", toggleSidebarVisibility);
+    backdrop?.addEventListener("click", toggleSidebarVisibility);
   });
 </script>
