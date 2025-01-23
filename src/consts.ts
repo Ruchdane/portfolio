@@ -11,7 +11,7 @@ export const SITE_DESCRIPTION = "Hi I'm AMADOU Ruchdane a software engineer";
 export const NAVIGATION_LINKS = [
   {
     link: "/",
-    title: "Acceuil",
+    title: "Accueil",
   },
   {
     link: "/project",
