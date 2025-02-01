@@ -3,13 +3,13 @@ import { Image } from "astro:assets";
 import { type CarouselProps } from "./carousel-props";
 interface Props extends CarouselProps {}
 
-let { images, limit, class: className } = Astro.props;
+let { images, limit, class: className, ...other } = Astro.props;
 if (limit !== undefined) {
   images = images.slice(0, limit);
 }
 ---
 
-<div class:list={["carousel", className]} data-carousel>
+<div class:list={["carousel", className]} data-carousel {...other}>
   {
     (
       <div class="carousel-slides">
