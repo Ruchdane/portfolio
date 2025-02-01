@@ -1,5 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import { Globe, Download, Code } from "lucide-astro";
+import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import { Image } from "astro:assets";
 import BasePage from "@/layouts/BasePage.astro";
 import { Carousel, PeopleProfile } from "@/components";
@@ -13,7 +15,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"project">;
 
 const projectEntry = Astro.props;
-const { logo, title, description, thumbs } = projectEntry.data;
+const { logo, title, description, thumbs, websiteUrl, downloadUrl, sourceUrl, technologies } =
+  projectEntry.data;
 const collaborators = await Promise.all(
   projectEntry.data.collaborators.map(
     async (entry) => (await getEntry("people", entry.id))?.data
@@ -22,40 +25,158 @@ const collaborators = await Promise.all(
 const { Content } = await projectEntry.render();
 ---
 
-<BasePage title={title} description={description}>
-  <Carousel class="project-cover" images={thumbs} />
-  <h1>
-    {
-      logo !== undefined? (
-        <Image src={logo} width="24" height="24" alt={title[0]} />
-      ) : (
-        title[0]
-      )
-    }
-    <span> {title} </span>
-  </h1>
-  <p>{description}</p>
-  <ul>
-    {
-      collaborators.map((collaborator) =>
-        collaborator ? <PeopleProfile {...collaborator} /> : null
-      )
-    }
-  </ul>
+<BasePage title={title} description={description} image={thumbs[0]?.src}>
+  <div class="project-hero">
+    <div class="project-header">
+      <h1 class="project-logo">
+        {logo !== undefined ? <Image src={logo} alt={title[0]} /> : title[0]}
+        <span> {title} </span>
+      </h1>
+    </div>
+    <div class="project-meta">
+      <div class="project-actions">
+        {
+          websiteUrl && (
+            <a
+              href={websiteUrl}
+              target="_blank"
+              rel="noopener"
+              class="icon-button"
+            >
+              <Globe />
+              <span> Visiter </span>
+            </a>
+          )
+        }
+        {
+          downloadUrl && (
+            <a href={downloadUrl} target="_blank" class="icon-button">
+              <Download />
+              <span> Télécharger </span>
+            </a>
+          )
+        }
+        {
+          sourceUrl && (
+            <a
+              href={sourceUrl}
+              target="_blank"
+              target="_blank"
+              rel="noopener"
+              class="icon-button"
+            >
+              <Code />
+              <span> Source </span>
+            </a>
+          )
+        }
+      </div>
+      <Carousel class="project-cover" images={thumbs} />
+      <div>
+        <ul class="project-collaborator">
+          {
+            collaborators.map((collaborator) =>
+              collaborator ? (
+                <li>
+                  {" "}
+                  <PeopleProfile {...collaborator} />{" "}
+                </li>
+              ) : null
+            )
+          }
+        </ul>
+        <div class="project-technologies">
+          {technologies.map((tech) => <TechnologieBadge name={tech} />)}
+        </div>
+        <p>{description}</p>
+      </div>
+    </div>
+  </div>
   <Content />
 </BasePage>
-<style lang="scss" is:global>
-  ul {
-    display: flex;
-    gap: 1rem;
-  }
-  .project-cover {
-    img {
-      max-height: 70vh;
+<style lang="scss">
+  @use "../../styles/media-query" as *;
+
+  .project {
+    &-hero {
+      font-family: "JetBrainsMono", monospace;
+      background-color: var(--primary-200);
+      padding: 2rem;
+      @include breakpoint(desktop) {
+        padding: 6rem;
+      }
     }
-  }
-  h1,
-  p {
-    margin: 2rem;
+
+    &-logo {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      img {
+        height: 1.25em;
+        width: 1.25em;
+      }
+    }
+
+    @include breakpoint(desktop) {
+      &-header {
+        display: flex;
+        margin-bottom: 1rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    &-cover
+    {
+      width: fit-content;
+     :global(img) {
+        max-height: 50vh;
+      }
+    }
+
+    @include breakpoint(tablet) {
+      &-meta {
+        display: flex;
+        gap: 5rem;
+        padding-inline: 6rem;
+      }
+    }
+
+    &-collaborator {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      margin-block: 1rem;
+    }
+
+    &-actions {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      height: fit-content;
+      background-color: var(--accent-50);
+      border-radius: 1rem;
+      padding: 0.5rem 0.75rem;
+      width: fit-content;
+      gap: 2rem;
+      right: 1rem;
+      z-index: var(--z-index-project-actions);
+      @include breakpoint(desktop) {
+        right: 5rem;
+      }
+
+      .icon-button {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
+    &-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
   }
 </style>

@@ -62,6 +62,8 @@
   --z-index-header: 2;
   --z-index-sidebar: 2;
 
+  --z-index-project-actions: 1;
+
   @include breakpoint(tablet) {
     // typescale major third
     --font-h1: 3em;
@@ -161,6 +163,7 @@ a {
 
   &.button,
   &.icon-button {
+    color: black;
     text-decoration: none;
   }
 }
@@ -329,10 +332,16 @@ input {
   }
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 .text-body {
   font-weight: normal;
   font-size: var(--font-body);
 }
+
 .text-bold {
   font-weight: normal;
 }
