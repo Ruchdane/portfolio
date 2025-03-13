@@ -1,0 +1,92 @@
+---
+
+---
+
+<div class="badge" data-checkbox-badge>
+  <input type="checkbox" />
+  <slot />
+</div>
+
+<style lang="scss">
+  .badge {
+    display: flex;
+    padding: 0.5rem 1.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    border: 3px solid transparent;
+    border-radius: 9999px;
+    overflow: hidden;
+    text-transform: capitalize;
+    color: var(--neutral-700);
+    font-weight: bold;
+    outline: none;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100%;
+      background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0) 70%
+      );
+      top: 0;
+      left: -100px;
+      opacity: 0.6;
+    }
+
+    &:hover {
+      background-color: var(--neutral-100);
+      transform: scale(1.05);
+
+      &::before {
+        animation: shine 1.5s ease-out infinite;
+      }
+    }
+    &:has(> input:checked) {
+      border-color: var(--primary-400);
+      background-color: var(--primary-200);
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+
+    60% {
+      left: 100%;
+    }
+
+    to {
+      left: 100%;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("[data-checkbox-badge]").forEach((badge) => {
+      const checkbox = badge.querySelector('input[type="checkbox"]') as HTMLInputElement | null;
+      if (!checkbox) return;
+      badge.addEventListener(
+        "click",
+        () => (checkbox.checked = !checkbox.checked)
+      );
+      checkbox.addEventListener("click", (e) => e.stopPropagation());
+    });
+  });
+</script>
