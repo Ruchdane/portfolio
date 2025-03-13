@@ -63,6 +63,11 @@
   --z-index-sidebar: 2;
 
   --z-index-project-actions: 1;
+  --z-index-project-filter: 1;
+
+  --shadow-sm: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+  --radius-sm: 1rem;
 
   @include breakpoint(tablet) {
     // typescale major third
@@ -349,3 +354,23 @@ ul {
 .text-caption {
   font-size: var(--font-caption);
 }
+
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* enable transitions, allow-discrete, define timing */
+[popover], dialog, ::backdrop {
+  transition: display 1s allow-discrete, overlay 1s allow-discrete, opacity 1s;
+  opacity: 0;
+}
+
+/* ON STAGE */
+:popover-open,
+:popover-open::backdrop,
+[open],
+[open]::backdrop {
+  opacity: 1;
+}
+

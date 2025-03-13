@@ -1,6 +1,7 @@
 ---
 import { Globe, Download, Code, ArrowRight } from "lucide-astro";
 import { Image } from "astro:assets";
+import { PLATFORME_MAP } from "@/consts";
 import { type Project } from "@/schema";
 import { Carousel } from "@/components/Carousel";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
@@ -16,6 +17,7 @@ const {
     title,
     description,
     technologies: rawTechnologies,
+    platformes: rawPlatformes,
     thumbs,
     websiteUrl,
     downloadUrl,
@@ -24,6 +26,9 @@ const {
 } = Astro.props;
 const technologies = rawTechnologies.sort(
   (techA, techB) => techA.length - techB.length
+);
+const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
+  rawPlatformes.some((value) => items.includes(value))
 );
 ---
 
@@ -51,6 +56,9 @@ const technologies = rawTechnologies.sort(
       >
         <ArrowRight alt="Lire plus" />
       </a>
+    </div>
+    <div class="project-platformes">
+      {platformes.map(({name, icon: Icon}) => <Icon data-platform={name.toLowerCase()}/>)}
     </div>
     <p class="project-description">{description}</p>
 
@@ -153,6 +161,10 @@ const technologies = rawTechnologies.sort(
       margin-bottom: 1rem;
     }
 
+    &-platforme {
+      display: none;
+    }
+    
     &-technologies {
       display: flex;
       flex-wrap: wrap;

@@ -1,7 +1,7 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type { Platforme, Technologie } from "@/schema";
+import { Platforme, Technologie } from "@/schema";
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 import logo from "./assets/icons/logo.svg";
 export const SITE_LOGO = logo;
@@ -23,7 +23,7 @@ export const NAVIGATION_LINKS = [
   },
 ];
 
-export const CORE_STACK: Partial<Record<Platforme, Technologie[]>> = {
+export const CORE_STACK: Partial<Record<string, Technologie[]>> = {
   web: [
     "typescript",
     "c_sharp",
@@ -75,19 +75,19 @@ export const TECHNOLOGIE_MAP: Record<
     icon: "csharp-plain",
   },
   php: {
-    name: "php",
+    name: "PHP",
     icon: "php-plain colored",
   },
   html: {
-    name: "html",
+    name: "HTML",
     icon: "html-plain colored",
   },
   css: {
-    name: "css",
+    name: "CSS",
     icon: "css-plain colored",
   },
   sass: {
-    name: "sass",
+    name: "SASS",
     icon: "sass-plain colored",
   },
   react: {
@@ -179,7 +179,7 @@ export const TECHNOLOGIE_MAP: Record<
     icon: "prisma-original",
   },
   aspnet: {
-    name: "asp.net",
+    name: "ASP.NET",
     icon: "aspnet",
   },
   winform: {
@@ -188,25 +188,56 @@ export const TECHNOLOGIE_MAP: Record<
   },
 };
 
-export const PLATFORME_MAP: Partial<
-  Record<
-    Platforme,
-    {
-      name: string;
-      icon: typeof Globe;
-    }
-  >
+export const PLATFORME_MAP: Record<
+  string,
+  {
+    name: string;
+    icon: typeof Globe;
+    items: Platforme[];
+  }
 > = {
   web: {
     icon: Globe,
     name: "web",
+    items: [Platforme.web],
   },
   desktop: {
     icon: LaptopMinimal,
     name: "Desktop",
+    items: [Platforme.linux, Platforme.windows, Platforme.macos],
   },
   mobile: {
     icon: Smartphone,
     name: "Mobile",
+    items: [Platforme.android, Platforme.ios],
   },
 };
+
+export const TECHNOLOGY_CATEGORIES = [
+  {
+    label: "Languages",
+    items: [
+      Technologie.rust,
+      Technologie.dart,
+      Technologie.typescript,
+      Technologie.javascript,
+      Technologie.c,
+      Technologie.c_sharp,
+      Technologie.php,
+      Technologie.html,
+      Technologie.css,
+      Technologie.sass,
+    ],
+  },
+  {
+    label: "Frameworks",
+    items: [
+      Technologie.next,
+      Technologie.tauri,
+      Technologie.flutter,
+      Technologie.astro,
+      Technologie.aspnet,
+      Technologie.winform,
+    ],
+  },
+] as const;

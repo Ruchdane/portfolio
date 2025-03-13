@@ -1,7 +1,15 @@
 ---
+import {
+  TECHNOLOGY_CATEGORIES,
+  PLATFORME_MAP,
+  TECHNOLOGIE_MAP,
+} from "@/consts";
 import { ProjectCard } from "@/components";
 import { BasePage } from "@/layouts";
 import { getCollection } from "astro:content";
+import CheckBoxBadge from "@/components/CheckBoxBadge.astro";
+import { ArrowLeftFromLine, SlidersHorizontal } from "lucide-astro";
+import DevProductivity from "../../assets/images/dev-productivity.svg";
 const project = await getCollection("project");
 ---
 
@@ -10,31 +18,242 @@ const project = await getCollection("project");
   description="Quelques projets sur lesquels j'ai travaillé"
 >
   <section>
-    <h1 transition:name="project-section-title">Projets</h1>
-    <div class="project-container">
-      {project.map((data) => <ProjectCard {...data} />)}
+    <div class="project-list-header" transition:name="project-list-header">
+      <h1>Projets</h1>
+      <button
+        class="button"
+        popovertarget="projectListFilter"
+        transition:name="project-list-filter-trigger"
+        id="projectListFilterTrigger"
+      >
+        <SlidersHorizontal />
+        Filtre
+      </button>
+    </div>
+    <div class="project">
+      <div
+        class="project-filter"
+        transition:name="project-list-filter"
+        id="projectListFilter"
+      >
+        <div class="flex">
+          <h3>Filtre</h3>
+          <button class="button button-secondary" id="projectListFilterHide">
+            <ArrowLeftFromLine />
+          </button>
+        </div>
+        {
+          TECHNOLOGY_CATEGORIES.map((category) => (
+            <details open class="filter-sections">
+              <summary> {category.label} </summary>
+              <ul class="filter-options" id="technologie-list">
+                {category.items.map((tech) => {
+                  const { name, icon } = TECHNOLOGIE_MAP[tech];
+                  return (
+                    <li class="filter-item">
+                      <CheckBoxBadge>
+                        <i class={`devicon-${icon}`} />
+                        <span>{name}</span>
+                      </CheckBoxBadge>
+                    </li>
+                  );
+                })}
+              </ul>
+            </details>
+          ))
+        }
+        <details open class="filter-sections">
+          <summary> Platforme </summary>
+          <ul class="filter-options" id="platform-list">
+            {
+              Object.values(PLATFORME_MAP).map(({ name, icon: Icon }) => (
+                <li class="filter-item">
+                  <CheckBoxBadge>
+                    <Icon />
+                    <span>{name}</span>
+                  </CheckBoxBadge>
+                </li>
+              ))
+            }
+          </ul>
+        </details>
+      </div>
+      <div id="projectContainer" class="project-container">
+        {project.map((data) => <ProjectCard {...data} />)}
+        <div id="projectEmptyState">
+          <DevProductivity />
+          <h3>En cours de développement</h3>
+          <p>De nouveaux projets arrivent bientôt. Restez connecté !</p>
+        </div>
+      </div>
     </div>
   </section>
-</BasePage>
-<style lang="scss">
-  @use "../../styles/media-query" as *;
+  <style lang="scss">
+    @use "../../styles/media-query" as *;
 
-  section {
-    padding: 1rem 2.5rem;
-    @include breakpoint(tablet) {
-      padding: 2rem 5rem;
+    section {
+      padding: 1rem 2.5rem;
+      @include breakpoint(tablet) {
+        padding: 2rem 5rem;
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
     }
-    h1 {
-      margin-bottom: 1rem;
+
+    .project {
+      @include breakpoint(desktop) {
+        display: flex;
+      }
+
+      &-filter {
+        padding: 1rem;
+        font-size: 1rem;
+
+        display: none;
+
+        &.toggled {
+          position: fixed;
+          z-index: var(--z-index-project-filter);
+          background: var(--neutral-100);
+          inset: 0;
+          margin-top: 4rem;
+          display: block;
+        }
+        @include breakpoint(tablet) {
+          display: block;
+          position: relative;
+          &.toggled {
+            display: none;
+          }
+        }
+      }
+
+      &-list-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+        gap: 32px;
+
+        @include breakpoint(tablet) {
+          display: grid;
+        }
+      }
+
+      #projectEmptyState {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        & + article:not(.hidden) {
+          display: none;
+        }
+      }
+
+      .filter {
+        &-options {
+          list-style: none;
+        }
+        &-item {
+          display: flex;
+          margin: 1rem;
+          align-items: center;
+          text-align: center;
+        }
+      }
     }
+  </style>
+</BasePage>
+<script>
+  function getAllSelectedIn(id: string) {
+    const values = document.querySelectorAll(
+      `#${id}>*:has(input:checked)`
+    ) as NodeListOf<HTMLElement>;
+    return Array.from(values).map((value) => value.innerText);
   }
-  .project-container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    @include breakpoint(tablet) {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    }
+
+  function isIncluded(
+    project: Element,
+    technologies: string[],
+    platforms: string[]
+  ): boolean {
+    const matchesTechnology =
+      technologies.length === 0 ||
+      technologies.some(
+        (technology) =>
+          project.querySelector(
+            `[data-technology="${technology.toLowerCase()}"]`
+          ) !== null
+      );
+    const matchesPlatform =
+      platforms.length === 0 ||
+      platforms.some(
+        (platform) =>
+          project.querySelector(
+            `[data-platform="${platform.toLowerCase()}"]`
+          ) !== null
+      );
+    return matchesTechnology && matchesPlatform;
   }
-</style>
+
+  function setupFilterToggle() {
+    projectListFilterTrigger.addEventListener("click", () =>
+      projectListFilter.classList.toggle("toggled")
+    );
+
+    projectListFilterHide.addEventListener("click", () =>
+      projectListFilter.classList.toggle("toggled")
+    );
+  }
+
+  function updateProjectList(projects: NodeListOf<HTMLElement>) {
+    const technologies = getAllSelectedIn("technologie-list");
+    const platforms = getAllSelectedIn("platform-list");
+    const filterProject = (project: HTMLElement) => {
+      if (isIncluded(project, technologies, platforms))
+        project.classList.remove("hidden");
+      else project.classList.add("hidden");
+    };
+
+    if (document.startViewTransition)
+      document.startViewTransition(() => projects.forEach(filterProject));
+    else projects.forEach(filterProject);
+
+    const params = new URLSearchParams({
+      filter: [...technologies, ...platforms].join(","),
+    });
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    history.replaceState(null, "", newUrl);
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const projects = document.querySelectorAll(
+      "#projectContainer>article"
+    ) as NodeListOf<HTMLElement>;
+    const badges = document.querySelectorAll(
+      "[data-checkbox-badge]"
+    ) as NodeListOf<HTMLElement>;
+    const searchParams = new URLSearchParams(window.location.search);
+    const selected = searchParams.get("filter")?.split(",") ?? [];
+    badges.forEach((badge) => {
+      const checkbox = badge.querySelector(
+        "input[type='checkbox']"
+      ) as HTMLInputElement | null;
+      if (checkbox !== null)
+        checkbox.checked = selected.includes(badge.innerText);
+      badge.addEventListener("click", () => updateProjectList(projects));
+    });
+    updateProjectList(projects);
+
+    setupFilterToggle();
+  });
+</script>

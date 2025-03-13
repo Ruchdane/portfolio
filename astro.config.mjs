@@ -10,4 +10,7 @@ import compress from "astro-compress";
 export default defineConfig({
   site: "https://ruchdane.netlify.app",
   integrations: [mdx(), sitemap(), compress()],
+  experimental: {
+    svg: true,
+  },
 });
