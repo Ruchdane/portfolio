@@ -36,6 +36,8 @@ export const TechnologieEnum = z.enum([
   "gitlab",
   "azure_devops",
   "trello",
+  "figma",
+  "canva",
 ]);
 export type Technologie = z.infer<typeof TechnologieEnum>;
 export const Technologie = TechnologieEnum.Enum;

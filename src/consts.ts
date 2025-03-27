@@ -22,6 +22,18 @@ export const NAVIGATION_LINKS = [
     title: "A propos",
   },
 ];
+export const TOOLS: Technologie[] = [
+  "netlify",
+  "supabase",
+  "firebase",
+  "github",
+  "gitlab",
+  "azure_devops",
+  "vercel",
+  "trello",
+  "figma",
+  "canva",
+];
 
 export const CORE_STACK: Partial<Record<string, Technologie[]>> = {
   web: [
@@ -185,6 +197,14 @@ export const TECHNOLOGIE_MAP: Record<
   winform: {
     name: "winform",
     icon: "winform",
+  },
+  figma: {
+    name: "figma",
+    icon: "figma-plain",
+  },
+  canva: {
+    name: "canva",
+    icon: "canva-original",
   },
 };
 
