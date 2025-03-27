@@ -1,114 +1,173 @@
 ---
+import { Image } from "astro:assets";
+import { CORE_STACK, TOOLS } from "@/consts";
 import { BasePage } from "@/layouts";
-import { getCollection } from "astro:content";
-import { HistoryElement } from "@/components";
+import { TechnologieBadge, SocialLinks } from "@/components";
 import cicec from "@/assets/icons/cicec.png";
-import umvc3 from "@/assets/icons/umvc3.png";
-import mhoj2 from "@/assets/icons/mhoj2.png";
-import nsus4 from "@/assets/icons/nsus4.png";
-import dbfz from "@/assets/icons/dbfz.png";
-import hollow_knight from "@/assets/icons/hollow_knight.png";
-import gallery from "@/assets/icons/gallery.svg";
-import hetic from "@/assets/icons/hetic.jpg";
-import imsp from "@/assets/icons/imsp.jpg";
-import kmex from "@/assets/icons/kmex.png";
-import logo from "@/assets/icons/logo.svg";
-import ubenin from "@/assets/icons/ubenin.png";
 
+import hetic from "@/assets/icons/hetic.jpg";
+import ileDeFrance from "@/assets/images/ile-de-france.svg";
+import kmex from "@/assets/icons/kmex.png";
+import ga4 from "@/assets/images/certifications/ga4.png";
+import gallery from "@/assets/icons/gallery.svg";
+import akojo from "@/assets/icons/akojo.svg";
+import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 
-import { Image } from "astro:assets";
-const experienceList = await getCollection("experience");
-const educationList = await getCollection("education");
-const history = experienceList
-  // @ts-ignore
-  .concat(educationList)
-  .sort((a, b) => b.data.beginDate.getTime() - a.data.beginDate.getTime());
+import { getEntry } from "astro:content";
+
+const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
+const technologies = Object.values(CORE_STACK).reduce(
+  (result, value) => result?.concat(value ?? []),
+  []
+);
 ---
 
-<BasePage title="A propos de moi" description="Lorem ipsum dolor sit amet">
+<BasePage
+  title="A propos de moi"
+  description="Je suis AMADOU Ruchdane Abiodun Adjao"
+>
   <div class="bento">
-    <section id="me">
-      <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
-      <h1>je suis AMADOU Ruchdane</h1>
+    <section id="me" class="vertical">
+      <Image loading="eager" src={banner_picture} alt="Photo de Ruchdane" />
+      <p>
+        <span>Je suis</span>
+        <br />
+        <h1>AMADOU Ruchdane Abiodun Adjao</h1>
+      </p>
     </section>
-    <section id="entreprise">
-      <Image src={cicec} loading="eager" alt="CICEC" />
-      <Image src={kmex} loading="eager" alt="Kmex consulting" />
+
+    <section id="socials">
+      <h2>Vous me retrouverez sur</h2>
+      <div>
+        <SocialLinks {...mySocials} />
+      </div>
     </section>
-    <section id="education">
+
+    <section id="education" class="horizontal">
       <Image
         src={hetic}
         loading="eager"
         alt="Hetic l'école internationale de la tech"
       />
-      <Image
-        src={imsp}
-        loading="eager"
-        alt="Institut de mathématique et science physique"
-      />
+      <p>
+        <span>j'étudie à </span>
+        <br />
+        <strong> HETIC la grande école du web</strong>
+      </p>
     </section>
-    <section id="games">
-      <h1>Mes jeux préférés</h1>
-      <div class="games-images">
-        <Image src={mhoj2} loading="eager" alt="My hero one justice 2" />
-        <Image
-          src={nsus4}
-          loading="eager"
-          alt="Narto Shipudden Ultimate Storm 4"
-        />
-        <Image src={dbfz} loading="eager" alt="Dragon ball fighter Z" />
-        <Image src={hollow_knight} loading="eager" alt="Hollow Knight" />
-        <Image src={umvc3} loading="eager" alt="Ultimate Marvel Vs Capcom 3" />
+
+    <section id="experience">
+      <h2>Mon expérience professionels</h2>
+      <div>
+        <Image src={cicec} alt="CICEC" />
+        <Image src={kmex} alt="Kmex consulting" />
       </div>
     </section>
-    <section id="interest">
+
+    <section id="project">
+      <h2>Mes Projets</h2>
       <p>
-        Aujourd'hui, je souhaite mettre mes compétences techniques et ma
-        compréhension des enjeux utilisateurs au service de la gestion de
-        produit, pour contribuer à définir et réaliser des solutions innovantes
-        et adaptées aux besoins des clients
+        <Image src={gallery} alt="Gallery" />
+        <Image src={ubenin} alt="Ubénin" />
+        <Image src={akojo} alt="akojo" />
       </p>
     </section>
-    <section id="socials">
-      <p>
-        Aujourd'hui, je souhaite mettre mes compétences techniques et ma
-        compréhension des enjeux utilisateurs au service de la gestion de
-        produit, pour contribuer à définir et réaliser des solutions innovantes
-        et adaptées aux besoins des clients
-      </p>
+
+    <section id="technologies">
+      <h2>Mes technologies</h2>
+      <div class="badge-marquee">
+        {
+          technologies?.map((technologie) => (
+            <TechnologieBadge name={technologie} />
+          ))
+        }
+      </div>
     </section>
+
+    <section id="tools">
+      <h2>Mes outils</h2>
+      <div class="badge-marquee">
+        {TOOLS.map((tool) => <TechnologieBadge name={tool} />)}
+      </div>
+    </section>
+
     <section id="certification">
+      <h2>Mes certifications</h2>
+      <div>
+        <Image src={ga4} alt="Google analytics certification" />
+      </div>
+    </section>
+
+    <section id="localisation" class="horizontal">
+      <Image
+        src={ileDeFrance}
+        alt="Carte de la France avec l'ile de France en évidence"
+      />
       <p>
-        Aujourd'hui, je souhaite mettre mes compétences techniques et ma
-        compréhension des enjeux utilisateurs au service de la gestion de
-        produit, pour contribuer à définir et réaliser des solutions innovantes
-        et adaptées aux besoins des clients
+        <span>Je suis en</span>
+        <br />
+        <strong> île de france </strong>
       </p>
     </section>
   </div>
-  <p>
-    Avec une solide expérience en développement full stack et en ingénierie
-    DevOps au sein d'équipes agiles, j'ai travaillé sur des projets variés en
-    assurant la conception, la mise en production et l'optimisation des
-    solutions.
-  </p>
 </BasePage>
+
 <style lang="scss">
   @use "../styles/media-query" as *;
+  img {
+    max-width: 200px;
+    max-height: 200px;
+  }
   .bento {
     margin-top: 2rem;
-    display: grid;
     height: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-areas:
-      "entreprise me       me     socials"
-      "education  me       me     certification"
-      "interest   interest games  games";
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include breakpoint(tablet) {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(4, auto);
+      grid-template-rows: repeat(3, auto);
+      grid-template-areas:
+        "tools    socials     localisation education"
+        "project    me          me           experience"
+        "project technologies technologies certification";
+    }
+
     section {
-      border: 1px solid black;
+      padding: 1rem;
+      border: 1px solid var(--neutral-200);
       border-radius: 1rem;
+      background-color: var(--primary-100);
+      h2 {
+        font-size: var(--font-h5);
+        margin-bottom: 0.8rem;
+      }
+
+      .badge-marquee {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 8px;
+        & > :global(*) {
+          width: fit-content;
+        }
+      }
+    }
+
+    .horizontal,
+    .vertical {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      text-justify: center;
+    }
+
+    .vertical {
+      flex-direction: column;
     }
 
     #me {
@@ -117,29 +176,26 @@ const history = experienceList
       grid-area: me;
     }
 
-    #entreprise {
-      grid-area: entreprise;
+    #localisation {
+      grid-area: localisation;
     }
 
     #education {
       grid-area: education;
     }
 
-    #games {
-      .games-images {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-      }
-      img {
-        max-width: 200px;
-      }
-      grid-area: games;
+    #experience {
+      grid-area: experience;
     }
 
-    #interest {
-      grid-area: interest;
+    #project {
+      grid-area: project;
+      p {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     #socials {
@@ -148,6 +204,14 @@ const history = experienceList
 
     #certification {
       grid-area: certification;
+    }
+
+    #technologies {
+      grid-area: technologies;
+    }
+
+    #tools {
+      grid-area: tools;
     }
   }
 </style>
