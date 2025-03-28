@@ -227,6 +227,10 @@ hr {
   border-top: 1px solid rgb(var(--neutral-600));
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 input {
   background-color: rgb(250, 251, 252);
   border-color: rgb(223, 225, 230);
