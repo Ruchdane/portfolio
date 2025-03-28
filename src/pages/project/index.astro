@@ -205,11 +205,14 @@ const project = await getCollection("project");
   }
 
   function setupFilterToggle() {
+    // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
     projectListFilterTrigger.addEventListener("click", () =>
+      // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
       projectListFilter.classList.toggle("toggled")
     );
-
+    // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
     projectListFilterHide.addEventListener("click", () =>
+      // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
       projectListFilter.classList.toggle("toggled")
     );
   }
