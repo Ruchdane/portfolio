@@ -1,34 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import { CORE_STACK, TOOLS } from "@/consts";
-import { Image } from "astro:assets";
-import { CORE_STACK, TOOLS } from "@/consts";
 import { BasePage } from "@/layouts";
-import { TechnologieBadge, SocialLinks } from "@/components";
 import { TechnologieBadge, SocialLinks } from "@/components";
 import cicec from "@/assets/icons/cicec.png";
 
-
 import hetic from "@/assets/icons/hetic.jpg";
 import ileDeFrance from "@/assets/images/ile-de-france.svg";
-import ileDeFrance from "@/assets/images/ile-de-france.svg";
 import kmex from "@/assets/icons/kmex.png";
-import ga4 from "@/assets/images/certifications/ga4.png";
-import gallery from "@/assets/icons/gallery.svg";
-import akojo from "@/assets/icons/akojo.svg";
 import ga4 from "@/assets/images/certifications/ga4.png";
 import gallery from "@/assets/icons/gallery.svg";
 import akojo from "@/assets/icons/akojo.svg";
 import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 
-import { getEntry } from "astro:content";
-
-const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
-const technologies = Object.values(CORE_STACK).reduce(
-  (result, value) => result?.concat(value ?? []),
-  []
-);
 import { getEntry } from "astro:content";
 
 const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
@@ -70,15 +55,7 @@ const technologies = Object.values(CORE_STACK).reduce(
       <div>
         <SocialLinks {...mySocials} />
       </div>
-
-    <section id="socials">
-      <h2>Vous me retrouverez sur</h2>
-      <div>
-        <SocialLinks {...mySocials} />
-      </div>
     </section>
-
-    <section id="education" class="horizontal">
 
     <section id="education" class="horizontal">
       <Image
@@ -86,11 +63,6 @@ const technologies = Object.values(CORE_STACK).reduce(
         loading="eager"
         alt="Hetic l'école internationale de la tech"
       />
-      <p>
-        <span>j'étudie à </span>
-        <br />
-        <strong> HETIC la grande école du web</strong>
-      </p>
       <p>
         <span>j'étudie à </span>
         <br />
@@ -142,7 +114,6 @@ const technologies = Object.values(CORE_STACK).reduce(
   </div>
 </BasePage>
 
-
 <style lang="scss">
   @use "../styles/media-query" as *;
   img {
@@ -172,8 +143,6 @@ const technologies = Object.values(CORE_STACK).reduce(
     }
 
     section {
-      padding: 1rem;
-      border: 1px solid var(--neutral-200);
       padding: 1rem;
       border: 1px solid var(--neutral-200);
       border-radius: 1rem;
@@ -222,8 +191,6 @@ const technologies = Object.values(CORE_STACK).reduce(
 
     #localisation {
       grid-area: localisation;
-    #localisation {
-      grid-area: localisation;
     }
 
     #education {
@@ -237,18 +204,9 @@ const technologies = Object.values(CORE_STACK).reduce(
     #project {
       grid-area: project;
       p {
-    #experience {
-      grid-area: experience;
-    }
-
-    #project {
-      grid-area: project;
-      p {
         display: flex;
         flex-wrap: wrap;
-        flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
         justify-content: center;
       }
     }
@@ -259,14 +217,6 @@ const technologies = Object.values(CORE_STACK).reduce(
 
     #certification {
       grid-area: certification;
-    }
-
-    #technologies {
-      grid-area: technologies;
-    }
-
-    #tools {
-      grid-area: tools;
     }
 
     #technologies {

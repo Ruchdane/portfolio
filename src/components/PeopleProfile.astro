@@ -100,14 +100,12 @@ const { profil, name, socials } = Astro.props;
     });
   }
 
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll("[data-profil]").forEach((profil) => {
-      const dialog = profil.querySelector("dialog");
-      const button = profil.querySelector("button");
-      if (dialog !== null && button !== null) {
-        addDismissModalForBackdropClick(dialog);
-        button.addEventListener("click", () => dialog.showModal());
-      }
-    });
+  document.querySelectorAll("[data-profil]").forEach((profil) => {
+    const dialog = profil.querySelector("dialog");
+    const button = profil.querySelector("button");
+    if (dialog !== null && button !== null) {
+      addDismissModalForBackdropClick(dialog);
+      button.addEventListener("click", () => dialog.showModal());
+    }
   });
 </script>

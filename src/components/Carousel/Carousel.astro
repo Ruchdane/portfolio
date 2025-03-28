@@ -94,44 +94,42 @@ if (limit !== undefined) {
 
 <script>
   const carouselDuration = 3000;
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
-      let currentIndex = 0;
-      let direction = 1;
-      const slides = carousel.querySelectorAll(".carousel-slide");
-      const triggers = carousel.querySelectorAll(".carousel-trigger");
-      let intervalTimer = window.setInterval(switchToNext, carouselDuration);
-      function setActiveSlide(target: unknown) {
-        if (!(target instanceof HTMLButtonElement)) return;
-        const index = parseInt(target.dataset.index ?? "0");
+  document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+    let currentIndex = 0;
+    let direction = 1;
+    const slides = carousel.querySelectorAll(".carousel-slide");
+    const triggers = carousel.querySelectorAll(".carousel-trigger");
+    let intervalTimer = window.setInterval(switchToNext, carouselDuration);
+    function setActiveSlide(target: unknown) {
+      if (!(target instanceof HTMLButtonElement)) return;
+      const index = parseInt(target.dataset.index ?? "0");
 
-        slides.forEach((slide) => {
-          if (!(slide instanceof HTMLElement)) return;
-          slide.classList.remove("active");
-          slide.style.transform = `translateX(${-1 * index * 100}%)`;
-        });
-        triggers.forEach((trigger) => trigger.classList.remove("active"));
+      slides.forEach((slide) => {
+        if (!(slide instanceof HTMLElement)) return;
+        slide.classList.remove("active");
+        slide.style.transform = `translateX(${-1 * index * 100}%)`;
+      });
+      triggers.forEach((trigger) => trigger.classList.remove("active"));
 
-        slides[index]?.classList.add("active");
-        triggers[index]?.classList.add("active");
+      slides[index]?.classList.add("active");
+      triggers[index]?.classList.add("active");
 
-        currentIndex = index;
+      currentIndex = index;
+    }
+    triggers.forEach((trigger) =>
+      trigger.addEventListener("click", (e) => {
+        clearInterval(intervalTimer);
+        setActiveSlide(e.target);
+        intervalTimer = window.setInterval(switchToNext, carouselDuration);
+      })
+    );
+    function switchToNext() {
+      currentIndex = currentIndex + direction * 1;
+      if (currentIndex < 0 || currentIndex >= slides.length) {
+        direction *= -1;
+        currentIndex = currentIndex + direction * 2;
       }
-      triggers.forEach((trigger) =>
-        trigger.addEventListener("click", (e) => {
-          clearInterval(intervalTimer);
-          setActiveSlide(e.target);
-          intervalTimer = window.setInterval(switchToNext, carouselDuration);
-        })
-      );
-      function switchToNext() {
-        currentIndex = currentIndex + direction * 1;
-        if (currentIndex < 0 || currentIndex >= slides.length) {
-          direction *= -1;
-          currentIndex = currentIndex + direction * 2;
-        }
-        setActiveSlide(triggers[currentIndex]);
-      }
-    });
+      setActiveSlide(triggers[currentIndex]);
+    }
   });
 </script>
