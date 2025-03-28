@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://ruchdane.netlify.app/*"
+  to = "https://ruchdane.me/:splat"
+  status = 301
+  force = true
