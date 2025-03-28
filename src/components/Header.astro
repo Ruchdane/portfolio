@@ -40,9 +40,9 @@ import MorphingBurger from "./MorphingBurger.astro";
 <style lang="scss">
   @use "../styles/media-query" as *;
   :global(main) {
-    padding-block: 4rem 1rem;
+    padding-block: var(--navbar-height) 1rem;
     @include breakpoint(tablet) {
-      padding-block: 6rem 3rem;
+      padding-block: var(--navbar-height) 3rem;
     }
   }
   header {
@@ -91,15 +91,13 @@ import MorphingBurger from "./MorphingBurger.astro";
   }
 </style>
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const sidebar = document.getElementById("sidebar");
-    const backdrop = document.getElementById("sidebar-backdrop");
-    const trigger = document.getElementById("burger-trigger");
-    const toggleSidebarVisibility = () => {
-      sidebar?.classList.toggle("show");
-      trigger?.firstElementChild?.classList.toggle("cross");
-    };
-    trigger?.addEventListener("click", toggleSidebarVisibility);
-    backdrop?.addEventListener("click", toggleSidebarVisibility);
-  });
+  const sidebar = document.getElementById("sidebar");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  const trigger = document.getElementById("burger-trigger");
+  const toggleSidebarVisibility = () => {
+    sidebar?.classList.toggle("show");
+    trigger?.firstElementChild?.classList.toggle("cross");
+  };
+  trigger?.addEventListener("click", toggleSidebarVisibility);
+  backdrop?.addEventListener("click", toggleSidebarVisibility);
 </script>

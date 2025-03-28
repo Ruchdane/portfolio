@@ -16,6 +16,7 @@ const project = await getCollection("project");
 <BasePage
   title="Mes projets"
   description="Quelques projets sur lesquels j'ai travaillé"
+  class="fluid"
 >
   <section>
     <div class="project-list-header" transition:name="project-list-header">
@@ -79,12 +80,12 @@ const project = await getCollection("project");
         </details>
       </div>
       <div id="projectContainer" class="project-container">
-        {project.map((data) => <ProjectCard {...data} />)}
-        <div id="projectEmptyState">
+        <div id="projectEmptyState" transition:name="projectEmptyState">
           <DevProductivity />
           <h3>En cours de développement</h3>
           <p>De nouveaux projets arrivent bientôt. Restez connecté !</p>
         </div>
+        {project.map((data) => <ProjectCard {...data} />)}
       </div>
     </div>
   </section>
@@ -138,12 +139,12 @@ const project = await getCollection("project");
         display: flex;
         flex-direction: column;
         align-content: center;
-        justify-content: center;
         width: 100%;
         gap: 32px;
 
         @include breakpoint(tablet) {
           display: grid;
+          align-content: baseline;
         }
       }
 
@@ -152,8 +153,7 @@ const project = await getCollection("project");
         width: 100%;
         flex-direction: column;
         align-items: center;
-
-        & + article:not(.hidden) {
+        &:has(~ :not(article.hidden)) {
           display: none;
         }
       }
@@ -238,25 +238,23 @@ const project = await getCollection("project");
     history.replaceState(null, "", newUrl);
   }
 
-  document.addEventListener("astro:page-load", () => {
-    const projects = document.querySelectorAll(
-      "#projectContainer>article"
-    ) as NodeListOf<HTMLElement>;
-    const badges = document.querySelectorAll(
-      "[data-checkbox-badge]"
-    ) as NodeListOf<HTMLElement>;
-    const searchParams = new URLSearchParams(window.location.search);
-    const selected = searchParams.get("filter")?.split(",") ?? [];
-    badges.forEach((badge) => {
-      const checkbox = badge.querySelector(
-        "input[type='checkbox']"
-      ) as HTMLInputElement | null;
-      if (checkbox !== null)
-        checkbox.checked = selected.includes(badge.innerText);
-      badge.addEventListener("click", () => updateProjectList(projects));
-    });
-    updateProjectList(projects);
-
-    setupFilterToggle();
+  const projects = document.querySelectorAll(
+    "#projectContainer>article"
+  ) as NodeListOf<HTMLElement>;
+  const badges = document.querySelectorAll(
+    "[data-checkbox-badge]"
+  ) as NodeListOf<HTMLElement>;
+  const searchParams = new URLSearchParams(window.location.search);
+  const selected = searchParams.get("filter")?.split(",") ?? [];
+  badges.forEach((badge) => {
+    const checkbox = badge.querySelector(
+      "input[type='checkbox']"
+    ) as HTMLInputElement | null;
+    if (checkbox !== null)
+      checkbox.checked = selected.includes(badge.innerText);
+    badge.addEventListener("click", () => updateProjectList(projects));
   });
+  updateProjectList(projects);
+
+  setupFilterToggle();
 </script>
