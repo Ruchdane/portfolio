@@ -15,8 +15,17 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"project">;
 
 const projectEntry = Astro.props;
-const { logo, title, description, thumbs, websiteUrl, downloadUrl, sourceUrl, technologies } =
-  projectEntry.data;
+const {
+  logo,
+  title,
+  description,
+  thumbs,
+  showcases,
+  websiteUrl,
+  downloadUrl,
+  sourceUrl,
+  technologies,
+} = projectEntry.data;
 const collaborators = await Promise.all(
   projectEntry.data.collaborators.map(
     async (entry) => (await getEntry("people", entry.id))?.data
@@ -71,7 +80,7 @@ const { Content } = await projectEntry.render();
           )
         }
       </div>
-      <Carousel class="project-cover" images={thumbs} />
+      <Carousel class="project-cover" images={showcases ?? thumbs} />
       <div>
         <ul class="project-collaborator">
           {
@@ -92,7 +101,9 @@ const { Content } = await projectEntry.render();
       </div>
     </div>
   </div>
-  <Content />
+  <div class="wrapper">
+    <Content />
+  </div>
 </BasePage>
 <style lang="scss">
   @use "../../styles/media-query" as *;
@@ -126,10 +137,9 @@ const { Content } = await projectEntry.render();
       }
     }
 
-    &-cover
-    {
+    &-cover {
       width: fit-content;
-     :global(img) {
+      :global(img) {
         max-height: 50vh;
       }
     }

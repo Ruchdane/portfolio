@@ -183,6 +183,11 @@ p {
   }
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 textarea {
   width: 100%;
   font-size: var(--font-body);
@@ -229,10 +234,6 @@ hr {
   border-top: 1px solid rgb(var(--neutral-600));
 }
 
-@view-transition {
-  navigation: auto;
-}
-
 input {
   background-color: rgb(250, 251, 252);
   border-color: rgb(223, 225, 230);
@@ -259,6 +260,25 @@ input {
   }
 }
 
+
+@view-transition {
+  navigation: auto;
+}
+
+
+[popover], dialog, ::backdrop {
+  transition: display 1s allow-discrete, overlay 1s allow-discrete, opacity 1s;
+  opacity: 0;
+}
+
+:popover-open,
+:popover-open::backdrop,
+[open],
+[open]::backdrop {
+  opacity: 1;
+}
+
+
 .sr-only {
   border: 0;
   padding: 0;
@@ -280,6 +300,7 @@ input {
 .hidden {
   display: none !important;
 }
+
 
 .icon-button {
   background-color: transparent;
@@ -354,11 +375,6 @@ input {
   }
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
 .text-body {
   font-weight: normal;
   font-size: var(--font-body);
@@ -385,17 +401,8 @@ ul {
   }
 }
 
-/* enable transitions, allow-discrete, define timing */
-[popover], dialog, ::backdrop {
-  transition: display 1s allow-discrete, overlay 1s allow-discrete, opacity 1s;
-  opacity: 0;
+.wrapper {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 2rem;
 }
-
-/* ON STAGE */
-:popover-open,
-:popover-open::backdrop,
-[open],
-[open]::backdrop {
-  opacity: 1;
-}
-

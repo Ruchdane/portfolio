@@ -7,6 +7,7 @@ export const ProjectSchema = (image: ImageFunction) =>
     title: z.string(),
     description: z.string(),
     thumbs: z.array(ImageSchema(image)).min(1),
+    showcases: z.array(ImageSchema(image)).min(1).optional(),
 
     websiteUrl: z.string().optional(),
     sourceUrl: z.string().optional(),
