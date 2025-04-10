@@ -16,8 +16,9 @@ showcases:
     {
       src: ../../assets/images/ubenin/mobile-grid-showcase.gif,
       alt: "thumb alumni chat",
-      width: 960,
+      width: [240, 540, 720],
       height: 720,
+      loading: lazy,
     },
   ]
 websiteUrl: https://ubenin.dinyad.fr/

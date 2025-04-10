@@ -13,11 +13,11 @@ if (limit !== undefined) {
   {
     (
       <div class="carousel-slides">
-        {images.map(({ src, alt }, index) => {
+        {images.map((image, index) => {
           const className = "carousel-slide" + (index === 0 ? " active" : "");
           return (
             <div class={className}>
-              <Image src={src} alt={alt} />
+              <Image {...image} />
             </div>
           );
         })}
