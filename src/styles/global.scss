@@ -83,7 +83,7 @@
     --font-tiny: 0.64em;
 
     @include breakpoint(tablet) {
-       --navbar-height: 6rem;
+      --navbar-height: 6rem;
     }
   }
 }
@@ -91,13 +91,13 @@
 @font-face {
   font-family: JetBrainsMono;
   font-display: swap;
-  src: url('/fonts/JetBrainsMono.ttf') format('truetype');
+  src: url("/fonts/JetBrainsMono.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Figtree;
   font-display: swap;
-  src: url('/fonts/Figtree.ttf') format('truetype');
+  src: url("/fonts/Figtree.ttf") format("truetype");
 }
 
 html {
@@ -217,7 +217,7 @@ pre {
   padding: 1.5em;
   border-radius: 8px;
 
-  &>code {
+  & > code {
     all: unset;
   }
 }
@@ -235,6 +235,11 @@ hr {
 }
 
 input {
+  height: 36px;
+}
+
+input,
+textarea {
   background-color: rgb(250, 251, 252);
   border-color: rgb(223, 225, 230);
   color: rgb(9, 30, 66);
@@ -248,7 +253,6 @@ input {
     border-color 0.2s ease-in-out 0s;
   line-height: 1.42857;
   padding: 8px 6px;
-  height: 36px;
 
   &:hover {
     background-color: rgb(235, 236, 240);
@@ -256,17 +260,17 @@ input {
 
   &:focus {
     background-color: rgb(255, 255, 255);
-    border-color: rgb(76, 154, 255);
+    outline-color: var(--accent-600);
   }
 }
-
 
 @view-transition {
   navigation: auto;
 }
 
-
-[popover], dialog, ::backdrop {
+[popover],
+dialog,
+::backdrop {
   transition: display 1s allow-discrete, overlay 1s allow-discrete, opacity 1s;
   opacity: 0;
 }
@@ -277,7 +281,6 @@ input {
 [open]::backdrop {
   opacity: 1;
 }
-
 
 .sr-only {
   border: 0;
@@ -300,7 +303,6 @@ input {
 .hidden {
   display: none !important;
 }
-
 
 .icon-button {
   background-color: transparent;
@@ -356,6 +358,12 @@ input {
     transform: translateY(5px);
     transition: 200ms;
   }
+  
+  &[disabled]{
+    pointer-events: none;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 
   &.primary {
     --bg-color: var(--accent-600);
@@ -396,7 +404,7 @@ input {
 .fluid {
   display: flex;
   justify-content: center;
-  &>*{
+  & > * {
     max-width: 1980px;
   }
 }
