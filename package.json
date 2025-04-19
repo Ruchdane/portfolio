@@ -17,7 +17,9 @@
     "@astrojs/sitemap": "^3.3.0",
     "astro": "^5.6.1",
     "astro-compress": "^2.3.6",
+    "astro-purgecss": "^5.2.2",
     "lucide-astro": "^0.461.0",
+    "purgecss": "^7.0.2",
     "sass": "^1.81.0",
     "sharp": "^0.33.5",
     "typescript": "^5.7.2"
