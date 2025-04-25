@@ -5,8 +5,6 @@ import { Platforme, Technologie } from "@/schema";
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 import logo from "./assets/icons/logo.svg";
 export const SITE_LOGO = logo;
-export const SITE_TITLE = "Ruchdane";
-export const SITE_DESCRIPTION = "Hi I'm AMADOU Ruchdane a software engineer";
 
 export const NAVIGATION_LINKS = [
   {
@@ -16,6 +14,10 @@ export const NAVIGATION_LINKS = [
   {
     link: "/project",
     title: "Projets",
+  },
+  {
+    link: "#email",
+    title: "Contact",
   },
   {
     link: "/about",

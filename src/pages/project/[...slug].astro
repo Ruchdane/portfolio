@@ -9,11 +9,12 @@ export async function getStaticPaths() {
   const project = await getCollection("project");
   return project.map((project) => ({
     params: { slug: project.slug },
-    props: project,
+    props: { ...project },
   }));
 }
 type Props = CollectionEntry<"project">;
 
+const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
 const {
   logo,
@@ -34,13 +35,17 @@ const collaborators = await Promise.all(
 const { Content } = await projectEntry.render();
 ---
 
-<BasePage title={title} description={description} image={thumbs[0]?.src}>
+<BasePage
+  title={`${slug} - ${title}`}
+  description={description}
+  image={thumbs[0]?.src}
+>
   <div class="project-hero">
     <div class="project-header">
-      <h1 class="project-logo">
-        {logo !== undefined ? <Image src={logo} alt={title[0]} /> : title[0]}
-        <span> {title} </span>
-      </h1>
+      <span class="project-logo">
+        {logo !== undefined ? <Image src={logo} alt={slug[0]} /> : slug[0]}
+        <span> {slug} </span>
+      </span>
     </div>
     <div class="project-meta">
       <div class="project-actions">
@@ -97,6 +102,7 @@ const { Content } = await projectEntry.render();
         <div class="project-technologies">
           {technologies.map((tech) => <TechnologieBadge name={tech} />)}
         </div>
+        <h1>{title}</h1>
         <p>{description}</p>
       </div>
     </div>
@@ -122,6 +128,7 @@ const { Content } = await projectEntry.render();
       display: flex;
       gap: 0.25rem;
       align-items: center;
+      font-size: var(--font-h3);
       img {
         height: 1.25em;
         width: 1.25em;

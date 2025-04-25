@@ -1,7 +1,7 @@
 ---
 logo: "../../assets/icons/ubenin.png"
-title: Ubenin
-description: La plateforme d’orientation et d’information pour les étudiants du Bénin
+title: La plateforme d’orientation pour les étudiants béninois
+description: Une application mobile qui facilite l'orientation des jeunes bachelier du Bénin en leur fournissant un catalogue d'information fiable et validée par des pairs ains que des alumni des différents université.
 thumbs:
   [
     {

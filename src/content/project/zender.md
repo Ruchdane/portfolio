@@ -1,7 +1,7 @@
 ---
 # logo: "../../assets/icons/zender.svg"
-title: "Zender"
-description: "Logiciel d'échange de fichiers sur un réseau local. "
+title: Logiciel d'échange de fichiers sur un réseau local
+description: Une application desktop disponible sur pc pour faciliter le partage de fichier sur n réseau local sans passer par internet
 thumbs:
   [
     {

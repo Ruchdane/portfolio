@@ -41,12 +41,12 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
       <h1>
         {
           logo === undefined ? (
-            title[0]
+            slug[0]
           ) : (
             <Image src={logo} height="36" width="36" alt={title[0]} />
           )
         }
-        <span> {title} </span>
+        <span> {slug.toUpperCase()} </span>
       </h1>
       <a
         class="icon-button"
@@ -58,7 +58,11 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
       </a>
     </div>
     <div class="project-platformes">
-      {platformes.map(({name, icon: Icon}) => <Icon data-platform={name.toLowerCase()}/>)}
+      {
+        platformes.map(({ name, icon: Icon }) => (
+          <Icon data-platform={name.toLowerCase()} />
+        ))
+      }
     </div>
     <p class="project-description">{description}</p>
 
@@ -115,7 +119,9 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
       background-color: var(--neutral-50);
       padding: 16px;
       border-radius: 0.5rem;
-      box-shadow: 0 6px 10px rgba(24, 24, 27, 0.08), 0 12px 20px rgba(39, 39, 42, 0.05);
+      box-shadow:
+        0 6px 10px rgba(24, 24, 27, 0.08),
+        0 12px 20px rgba(39, 39, 42, 0.05);
       display: flex;
       overflow: hidden;
       flex-direction: column;
@@ -164,7 +170,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
     &-platforme {
       display: none;
     }
-    
+
     &-technologies {
       display: flex;
       flex-wrap: wrap;

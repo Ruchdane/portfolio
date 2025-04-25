@@ -1,10 +1,5 @@
 ---
-import {
-  SITE_TITLE,
-  SITE_DESCRIPTION,
-  CORE_STACK,
-  PLATFORME_MAP,
-} from "@/consts";
+import { CORE_STACK, PLATFORME_MAP } from "@/consts";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
@@ -35,7 +30,10 @@ const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
 ---
 
-<BasePage title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BasePage
+  title="Portfolio de AMADOU Ruchdane"
+  description="Salut, je suis AMADOU Ruchdane, product designer et dévellopeur web. Je suis passioner par l'innovation et la résolution de problème utilistaur. J'étudie actuellement à HETIC dans le domaine du design de l'expérience utilisateur."
+>
   <section class="banner">
     <div class="banner-image">
       <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
@@ -49,6 +47,7 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
         <span>
           Passionné par l'innovation et la résolution de problèmes utilisateurs
         </span>
+        <a href="#email" class="button primary">Prendre contact</a>
         <div class="banner-links">
           <SocialLinks {...mySocials} />
         </div>
@@ -183,8 +182,11 @@ const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
         color: var(--accent-800);
         font-size: var(--font-h4);
       }
-      button {
+      button,
+      .button {
         font-weight: 800;
+        margin-block: 1rem;
+        max-width: 500px;
       }
     }
     &-links {

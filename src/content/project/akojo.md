@@ -1,7 +1,7 @@
 ---
 logo: "../../assets/icons/akojo.svg"
-title: "Akojo"
-description: "Optimisez la gestion de vos stocks avec notre application efficace et intuitive."
+title: "Plateforme de gestion de stock, ravitaillement et commandes"
+description: "Une plateforme qui centralise la gestion de stock,ravittaillement et commandes pour les organisations de moyennes et grande taille qui possède plusieurs points de ventes ainsi que magasin de stockage."
 thumbs:
   [
     {
