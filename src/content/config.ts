@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 import { file } from "astro/loaders";
 import {
   EducationSchema,
@@ -6,17 +6,6 @@ import {
   PeopleSchema,
   ProjectSchema,
 } from "@/schema";
-
-const blog = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
-  }),
-});
 
 const project = defineCollection({
   type: "content",
@@ -37,4 +26,4 @@ const people = defineCollection({
   loader: file("src/content/people/peoples.yml"),
   schema: ({ image }) => PeopleSchema(image),
 });
-export const collections = { blog, project, experience, education, people };
+export const collections = { project, experience, education, people };
