@@ -12,25 +12,38 @@
         }
       })
     );
+
+    toggleTab(tabs);
+  }
+
+  function toggleTab(tabs: NodeListOf<Element>) {
+    const defaultTab = tabs[0];
+    if (!defaultTab) return false;
+    let selectTab = defaultTab;
+
     if (window.location.hash) {
       const hash = window.location.hash;
       const tabLink = document.querySelector(`[href="${hash}"]`);
-      if (tabLink) {
-        toggleContent(tabLink);
-      } else if (tabs[0] !== undefined) toggleContent(tabs[0]);
-    } else if (tabs[0] !== undefined) toggleContent(tabs[0]);
+      if (tabLink) selectTab = tabLink;
+    }
+
+    return toggleContent(selectTab) || toggleContent(defaultTab);
   }
 
-  function toggleContent(targetTrigger: Element) {
+  function toggleContent(targetTrigger: Element): boolean {
     const targetTabLink = targetTrigger.getAttribute("href");
     const targetContent = document.querySelector(
       `[data-tab-anchor="${targetTabLink}"]`
     );
     const activeTabTrigger = document.querySelector(`.tab-link.active`);
     const activeTabContent = document.querySelector(`.tab-pane.active`);
+    if (targetContent === null) {
+      return false;
+    }
     activeTabTrigger?.classList.remove("active");
     activeTabContent?.classList.remove("active");
-    targetTrigger?.classList.add("active");
-    targetContent?.classList.add("active");
+    targetTrigger.classList.add("active");
+    targetContent.classList.add("active");
+    return true;
   }
 </script>
