@@ -1,9 +1,9 @@
 ---
-import { getEntry } from "astro:content";
 import { SocialLinks } from "@/components";
+import { getMe } from "@/schema";
 
 const today = new Date();
-const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
+const mySocials = (await getMe()).socials;
 ---
 
 <footer>

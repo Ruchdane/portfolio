@@ -1,20 +1,56 @@
 ---
-interface Props {
+import { BaseHead, Header, Footer } from "@/components";
+import { SEOSchema } from "@/schema/seo";
+import { slide } from "astro:transitions";
+import type { WithContext, Thing } from "schema-dts";
+
+interface Props<T extends Thing> {
   title: string;
   description: string;
+  jsonLd: WithContext<T>;
   image?: ImageMetadata | undefined;
   class?: string;
 }
-import { BaseHead, Header, Footer } from "@/components";
-import { slide } from "astro:transitions";
 
-const { title, description, image, class: className, ...rest } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  jsonLd,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const result = SEOSchema.safeParse({ title, description });
+
+if (import.meta.env.PROD && !result.success) {
+  const errorMessages = result.error.issues
+    .map((issue) => issue.message)
+    .join(", ");
+  throw new Error(`SEO Validation Failed: ${errorMessages}`);
+}
+
+if (import.meta.env.DEV && !result.success) {
+  console.error(
+    "SEO Validation Errors:",
+    result.error.issues.map((issue) => issue.message)
+  );
+}
 ---
 
 <!doctype html>
 <html lang="fr">
   <head>
     <BaseHead title={title} description={description} image={image} />
+    {
+      jsonLd !== undefined ? (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(jsonLd)}
+        />
+      ) : undefined
+    }
   </head>
   <body>
     <Header />

@@ -13,10 +13,9 @@ import gallery from "@/assets/icons/gallery.svg";
 import akojo from "@/assets/icons/akojo.svg";
 import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
+import { getMe } from "@/schema";
 
-import { getEntry } from "astro:content";
-
-const mySocials = (await getEntry("people", "ruchdane"))?.data.socials;
+const mySocials = (await getMe()).socials;
 const technologies = Object.values(CORE_STACK).reduce(
   (result, value) => result?.concat(value ?? []),
   []
