@@ -10,4 +10,9 @@ platformes: ["linux", "windows"]
 collaborators:
   - ruchdane
 isFeatured: true
+seo:
+  type: SoftwareApplication
+  category: 
+    - Lecteur de manga
+
 ---

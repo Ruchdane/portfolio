@@ -21,6 +21,7 @@
     "lucide-astro": "^0.461.0",
     "purgecss": "^7.0.2",
     "sass": "^1.81.0",
+    "schema-dts": "^1.1.5",
     "sharp": "^0.33.5",
     "typescript": "^5.7.2"
   },

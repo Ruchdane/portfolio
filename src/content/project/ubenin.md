@@ -30,6 +30,11 @@ collaborators:
   - jules
   - ruchdane
 isFeatured: true
+seo:
+  type: WebApplication
+  category: 
+    - Education
+    - Exploration d'univeristé
 ---
 
 ## Contexte

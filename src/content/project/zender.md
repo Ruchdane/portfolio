@@ -17,4 +17,8 @@ platformes: ["linux", "windows"]
 collaborators:
   - ruchdane
 isFeatured: true
+seo:
+  type: SoftwareApplication
+  category: 
+    - Partage de fichier
 ---

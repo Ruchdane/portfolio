@@ -38,6 +38,8 @@ export const TechnologieEnum = z.enum([
   "trello",
   "figma",
   "canva",
+  "storybook",
+  "cypress",
 ]);
 export type Technologie = z.infer<typeof TechnologieEnum>;
 export const Technologie = TechnologieEnum.Enum;
