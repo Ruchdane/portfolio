@@ -17,7 +17,7 @@ if (limit !== undefined) {
           const className = "carousel-slide" + (index === 0 ? " active" : "");
           return (
             <div class={className}>
-              <Image {...image} />
+              <Image {...image} layout="constrained" />
             </div>
           );
         })}

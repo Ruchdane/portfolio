@@ -12,7 +12,11 @@ export default defineConfig({
   },
   site: "https://ruchdane.me",
   integrations: [mdx(), sitemap(), compress(), purgecss()],
+  image: {
+    experimentalLayout: "responsive",
+  },
   experimental: {
+    responsiveImages: true,
     svg: true,
   },
 });
