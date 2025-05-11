@@ -132,6 +132,7 @@ h4,
 h5,
 h6 {
   margin: 0 0 0.5rem 0;
+  text-wrap: balance;
   font-family: "JetBrainsMono", monospace;
   color: rgb(var(--black));
   line-height: 1.2;
@@ -223,7 +224,7 @@ pre {
 }
 
 blockquote {
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--accent-700);
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;

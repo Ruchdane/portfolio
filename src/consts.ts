@@ -1,9 +1,10 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import { Platforme, Technologie } from "@/schema";
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 import logo from "./assets/icons/logo.svg";
+import { Platforme, Technologie } from "@/schema/enum";
+export const SITE_URL = "https://ruchdane.me";
 export const SITE_LOGO = logo;
 
 export const NAVIGATION_LINKS = [
@@ -204,9 +205,17 @@ export const TECHNOLOGIE_MAP: Record<
     name: "figma",
     icon: "figma-plain",
   },
+  storybook: {
+    name: "storybook",
+    icon: "storybook-plain colored",
+  },
+  cypress: {
+    name: "cypress",
+    icon: "cypressio-plain",
+  },
   canva: {
     name: "canva",
-    icon: "canva-original",
+    icon: "canva-plain",
   },
 };
 

@@ -1,0 +1,11 @@
+.markdown {
+    blockquote {
+        border-left: 4px solid var(--accent-700);
+        color: var(--neutral-700);
+    }
+    ul, ol {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 2em;
+    }
+}

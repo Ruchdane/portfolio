@@ -16,9 +16,8 @@ technologies: ["rust", "tauri", "mithril", "typescript", "sass"]
 platformes: ["linux", "windows"]
 collaborators:
   - ruchdane
-isFeatured: true
 seo:
   type: SoftwareApplication
-  category: 
+  category:
     - Partage de fichier
 ---

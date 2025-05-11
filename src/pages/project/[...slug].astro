@@ -87,6 +87,7 @@ const { Content } = await projectEntry.render();
       </div>
       <Carousel class="project-cover" images={showcases ?? thumbs} />
       <div>
+        <h1>{title}</h1>
         <ul class="project-collaborator">
           {
             collaborators.map((collaborator) =>
@@ -99,21 +100,23 @@ const { Content } = await projectEntry.render();
             )
           }
         </ul>
+        <p>{description}</p>
         <div class="project-technologies">
           {technologies.map((tech) => <TechnologieBadge name={tech} />)}
         </div>
-        <h1>{title}</h1>
-        <p>{description}</p>
       </div>
     </div>
   </div>
-  <div class="wrapper">
+  <div class="wrapper markdown">
     <Content />
   </div>
 </BasePage>
 <style lang="scss">
   @use "../../styles/media-query" as *;
 
+  h1 {
+    font-size: var(--font-h3);
+  }
   .project {
     &-hero {
       font-family: "JetBrainsMono", monospace;

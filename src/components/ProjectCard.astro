@@ -57,7 +57,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
         <ArrowRight alt="Lire plus" />
       </a>
     </div>
-    <div class="project-platformes">
+    <div class="project-platformes hidden">
       {
         platformes.map(({ name, icon: Icon }) => (
           <Icon data-platform={name.toLowerCase()} />

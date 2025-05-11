@@ -59,65 +59,30 @@ seo:
 
 ## Contexte
 
-> Pourquoi Akojo ?
+Koudi est une entreprise de distribution qui gère plusieurs points de vente et entrepôts.
+Avant Akojo, Koudi gérait ses flux de stock avec plusieurs fichiers Excel. Cela créait plusieurs problèmes, comme :
 
-Excel ! Une
-Finie la gestion hasardeuse sur Excel. Avec Akojo, nous avons conçu une application web sur mesure pour centraliser les opérations de vente, commande et stock d'une entreprise possédant plusieurs magasins et boutiques. Grâce à une architecture moderne et une approche agile centrée sur l’utilisateur, l’entreprise dispose désormais d’un outil fiable, évolutif et taillé pour l’avenir.
+* **Intégrité des données :** Il n’y avait pas une seule source fiable. Chaque membre avait sa propre version des fichiers. Cela provoquait des erreurs dans le comptage et les rapports de stock.
+* **Problèmes de collaboration :** Partager et modifier les fichiers Excel entre plusieurs personnes créait des conflits et de l’incohérence. Par exemple, un même produit avec plusieurs noms.
+* **Erreurs humaines :** Les erreurs passaient souvent inaperçues jusqu’à ce qu’elles causent des problèmes opérationnels ou financiers. Quand il manquait du stock ou qu’il y avait trop de stock, personne ne savait d’où ça venait.
 
-Avant Akojo, l’ensemble des opérations de gestion — du suivi client à la gestion de stock — reposait sur des fichiers Excel partagés. Cette organisation entraînait de nombreuses erreurs : pertes de stock, doublons, informations contradictoires, oublis de paiements… Résultat : les équipes passaient un temps considérable à corriger les données au lieu de se concentrer sur leur activité.
+## Résultat
 
-L’entreprise avait un besoin urgent de centralisation, de fiabilité et de simplicité d’usage pour permettre à ses magasins et boutiques de mieux collaborer, sans rupture d’information.
+On voulait créer une plateforme unique pour gérer les stocks. Voici ce qu’on a réussi à faire :
 
-## Valeurs
+* **Une seule source fiable :** Les niveaux de stock sont visibles par tout le monde. On enregistre chaque mouvement de stock, que ce soit une vente ou un réapprovisionnement.
+* **Collaboration :** Tout le monde peut accéder au système, mais selon son rôle. Un système simple de rôles permet à chacun d’utiliser l’application, du manager à la boutique.
+* **Moins d’effort manuel :** En gérant tout ce qui est lié au stock, on a réduit le temps et l’effort pour créer des bons de livraison ou synchroniser le stock.
 
-> Moins d’erreurs et de pertes
+## Processus
 
-La validation en temps réel des données, les alertes de stock automatisées et la centralisation des informations ont permis de réduire les pertes de stock et d’éviter de nombreuses erreurs de saisie.
+Pour garantir la qualité et la facilité d’utilisation, l’équipe a utilisé une méthode agile centrée sur l’utilisateur :
 
-> Gain de temps opérationnel
+* **Méthode Agile :** On a utilisé GitHub Project pour gérer chaque fonctionnalité comme un mini produit. Cela nous a permis de suivre tout le cycle de vie du logiciel.
+* **Design Centré sur l’Utilisateur :** Après des interviews avec les utilisateurs, on a créé des maquettes simples (low-fidelity) pour chaque fonctionnalité. Ensuite, on a développé un prototype dans Storybook. Les retours des utilisateurs ont permis d’améliorer le design avant de le coder.
 
-La génération automatisée des bordereaux de commande a remplacé les tâches manuelles répétitives, libérant du temps pour se concentrer sur les ventes.
+### Design
 
-> Meilleure visibilité sur l’activité
+![Storybook atomic design](../../assets/images/akojo/storybook.png)
 
-Les équipes peuvent désormais suivre les paiements clients, identifier les ruptures potentielles à venir, et consulter l’historique des commandes par boutique. L’entreprise a gagné en clarté, en contrôle, et en capacité d’anticipation.
-
-En centralisant toutes les opérations critiques liées au stock.
-
-L’application permet aujourd’hui :
-
-- La gestion des stocks en temps réel avec alertes sur les niveaux critiques,
-- Le suivi des ventes et et ravitaillement,
-- Le suivi des commandes et des paiements clients,
-- La génération de bordereaux de commande, prêts à imprimer ou partager,
-- Un accès structuré par boutique ou magasin, pour une meilleure traçabilité.
-- Une gestion des accés avancé
-
-L’ensemble a été conçu avec les utilisateurs finaux, ce qui a permis de concevoir des interfaces ultra ciblées, sans fonctionnalités superflues.
-
-L’adoption d’Akojo a transformé en profondeur les processus internes de l’entreprise. Dès les premières semaines, les équipes ont constaté un réel gain en fiabilité et en efficacité.
-
-## Réalisation
-
-> Une démarche agile, orientée utilisateurs
-
-Le projet s’est déroulé en suivant une méthodologie agile avec des cycles courts de livraison. Chaque nouvelle fonctionnalité a été prototypée, testée puis validée avec les utilisateurs eux-mêmes.
-
-Nous avons organisé de nombreux tests utilisateurs sur le terrain, en magasin, afin de :
-
-- Recueillir des retours rapides sur l’ergonomie et la pertinence des écrans,
-- Identifier les blocages dès la phase de design,
-- Améliorer progressivement l’expérience utilisateur à chaque itération.
-
-Cette co-construction a permis une adoption fluide par les équipes dès les premières semaines de déploiement.
-
-> Mon rôle dans le projet
-
-Sur ce projet, j’ai occupé un rôle transverse allant du développement frontend à la gestion de l’infrastructure. J’ai assuré à la fois la qualité de l’expérience utilisateur et la robustesse de la plateforme.
-
-J’ai conçu toute l’interface utilisateur en partant d’une base shadcn/ui, que j’ai personnalisée pour répondre aux besoins du client. L’UX a été pensée pour être claire, accessible et parfaitement adaptée à un usage quotidien sur le terrain.
-
-Pour garantir la stabilité de l’application a part les tests unitaire et fonctionel, j’ai mis en place :
-
-- Des tests end-to-end avec Cypress, simulant les parcours utilisateur les plus critiques,
-- un Storybook pour documenter chaque composant de l’interface, facilitant la maintenance et les futures évolutions.
+On a suivi la méthode de design atomique. D’abord, on a créé nos atomes et molécules avec shadcn/ui. Pour chaque fonctionnalité, après une réunion avec les utilisateurs, on a fait une maquette simple qu’on a transformée en prototype dans Storybook. L’utilisateur testait et donnait son avis, qu’on intégrait dans le processus final.
