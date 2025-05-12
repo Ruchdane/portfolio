@@ -43,6 +43,7 @@
     (e.__SV = 1));
 })(document, window.posthog || []);
 posthog.init("phc_MOjAi32pj2re23Vtgsicp9hD5gMmweJfuILl0vBBi6C", {
-  api_host: "https://eu.i.posthog.com",
+  api_host: "https://ruchdane.me/ingest",
+  ui_host: "https://eu.posthog.com",
   person_profiles: "identified_only",
 });
