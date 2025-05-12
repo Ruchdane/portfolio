@@ -1,5 +1,5 @@
 ---
-import { BaseHead, Header, Footer, PostHog } from "@/components";
+import { BaseHead, Header, Footer} from "@/components";
 import { SEOSchema } from "@/schema/seo";
 import { slide } from "astro:transitions";
 import type { WithContext, Thing } from "schema-dts";
@@ -58,6 +58,6 @@ if (import.meta.env.DEV && !result.success) {
       <slot />
     </main>
     <Footer />
-    <PostHog />
+    <script src="../script/posthog.js"></script>
   </body>
 </html>
