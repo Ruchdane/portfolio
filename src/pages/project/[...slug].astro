@@ -5,6 +5,7 @@ import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import { Image } from "astro:assets";
 import BasePage from "@/layouts/BasePage.astro";
 import { Carousel, PeopleProfile } from "@/components";
+import { generateProjectSchema } from "@/schema";
 export async function getStaticPaths() {
   const project = await getCollection("project");
   return project.map((project) => ({
@@ -38,6 +39,7 @@ const { Content } = await projectEntry.render();
 <BasePage
   title={`${slug} - ${title}`}
   description={description}
+  jsonLd={generateProjectSchema(slug, projectEntry.data)}
   image={thumbs[0]?.src}
 >
   <div class="project-hero">

@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { CORE_STACK, TOOLS } from "@/consts";
+import { CORE_STACK, TOOLS, SITE_URL } from "@/consts";
 import { BasePage } from "@/layouts";
 import { TechnologieBadge, SocialLinks } from "@/components";
 import cicec from "@/assets/icons/cicec.png";
@@ -13,9 +13,10 @@ import gallery from "@/assets/icons/gallery.svg";
 import akojo from "@/assets/icons/akojo.svg";
 import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
-import { getMe } from "@/schema";
+import { getMe,generatePersonSchema } from "@/schema";
 
-const mySocials = (await getMe()).socials;
+const me = await getMe();
+const mySocials = me.socials;
 const technologies = Object.values(CORE_STACK).reduce(
   (result, value) => result?.concat(value ?? []),
   []
@@ -23,8 +24,17 @@ const technologies = Object.values(CORE_STACK).reduce(
 ---
 
 <BasePage
-  title="A propos de moi"
+  title="A propos de AMADOU Ruchdane"
   description="Je suis AMADOU Ruchdane Abiodun Adjao, je viens du Bénin et vie actuellement en ile-de-france. Je suis un Dévellopeur et un designer.  J'étudie actuellement à HÉTIC et recherche une alternance en UX\UI Design"
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    url: `${SITE_URL}/about`,
+    name: "A propos de AMADOU Ruchdane",
+    description:
+    "Product Designer & développeur web passionné par l'innovation.",
+    mainEntity:  generatePersonSchema(me)
+    }}
   class="fluid"
 >
   <div class="bento">
