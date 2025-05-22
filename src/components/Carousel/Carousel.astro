@@ -1,9 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import { type CarouselProps } from "./carousel-props";
-interface Props extends CarouselProps {}
+import type { Image as ImageType } from "@/schema";
 
-let { images, limit, class: className, ...other } = Astro.props;
+interface Props  {
+  images: ImageType[];
+  limit?: number;
+  class?: string;
+  imagesLayout?: "constrained" | "full-width" | "fixed" | "none";
+  isLazyLoaded? : boolean;
+}
+
+let { images, limit, class: className, imagesLayout, isLazyLoaded, ...other } = Astro.props;
 if (limit !== undefined) {
   images = images.slice(0, limit);
 }
@@ -18,7 +25,7 @@ if (limit !== undefined) {
           return (
             <div class={className}>
                  <!-- @ts-expect-error the value constrainde is clearly defined in [docs](https://docs.astro.build/en/reference/experimental-flags/responsive-images/#image-layout) -->
-                <Image {...image} layout="full-width" />
+                <Image {...image} layout={ imagesLayout ?? "full-width" } loading={isLazyLoaded  || index !== 0 ? "lazy" : "eager"}/>
             </div>
           );
         })}
