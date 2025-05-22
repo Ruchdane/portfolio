@@ -87,7 +87,11 @@ const { Content } = await projectEntry.render();
           )
         }
       </div>
-      <Carousel class="project-cover" images={showcases ?? thumbs} />
+      <Carousel
+        class="project-cover"
+        images={showcases ?? thumbs}
+        imagesLayout="full-width"
+      />
       <div>
         <h1>{title}</h1>
         <ul class="project-collaborator">
@@ -150,8 +154,8 @@ const { Content } = await projectEntry.render();
     }
 
     &-cover {
-        margin-inline: auto;
-        width: fit-content;
+      margin-inline: auto;
+      width: fit-content;
       :global(img) {
         max-height: 50vh;
       }

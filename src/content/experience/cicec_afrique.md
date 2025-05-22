@@ -3,7 +3,7 @@ beginDate: "01/09/2023"
 endDate: "01/11/2024"
 name: CICEC Afrique
 image: { src: ../../assets/icons/cicec.png, alt: Cicec logo }
-role: C# Developer | DevOps Engineer
+role: C# Full stack Developer 
 description: Au sein d'une équipe agile, j'ai contribué au développement d'une plateforme web en tant que développeur full-stack et ingénieur DevOps, en participant à toutes les étapes, de l'inception du projet et la gestion du backlog produit jusqu'au déploiement.
 ---
 

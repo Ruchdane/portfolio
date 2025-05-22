@@ -53,8 +53,8 @@ export const CORE_STACK: Partial<Record<string, Technologie[]>> = {
     "supabase",
     "netlify",
   ],
-  mobile: ["flutter", "dart", "firebase"],
   desktop: ["rust", "c", "c_sharp", "winform", "tauri"],
+  mobile: ["flutter", "dart", "firebase"],
 };
 
 export const TECHNOLOGIE_MAP: Record<
@@ -171,15 +171,15 @@ export const TECHNOLOGIE_MAP: Record<
   },
   github: {
     name: "github",
-    icon: "github-plain colored",
+    icon: "github-original",
   },
   gitlab: {
     name: "gitlab",
     icon: "gitlab-plain colored",
   },
   azure_devops: {
-    name: "azure_devops",
-    icon: "azure_devops-plain colored",
+    name: "azure devops",
+    icon: "azuredevops-plain colored",
   },
   trello: {
     name: "trello",
@@ -205,6 +205,10 @@ export const TECHNOLOGIE_MAP: Record<
     name: "figma",
     icon: "figma-plain",
   },
+  penpot: {
+    name: "penpot",
+    icon: "penpot-plain",
+  },
   storybook: {
     name: "storybook",
     icon: "storybook-plain colored",
@@ -216,6 +220,14 @@ export const TECHNOLOGIE_MAP: Record<
   canva: {
     name: "canva",
     icon: "canva-plain",
+  },
+  posthog: {
+    name: "posthog",
+    icon: "posthog-plain",
+  },
+  notion: {
+    name: "notion",
+    icon: "notion-plain colored",
   },
 };
 

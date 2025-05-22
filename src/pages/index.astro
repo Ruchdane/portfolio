@@ -1,4 +1,5 @@
 ---
+import { Package } from "lucide-astro";
 import { CORE_STACK, PLATFORME_MAP, SITE_URL } from "@/consts";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
@@ -10,6 +11,7 @@ import {
   type Education,
   type Experience,
   type Platforme,
+  type Technologie,
 } from "@/schema";
 import { BasePage } from "@/layouts";
 import { SquareArrowOutUpRight } from "lucide-astro";
@@ -34,18 +36,27 @@ const experienceList = (await getCollection("experience")).sort(
 );
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
+const productStack: Technologie[] = [
+  "notion",
+  "figma",
+  "penpot",
+  "trello",
+  "azure_devops",
+  "github",
+  "posthog",
+];
 ---
 
 <BasePage
-  title="Portfolio de AMADOU Ruchdane"
-  description="Salut, je suis AMADOU Ruchdane, product designer et dévellopeur web. Je suis passioner par l'innovation et la résolution de problème utilisateur. J'étudie actuellement à HETIC dans le domaine du design de l'expérience utilisateur."
+  title="Portfolio de AMADOU Ruchdane - Product Designer"
+  description="Product Designer avec une expertise technique unique. Je transforme les insights utilisateurs en solutions digitales grâce à ma double compétence design-développement."
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "WebPage",
     url: SITE_URL,
-    name: "Portfolio de AMADOU Ruchdane",
+    name: "Portfolio de AMADOU Ruchdane - Product Designer",
     description:
-      "Product Designer & développeur web passionné par l'innovation.",
+      "Product Designer avec expertise technique - De l'idée au produit fini",
     author: generatePersonSchema(me),
     mainEntity: {
       name: "Projets récents",
@@ -56,27 +67,30 @@ const me = await getMe();
   }}
 >
   <section class="banner">
-    <div class="banner-image">
-      <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
-    </div>
-    <div class="banner-content">
-      <div class="banner-text">
-        <h2>
-          <span> Salut, je suis </span>
-          <span> AMADOU Ruchdane </span>
-        </h2>
-        <strong> Développeur web full-stack </strong>
-        <span>
-          Passionné par l'innovation et la résolution de problèmes utilisateurs
-        </span>
-        <a href="#email" class="button primary">Prendre contact</a>
-        <div class="banner-links">
-          <SocialLinks {...me.socials} />
+    <div class="wrapper">
+      <div class="banner-image">
+        <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
+      </div>
+      <div class="banner-content">
+        <div class="banner-text">
+          <h1>
+            Salut, je suis AMADOU Ruchdane <strong> Product Designer </strong> avec
+            une
+            <strong> expertise technique </strong>
+          </h1>
+          <span>
+            Je conçois des expériences utilisateur qui marche vraiment <br
+            /><strong> De l'idée au produit</strong>
+          </span>
+          <a href="#email" class="button primary">Discutons de votre projet</a>
+          <div class="banner-links">
+            <SocialLinks {...me.socials} />
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="project" itemprop="hasPart">
+  <section class="wrapper project" itemprop="hasPart">
     <div>
       <h2 transition:name="project-section-title">
         <span> Projets</span>
@@ -94,10 +108,19 @@ const me = await getMe();
       {featuredProject.map((data) => <ProjectCard {...data} />)}
     </div>
   </section>
-  <section class="tech-stack">
+  <section class="wrapper tech-stack">
     <h2>Technologies</h2>
     <p class="text-body">Mes technologies de prédilection</p>
     <div class="tech-stack-container">
+      <div class="tech-stack-item">
+        <h3>
+          <Package />
+          <span>Produit</span>
+        </h3>
+        <div class="tech-stack-container">
+          {productStack.map((name) => <TechnologieBadge name={name} />)}
+        </div>
+      </div>
       {
         (Object.keys(CORE_STACK) as Platforme[]).map((key: Platforme) => {
           const platforme = PLATFORME_MAP[key];
@@ -128,7 +151,7 @@ const me = await getMe();
       }
     </div>
   </section>
-  <section class="history">
+  <section class="wrapper history">
     <AnchorTabs>
       <div class="history-trigger">
         <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
@@ -150,22 +173,22 @@ const me = await getMe();
 
   section {
     padding: 2rem;
-    @include breakpoint(tablet) {
-      padding: 4rem;
-    }
   }
   .banner {
     font-family: "JetBrainsMono", monospace;
     background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
-    @include breakpoint(desktop) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 38px;
-      padding: 6rem;
+    & > * {
+      @include breakpoint(desktop) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 38px;
+        padding: 6rem;
+      }
     }
+
     &-content {
       @include breakpoint(desktop) {
         max-width: 500%;
@@ -194,8 +217,11 @@ const me = await getMe();
       flex-direction: column;
       justify-content: center;
 
-      h2 {
+      h1 {
         font-size: var(--font-body);
+        font-weight: normal;
+        margin-block-end: 0;
+        line-height: 1.7;
       }
 
       span {
@@ -204,7 +230,7 @@ const me = await getMe();
 
       strong {
         color: var(--accent-800);
-        font-size: var(--font-h4);
+        display: inline;
       }
       button,
       .button {
