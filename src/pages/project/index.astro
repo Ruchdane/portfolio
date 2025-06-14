@@ -39,7 +39,6 @@ if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
       ),
     },
   }}
-  class="fluid"
 >
   <section>
     <div class="project-list-header" transition:name="project-list-header">
@@ -131,10 +130,10 @@ if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
       }
 
       &-filter {
+        display: none;
         padding: 1rem;
         font-size: 1rem;
 
-        display: none;
 
         &.toggled {
           position: fixed;
@@ -143,12 +142,8 @@ if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
           inset: 0;
           margin-top: 4rem;
           display: block;
-        }
-        @include breakpoint(tablet) {
-          display: block;
-          position: relative;
-          &.toggled {
-            display: none;
+          @include breakpoint(desktop) {
+            position: relative;
           }
         }
       }
