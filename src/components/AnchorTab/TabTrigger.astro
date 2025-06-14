@@ -11,10 +11,14 @@ const { key } = Astro.props;
 </a>
 
 <style lang="scss">
+  @use "../../styles/media-query" as *;
+
   a.tab-link {
     font-weight: 600;
     text-align: center;
-    width: 100%;
+    @include breakpoint(tablet) {
+      width: 100%;
+    }
   }
   a.active {
     box-shadow: var(--shadow-color) 0px 7px 0px 0px;
