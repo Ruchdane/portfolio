@@ -58,6 +58,6 @@ if (import.meta.env.DEV && !result.success) {
       <slot />
     </main>
     <Footer />
-    <script src="../script/posthog.js"></script>
+    {import.meta.env.PROD ? <script src="../script/posthog.js"></script> : null }
   </body>
 </html>

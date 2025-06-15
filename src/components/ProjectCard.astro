@@ -33,81 +33,79 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
 ---
 
 <article class="project-card" transition:name={`project-card-${slug}`}>
-  <div class="project-thumbnails">
-    <Carousel limit={3} images={thumbs} />
-  </div>
-  <div class="project-content">
-    <div class="project-title">
-      <h1>
+  <div class="project-container">
+    <div class="project-thumbnails">
+      <Carousel limit={3} images={thumbs} />
+    </div>
+    <div class="project-content">
+      <div class="project-title">
+        <h1>
+          {
+            logo === undefined ? (
+              slug[0]
+            ) : (
+              <Image src={logo} height="36" width="36" alt={title[0]} />
+            )
+          }
+          <span> {slug.toUpperCase()} </span>
+        </h1>
+        <a
+          class="icon-button"
+          href={`/project/${slug}`}
+          title="Lire plus"
+          aria-label="Lire plus"
+        >
+          <ArrowRight alt="Lire plus" />
+        </a>
+      </div>
+      <div class="project-platformes hidden">
         {
-          logo === undefined ? (
-            slug[0]
-          ) : (
-            <Image src={logo} height="36" width="36" alt={title[0]} />
+          platformes.map(({ name, icon: Icon }) => (
+            <Icon data-platform={name.toLowerCase()} />
+          ))
+        }
+      </div>
+      <p class="project-description">{description}</p>
+      <div class="project-technologies">
+        {technologies.map((tech) => <TechnologieBadge name={tech} />)}
+      </div>
+      <div class="project-actions">
+        {
+          websiteUrl && (
+            <a
+              href={websiteUrl}
+              target="_blank"
+              rel="noopener"
+              class="button secondary"
+            >
+              <Globe />
+              <span> Visiter </span>
+            </a>
           )
         }
-        <span> {slug.toUpperCase()} </span>
-      </h1>
-      <a
-        class="icon-button"
-        href={`/project/${slug}`}
-        title="Lire plus"
-        aria-label="Lire plus"
-      >
-        <ArrowRight alt="Lire plus" />
-      </a>
-    </div>
-    <div class="project-platformes hidden">
-      {
-        platformes.map(({ name, icon: Icon }) => (
-          <Icon data-platform={name.toLowerCase()} />
-        ))
-      }
-    </div>
-    <p class="project-description">{description}</p>
-
-    <div class="project-technologies">
-      {technologies.map((tech) => <TechnologieBadge name={tech} />)}
-    </div>
-
-    <div class="project-actions">
-      {
-        websiteUrl && (
-          <a
-            href={websiteUrl}
-            target="_blank"
-            rel="noopener"
-            class="button secondary"
-          >
-            <Globe />
-            <span> Visiter </span>
-          </a>
-        )
-      }
-
-      {
-        downloadUrl && (
-          <a href={downloadUrl} target="_blank" class="button primary">
-            <Download />
-            <span> Télécharger </span>
-          </a>
-        )
-      }
-
-      {
-        sourceUrl && (
-          <a
-            href={sourceUrl}
-            target="_blank"
-            target="_blank"
-            rel="noopener"
-            class="button secondary"
-          >
-            <Code />
-            <span> Source </span>
-          </a>
-        )
-      }
+        {
+          downloadUrl && (
+            <a href={downloadUrl} target="_blank" class="button primary">
+              <Download />
+              <span> Télécharger </span>
+            </a>
+          )
+        }
+        {
+          sourceUrl && (
+            <a
+              href={sourceUrl}
+              target="_blank"
+              target="_blank"
+              rel="noopener"
+              class="button secondary"
+            >
+              <Code />
+              <span> Source </span>
+            </a>
+          )
+        }
+      </div>
     </div>
   </div>
 </article>
@@ -115,19 +113,24 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
 <style lang="scss">
   @use "../styles/media-query" as *;
   .project {
+    &-container {
+      display: flex;
+      flex-direction: column;
+      @container (min-width: 900px) {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     &-card {
-      background-color: var(--neutral-50);
-      padding: 16px;
+      padding: 1.5rem;
+      container-type: inline-size;
       border-radius: 0.5rem;
+      background-color: var(--neutral-50);
       box-shadow:
         0 6px 10px rgba(24, 24, 27, 0.08),
         0 12px 20px rgba(39, 39, 42, 0.05);
-      display: flex;
-      overflow: hidden;
-      flex-direction: column;
-      @include breakpoint(tablet) {
-        flex-direction: row;
-      }
     }
 
     &-thumbnails {
@@ -136,15 +139,11 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
       & :global(img) {
         max-height: 300px;
       }
-      @include breakpoint(desktop) {
-        max-width: 300px;
-      }
     }
 
     &-content {
       display: flex;
       flex-direction: column;
-      padding: 1.5rem;
       @include breakpoint(desktop) {
         width: 100%;
       }
@@ -153,8 +152,13 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
     &-title {
       display: flex;
       justify-content: space-between;
+      margin-block-start: 1rem;
+      align-items: center;
       h1 {
+        display: flex;
         font-size: var(--font-h4);
+        justify-content: center;
+        gap: 0.75rem;
       }
       align-items: center;
       font-weight: 700;

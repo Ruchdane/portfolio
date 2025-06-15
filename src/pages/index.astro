@@ -48,13 +48,13 @@ const productStack: Technologie[] = [
 ---
 
 <BasePage
-  title="Portfolio de AMADOU Ruchdane - Product Designer"
+  title="AMADOU Ruchdane - Dévelopeur & Designer"
   description="Product Designer avec une expertise technique unique. Je transforme les insights utilisateurs en solutions digitales grâce à ma double compétence design-développement."
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "WebPage",
     url: SITE_URL,
-    name: "Portfolio de AMADOU Ruchdane - Product Designer",
+    name: "AMADOU Ruchdane - Dévelopeur & Designer",
     description:
       "Product Designer avec expertise technique - De l'idée au produit fini",
     author: generatePersonSchema(me),
@@ -67,28 +67,23 @@ const productStack: Technologie[] = [
   }}
 >
   <section class="banner">
-    <div class="wrapper">
       <div class="banner-image">
         <Image src={banner_picture} loading="eager" alt="Photo de Ruchdane" />
       </div>
       <div class="banner-content">
         <div class="banner-text">
           <h1>
-            Salut, je suis AMADOU Ruchdane <strong> Product Designer </strong> avec
-            une
-            <strong> expertise technique </strong>
+            Salut, je suis AMADOU Ruchdane <strong> Dévelopeur & Designer </strong>
           </h1>
-          <span>
-            Je conçois des expériences utilisateur qui marche vraiment <br
-            /><strong> De l'idée au produit</strong>
-          </span>
-          <a href="#email" class="button primary">Discutons de votre projet</a>
+          <p>
+            créant des expériences numériques où la technique rencontre l'humain.
+          </p>
+          <a href="#email" class="button primary">Parlons alternance</a>
           <div class="banner-links">
             <SocialLinks {...me.socials} />
           </div>
         </div>
       </div>
-    </div>
   </section>
   <section class="wrapper project" itemprop="hasPart">
     <div>
@@ -179,15 +174,13 @@ const productStack: Technologie[] = [
     background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
-    & > * {
-      @include breakpoint(desktop) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 38px;
-        padding: 6rem;
-      }
-    }
+    @include breakpoint(desktop) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 38px;
+      padding: 6rem;
+  }
 
     &-content {
       @include breakpoint(desktop) {
@@ -217,10 +210,10 @@ const productStack: Technologie[] = [
       flex-direction: column;
       justify-content: center;
 
-      h1 {
+      h1, p {
         font-size: var(--font-body);
         font-weight: normal;
-        margin-block-end: 0;
+        margin-block: 0;
         line-height: 1.7;
       }
 
@@ -229,11 +222,13 @@ const productStack: Technologie[] = [
       }
 
       strong {
+        display: block;
+        font-size: var(--font-h4);
         color: var(--accent-800);
-        display: inline;
       }
       button,
       .button {
+        text-align: center;
         font-weight: 800;
         margin-block: 1rem;
         max-width: 500px;
@@ -294,11 +289,9 @@ const productStack: Technologie[] = [
         width: 100%;
         margin: 36px 18px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: 16px;
-      }
-      @include breakpoint(desktop) {
-        flex-direction: column;
       }
     }
 
@@ -328,8 +321,12 @@ const productStack: Technologie[] = [
       padding-bottom: 18px;
       border-radius: 16px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       gap: 16px;
+      @include breakpoint(tablet) {
+          flex-direction: row;
+      }
     }
   }
 </style>

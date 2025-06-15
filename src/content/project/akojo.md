@@ -35,7 +35,7 @@ thumbs:
       height: 800,
     },
   ]
-websiteUrl: https://inventory-manuel.vercel.app/docs
+websiteUrl: https://deploy-preview-2--akojdo.netlify.app/
 technologies:
   - next
   - typescript
