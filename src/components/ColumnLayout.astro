@@ -1,0 +1,29 @@
+---
+export interface Props {
+  className?: string;
+  columnCount?: number;
+}
+
+const { className = "", columnCount = 2, ...rest } = Astro.props;
+---
+
+<div class={className} {...rest}>
+  <slot />
+</div>
+
+<style lang="scss" define:vars={{ columnCount }}>
+  @use "../styles/media-query" as *;
+  div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    @include breakpoint(tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(var(--columnCount), 1fr);
+    }
+  }
+</style>
