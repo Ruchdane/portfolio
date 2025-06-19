@@ -39,26 +39,26 @@ export const ProjectSchema = (image: ImageFunction) =>
 export type Project = z.infer<ReturnType<typeof ProjectSchema>>;
 
 export function generateProjectListSchema(
-  projects: (Project & { slug: string })[]
+  projects: (Project & { id: string })[]
 ): s.ItemList {
   return {
     "@type": "ItemList",
-    itemListElement: projects.map(({ slug, ...project }, index) => {
+    itemListElement: projects.map(({ id, ...project }, index) => {
       return {
         "@type": "ListItem",
         position: index + 1,
-        item: generateProjectSchema(slug, project),
+        item: generateProjectSchema(id, project),
       };
     }),
   };
 }
 
-export function generateProjectSchema(slug: string, project: Project) {
+export function generateProjectSchema(id: string, project: Project) {
   const generator =
     // @ts-ignore
     GenerateCreativeWorkSchema["generate" + project.seo?.type] ??
     GenerateCreativeWorkSchema.generateSoftwareApplication;
-  return generator(slug, project);
+  return generator(id, project);
 }
 
 const GenerateCreativeWorkSchema = {
@@ -72,7 +72,7 @@ const GenerateCreativeWorkSchema = {
   },
 
   generateSoftwareApplication(
-    slug: string,
+    id: string,
     project: Project
   ): s.SoftwareApplication {
     // @ts-ignore
@@ -84,31 +84,28 @@ const GenerateCreativeWorkSchema = {
       downloadUrl: project.downloadUrl,
       applicationCategory: project.seo?.category.join(", "),
       // Checkout https://github.com/schemaorg/schemaorg/issues/2586#issuecomment-635937169
-      url: project.websiteUrl ?? `${SITE_URL}/projects/${slug}`,
+      url: project.websiteUrl ?? `${SITE_URL}/projects/${id}`,
     };
   },
 
-  generateWebApplication(slug: string, project: Project): s.WebApplication {
+  generateWebApplication(id: string, project: Project): s.WebApplication {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(slug, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
       "@type": "WebApplication",
     };
   },
 
-  generateVideoGame(slug: string, project: Project): s.VideoGame {
+  generateVideoGame(id: string, project: Project): s.VideoGame {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(slug, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
       "@type": "VideoGame",
       gamePlatform: project.platformes,
     };
   },
 
-  generateMobileApplication(
-    slug: string,
-    project: Project
-  ): s.MobileApplication {
+  generateMobileApplication(id: string, project: Project): s.MobileApplication {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(slug, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
       "@type": "MobileApplication",
     };
   },

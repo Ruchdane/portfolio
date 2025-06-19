@@ -1,5 +1,10 @@
 ---
-import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import {
+  type CollectionEntry,
+  getCollection,
+  getEntry,
+  render,
+} from "astro:content";
 import { Globe, Download, Code } from "lucide-astro";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import { Image } from "astro:assets";
@@ -9,7 +14,7 @@ import { generateProjectSchema } from "@/schema";
 export async function getStaticPaths() {
   const project = await getCollection("project");
   return project.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { ...project },
   }));
 }
@@ -33,7 +38,7 @@ const collaborators = await Promise.all(
     async (entry) => (await getEntry("people", entry.id))?.data
   )
 );
-const { Content } = await projectEntry.render();
+const { Content } = await render(projectEntry);
 ---
 
 <BasePage
@@ -177,7 +182,7 @@ const { Content } = await projectEntry.render();
     }
 
     &-actions {
-      display: flex;
+      display: none;
       flex-direction: column;
       position: absolute;
       height: fit-content;
@@ -188,6 +193,9 @@ const { Content } = await projectEntry.render();
       gap: 2rem;
       right: 1rem;
       z-index: var(--z-index-project-actions);
+      &:has(a) {
+        display: flex;
+      }
       @include breakpoint(desktop) {
         right: 5rem;
       }

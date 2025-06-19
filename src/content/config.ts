@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import {
   EducationSchema,
   ExperienceSchema,
@@ -8,7 +8,7 @@ import {
 } from "@/schema";
 
 const project = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/project" }),
   schema: ({ image }) => ProjectSchema(image),
 });
 

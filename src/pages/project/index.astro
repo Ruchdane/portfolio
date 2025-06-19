@@ -35,7 +35,7 @@ if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
     mainEntity: {
       name: "Projets récents",
       ...generateProjectListSchema(
-        project.map((entry) => ({ slug: entry.slug, ...entry.data }))
+        project.map((entry) => ({ id: entry.id, ...entry.data }))
       ),
     },
   }}
@@ -133,7 +133,6 @@ if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
         display: none;
         padding: 1rem;
         font-size: 1rem;
-
 
         &.toggled {
           position: fixed;

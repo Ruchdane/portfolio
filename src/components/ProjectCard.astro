@@ -6,12 +6,12 @@ import { type Project } from "@/schema";
 import { Carousel } from "@/components/Carousel";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 interface Props {
-  slug: string;
+  id: string;
   data: Project;
 }
 
 const {
-  slug,
+  id,
   data: {
     logo,
     title,
@@ -32,7 +32,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
 );
 ---
 
-<article class="project-card" transition:name={`project-card-${slug}`}>
+<article class="project-card" transition:name={`project-card-${id}`}>
   <div class="project-container">
     <div class="project-thumbnails">
       <Carousel limit={3} images={thumbs} />
@@ -42,16 +42,16 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
         <h1>
           {
             logo === undefined ? (
-              slug[0]
+              id[0]
             ) : (
               <Image src={logo} height="36" width="36" alt={title[0]} />
             )
           }
-          <span> {slug.toUpperCase()} </span>
+          <span> {id?.toUpperCase()} </span>
         </h1>
         <a
           class="icon-button"
-          href={`/project/${slug}`}
+          href={`/project/${id}`}
           title="Lire plus"
           aria-label="Lire plus"
         >
