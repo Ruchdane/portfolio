@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { name: key } = Astro.props;
-const { name, icon } = TECHNOLOGIE_MAP[key];
+const technologie = TECHNOLOGIE_MAP[key];
+if(technologie == undefined) throw Error(`{key} not found in icon list`)
+const { name, icon } = technologie;
 ---
 
 <a

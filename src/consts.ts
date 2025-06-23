@@ -229,6 +229,10 @@ export const TECHNOLOGIE_MAP: Record<
     name: "notion",
     icon: "notion-plain colored",
   },
+  miro: {
+    name: "miro",
+    icon: "miro",
+  },
 };
 
 export const PLATFORME_MAP: Record<

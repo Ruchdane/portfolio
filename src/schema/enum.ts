@@ -43,6 +43,7 @@ export const TechnologieEnum = z.enum([
   "cypress",
   "posthog",
   "notion",
+  "miro",
 ]);
 export type Technologie = z.infer<typeof TechnologieEnum>;
 export const Technologie = TechnologieEnum.Enum;
