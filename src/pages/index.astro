@@ -1,6 +1,6 @@
 ---
 import { Package } from "lucide-astro";
-import { CORE_STACK, PLATFORME_MAP, SITE_URL } from "@/consts";
+import { SITE_URL } from "@/consts";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
@@ -10,7 +10,6 @@ import {
   getMe,
   type Education,
   type Experience,
-  type Platforme,
   type Technologie,
 } from "@/schema";
 import { BasePage } from "@/layouts";
@@ -36,25 +35,35 @@ const experienceList = (await getCollection("experience")).sort(
 );
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
-const productStack: Technologie[] = [
-  "notion",
+const designStack: Technologie[] = [
   "figma",
   "penpot",
-  "trello",
+  "miro"
+];
+const managementStack: Technologie[] = [
+  "notion",
   "azure_devops",
   "github",
-  "posthog",
 ];
+const webStack: Technologie[] = [
+  "aspnet",
+  "astro",
+  "next",
+  "tailwindcss",
+  "postgresql",
+]
+const mobileStack: Technologie[]= ["flutter", "firebase"]
+const desktopStack: Technologie[]  = ["winform", "tauri"]
 ---
 
 <BasePage
-  title="AMADOU Ruchdane - Dévelopeur & Designer"
+  title="AMADOU Ruchdane - Développeur & Designer"
   description="Product Designer avec une expertise technique unique. Je transforme les insights utilisateurs en solutions digitales grâce à ma double compétence design-développement."
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "WebPage",
     url: SITE_URL,
-    name: "AMADOU Ruchdane - Dévelopeur & Designer",
+    name: "AMADOU Ruchdane - Développeur & Designer",
     description:
       "Product Designer avec expertise technique - De l'idée au produit fini",
     author: generatePersonSchema(me),
@@ -74,7 +83,7 @@ const productStack: Technologie[] = [
       <div class="banner-text">
         <h1>
           Salut, je suis AMADOU Ruchdane <strong>
-            Dévelopeur & Designer
+            Développeur & Designer
           </strong>
         </h1>
         <p>
@@ -112,47 +121,55 @@ const productStack: Technologie[] = [
       <div class="tech-stack-item">
         <h3>
           <Package />
-          <span>Produit</span>
+          <span>Design</span>
         </h3>
         <div class="tech-stack-container">
-          {productStack.map((name) => <TechnologieBadge name={name} />)}
+          {designStack.map((name) => <TechnologieBadge name={name} />)}
         </div>
       </div>
-      {
-        (Object.keys(CORE_STACK) as Platforme[]).map((key: Platforme) => {
-          const platforme = PLATFORME_MAP[key];
-          const stack = CORE_STACK[key];
-          if (platforme === undefined)
-            throw new Error(`key ${key} is not defined in the platforme map`);
-          if (stack === undefined || stack.length === 0) {
-            console.warn(
-              `Platforme ${platforme} has an entry in CORE stack but no technologie inside of it`
-            );
-            return null;
-          }
-          const Icon = platforme?.icon;
-          return (
-            <div class="tech-stack-item">
-              <h3>
-                <Icon class="tech-icon" />
-                <span>{platforme?.name}</span>
-              </h3>
-              <div class="tech-stack-container">
-                {stack.map((name) => (
-                  <TechnologieBadge name={name} />
-                ))}
-              </div>
-            </div>
-          );
-        })
-      }
+      <div class="tech-stack-item">
+        <h3>
+          <Package />
+          <span>Gestion</span>
+        </h3>
+        <div class="tech-stack-container">
+          {managementStack.map((name) => <TechnologieBadge name={name} />)}
+        </div>
+      </div>
+     <div class="tech-stack-item">
+        <h3>
+          <Package />
+          <span>Web</span>
+        </h3>
+        <div class="tech-stack-container">
+          {webStack.map((name) => <TechnologieBadge name={name} />)}
+        </div>
+      </div>
+      <div class="tech-stack-item">
+        <h3>
+          <Package />
+          <span>Desktop</span>
+        </h3>
+        <div class="tech-stack-container">
+          {desktopStack.map((name) => <TechnologieBadge name={name} />)}
+        </div>
+      </div>
+      <div class="tech-stack-item">
+        <h3>
+          <Package />
+          <span>Mobile</span>
+        </h3>
+        <div class="tech-stack-container">
+          {mobileStack.map((name) => <TechnologieBadge name={name} />)}
+        </div>
+      </div>
     </div>
   </section>
   <section class="wrapper history">
     <AnchorTabs>
       <div class="history-trigger">
-        <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
         <TabTrigger key="education">Parcours Scolaire</TabTrigger>
+        <TabTrigger key="experience">Expériences professionnelles</TabTrigger>
       </div>
       <div class="history-content">
         <TabContent key="experience">

@@ -3,7 +3,6 @@ beginDate: 10/01/2020
 endDate: 06/01/2021
 name: IMSP | Institut de Mathématiques et de Sciences Physiques
 formation: Licence infomatique
-diplome: Licence spécial des classes préparatoire
 image: { src: "../../assets/icons/imsp.jpg", alt: "IMSP logo" }
 description: J'ai intégré une Licence Informatique, consolidant mes connaissances en programmation, algorithmique et systèmes informatiques, avec une formation approfondie sur les structures de données, les bases de données et la programmation orientée objet
 ---
