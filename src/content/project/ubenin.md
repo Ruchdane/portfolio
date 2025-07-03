@@ -29,7 +29,6 @@ collaborators:
   - ewinsou
   - jules
   - ruchdane
-isFeatured: true
 seo:
   type: WebApplication
   category: 
