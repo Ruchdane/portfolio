@@ -22,7 +22,7 @@ export const NAVIGATION_LINKS = [
   },
   {
     link: "/about",
-    title: "A propos",
+    title: "À propos",
   },
 ];
 export const TOOLS: Technologie[] = [

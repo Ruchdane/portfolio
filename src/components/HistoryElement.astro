@@ -8,62 +8,96 @@ interface Props {
 }
 
 const {
-  data: {
-    image,
-    beginDate,
-    endDate,
-    name,
-    description,
-    ...props
-  },
+  data: { image, beginDate, endDate, name, description, ...props },
 } = Astro.props;
 const dateFormat: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "short",
 };
+
+const title =
+  "formation" in props
+    ? `${props.formation} ${props?.diplome ?? ""}`
+    : props?.role;
 ---
 
 <div class="history">
   <div class="history-image">
-    <Image src={image.src} alt={image.alt ?? name} class="history-logo" width="83" height="83"/>
+    <Image
+      src={image.src}
+      alt={image.alt ?? name}
+      class="history-logo"
+      width="83"
+      height="83"
+    />
   </div>
-  <div >
-    <p class="history-date">
-      <span>
-        <FormattedDate date={beginDate} format={dateFormat} />
-      </span>
-      {
-        endDate !== undefined ? (
-          <span>
-            {" - "}
-            <FormattedDate date={endDate} format={dateFormat} />
-          </span>
-        ) : null
-      }
-    </p>
-    {"formation" in props ? <h4>{props.formation} {props?.diplome ?? ""}</h4> : null}
-    {"role" in props ? <h4>{props?.role ?? ""}</h4> : null}
-    <string>{name}</h4>
-    <p>{description}</p>
-  </div>
+  <h4 class="history-title">{title}</h4>
+  <p class="history-name">{name}</p>
+  <p class="history-date">
+    <span>
+      <FormattedDate date={beginDate} format={dateFormat} />
+    </span>
+    {
+      endDate !== undefined ? (
+        <span>
+          <FormattedDate date={endDate} format={dateFormat} />
+        </span>
+      ) : null
+    }
+  </p>
+  <p class="history-description" set:html={description}/>
 </div>
 <style lang="scss">
+  @use "../styles/media-query" as *;
+
   .history {
     display: grid;
-    grid-template-columns: 115px auto;
-    gap: 10px;
-    align-items: center;
+    grid-template-columns: 4rem 1fr;
+    margin-block: 1rem 2rem;
+    gap: 0rem 1rem;
+    & > * {
+      margin: 0;
+    }
     &-image {
-        display: flex;
-        justify-content: center;
-        padding: 1rem;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      padding-block-start: 1.5rem;
+      @include breakpoint(desktop) {
+        grid-row-end: 4;
+      }
+    }
+
+    &-title{
+      place-self: end;
+      justify-self: auto;
+    }
+    &-name,{
+      place-self: center;
+      justify-self: auto;
+    }
+    &-date,{
+      place-self: top;
+    }
+
+    &-title,
+    &-name, 
+    &-date{
+      grid-column: 2;
+    }
+
+    &-description {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      @include breakpoint(desktop) {
+        grid-column-start: 2;
+      }
     }
 
     &-date {
-        color: var(--accent-600);
-        &:nth-child(2)::before {
-            content: " - "
-        }
+      color: var(--accent-600);
+      &:nth-child(2)::before {
+        content: " - ";
+      }
     }
   }
 </style>
