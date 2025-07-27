@@ -3,6 +3,7 @@ export * from "./IconLinks";
 export * from "./Carousel";
 
 export { default as ColumnLayout } from "./ColumnLayout.astro";
+export { default as LanguageSelector } from "./LanguageSelector.astro";
 export { default as BaseHead } from "./BaseHead.astro";
 export { default as Footer } from "./Footer.astro";
 export { default as FormattedDate } from "./FormattedDate.astro";

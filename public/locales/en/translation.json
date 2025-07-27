@@ -1,0 +1,48 @@
+{
+  "languages": {
+    "fr": "French",
+    "en": "English",
+    "yo": "Yoruba"
+  },
+  "navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact",
+    "about": "About"
+  },
+  "page": {
+    "home": {
+      "title": "AMADOU Ruchdane - Developer & Designer",
+      "description": "Product Designer with a unique technical background. I turn user insights into digital solutions through my dual expertise in design and development.",
+
+      "greeting": "Hi, I'm AMADOU Ruchdane",
+      "role": "Developer & Designer",
+      "value_proposition": "Developer & Designer",
+      "cta": "Let's talk about an apprenticeship",
+
+      "section": {
+        "project": {
+          "title": "Recent Projects",
+          "view_all": "View all projects",
+          "description": "Some projects I’ve worked on"
+        },
+        "stack": {
+          "title": "Technologies",
+          "description": "My favorite technologies",
+          "design": "Design",
+          "management": "Management",
+          "web": "Web",
+          "desktop": "Desktop",
+          "mobile": "Mobile"
+        },
+        "history": {
+          "education": "Education",
+          "experience": "Professional Experience"
+        }
+      }
+    }
+  },
+  "image": {
+    "ruchdane": "Photo of Ruchdane"
+  }
+}

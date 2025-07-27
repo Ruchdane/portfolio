@@ -1,0 +1,70 @@
+{
+  "common": {
+    "projects": "Projets",
+    "filter": "Filtre",
+    "platform": "Plateforme",
+    "programming_languages": "Languages",
+    "programming_framework": "Framework"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "contact": "Contact",
+    "about": "À propos"
+  },
+  "component": {
+    "footer": {
+      "contact_list": "Contacts",
+      "form": {
+        "email": "Email",
+        "message": "Méssage",
+        "cta": "Envoyer",
+        "state": {
+          "loading": "📨 Envoi en cours",
+          "success": "✅ Message envoyé",
+          "error": "❌ Erreur d’envoi"
+        }
+      },
+      "copyright": "AMADOU Ruchdane. Tout droit réservé."
+    }
+  },
+  "page": {
+    "home": {
+      "title": "AMADOU Ruchdane - Développeur & Designer",
+      "description": "Product Designer avec une expertise technique unique. Je transforme les insights utilisateurs en solutions digitales grâce à ma double compétence design-développement.",
+
+      "greeting": "Salut, je suis AMADOU Ruchdane",
+      "role": "Développeur & Designer",
+      "value_proposition": "créant des expériences numériques où la technique rencontre l'humain.",
+      "cta": "Parlons alternance",
+
+      "section": {
+        "projects": {
+          "title": "Projets récents",
+          "view_all": "Voir tous les projets",
+          "description": "Quelques projets sur lesquels j'ai travaillé"
+        },
+        "stacks": {
+          "title": "Technologies",
+          "description": "Mes technologies de prédilection",
+          "design": "Design",
+          "management": "Gestion",
+          "web": "Web",
+          "desktop": "desktop",
+          "mobile": "mobile"
+        },
+        "history": {
+          "education": "Parcours Scolaire",
+          "experience": "Expériences professionnelles"
+        }
+      }
+    },
+    "project": {
+      "title": "Mes projets",
+      "description": "Parcourez les projets sur lesquels j'ai participer du web avec NextJS au mobile avec Flutter en passant par des cli avec Rust"
+    }
+  },
+  "image": {
+    "ruchdane": "Photo de Ruchdane"
+  }
+}

@@ -1,6 +1,3 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 import logo from "./assets/icons/logo.svg";
 import { Platforme, Technologie } from "@/schema/enum";
@@ -10,19 +7,19 @@ export const SITE_LOGO = logo;
 export const NAVIGATION_LINKS = [
   {
     link: "/",
-    title: "Accueil",
+    title: "navigation.home",
   },
   {
     link: "/project",
-    title: "Projets",
+    title: "navigation.projects",
   },
   {
     link: "#email",
-    title: "Contact",
+    title: "navigation.contact",
   },
   {
     link: "/about",
-    title: "À propos",
+    title: "navigation.about",
   },
 ];
 export const TOOLS: Technologie[] = [
@@ -262,7 +259,7 @@ export const PLATFORME_MAP: Record<
 
 export const TECHNOLOGY_CATEGORIES = [
   {
-    label: "Languages",
+    label: "programming_languages",
     items: [
       Technologie.rust,
       Technologie.dart,
@@ -277,7 +274,7 @@ export const TECHNOLOGY_CATEGORIES = [
     ],
   },
   {
-    label: "Frameworks",
+    label: "programming_framework",
     items: [
       Technologie.next,
       Technologie.tauri,
@@ -288,3 +285,9 @@ export const TECHNOLOGY_CATEGORIES = [
     ],
   },
 ] as const;
+
+export const LANGUAGE_MAPPING = {
+  fr: "Français",
+  en: "English",
+  yo: "Yoruba",
+}

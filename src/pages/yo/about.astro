@@ -15,7 +15,7 @@ import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { getMe, generatePersonSchema } from "@/schema";
 
-changeLanguage("fr");
+changeLanguage("yo");
 
 const me = await getMe();
 const mySocials = me.socials;
@@ -123,7 +123,7 @@ const technologies = Object.values(CORE_STACK).reduce((result, value) => result?
 </BasePage>
 
 <style lang="scss">
-  @use "../styles/media-query" as *;
+  @use "../../styles/media-query" as *;
   img {
     max-width: 200px;
     max-height: 200px;

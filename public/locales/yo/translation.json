@@ -1,0 +1,48 @@
+{
+  "languages": {
+    "fr": "Faranse",
+    "en": "Gẹẹsi",
+    "yo": "Yorùbá"
+  },
+  "navigation": {
+    "home": "Ilé",
+    "projects": "Àwọn iṣẹ́",
+    "contact": "Kan sí mi",
+    "about": "Nípa mi"
+  },
+  "page": {
+    "home": {
+      "title": "AMADOU Ruchdane - Olùdàgbàsókè & Aṣaájú Oníṣe",
+      "description": "Oníṣe ọja pẹ̀lú amúludun ìmọ̀ imọ̀-ẹrọ. Mo n yí ìmọ̀ oníbàárà padà sí ojútùú díjítàlì pẹ̀lú àgọ̀kọ̀ọ̀kan mi ní àpẹrẹ àti àgbàsọ̀sọ̀.",
+
+      "greeting": "Báwo, orúkọ mi ni AMADOU Ruchdane",
+      "role": "Olùdàgbàsókè & Aṣaájú Oníṣe",
+      "value_proposition": "Olùdàgbàsókè & Aṣaájú Oníṣe",
+      "cta": "Ẹ jé ká bá a sọrọ nípa amúlùmọ̀",
+
+      "section": {
+        "project": {
+          "title": "Àwọn iṣẹ́ tó ṣẹ̀ṣẹ̀",
+          "view_all": "Wo gbogbo iṣẹ́",
+          "description": "Diẹ lára àwọn iṣẹ́ tí mo ti ṣiṣẹ́ lórí"
+        },
+        "stack": {
+          "title": "Àwọn imọ̀-ẹrọ",
+          "description": "Àwọn imọ̀ ẹrọ tí mo fẹ́ràn jùlọ",
+          "design": "Apẹrẹ",
+          "management": "Ìṣàkóso",
+          "web": "Ayelujara",
+          "desktop": "Ìkànnì kọ̀mùpútà",
+          "mobile": "Ẹ̀rọ alágbèéká"
+        },
+        "history": {
+          "education": "Ìtàn ẹ̀kọ́",
+          "experience": "Ìrírí iṣẹ́"
+        }
+      }
+    }
+  },
+  "image": {
+    "ruchdane": "Àwòrán Ruchdane"
+  }
+}

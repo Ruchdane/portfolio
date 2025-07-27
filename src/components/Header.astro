@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import HeaderLink from "./HeaderLink.astro";
 import Sidebar from "./Sidebar.astro";
 import MorphingBurger from "./MorphingBurger.astro";
+import { LanguageSelector } from "@/components";
 ---
 
 <header transition:name="main-header">
@@ -11,7 +12,7 @@ import MorphingBurger from "./MorphingBurger.astro";
     <a href="/" class="navigation-icon" transition:name="main-logo">
       <Image
         src={SITE_LOGO}
-        alt="<i>w<i>"
+        alt="\_<"
         layout="fixed"
         width="32"
         height="32"
@@ -19,22 +20,27 @@ import MorphingBurger from "./MorphingBurger.astro";
       />
       <span> Ruchdane </span>
     </a>
-    <div class="navigation-links">
-      {
-        NAVIGATION_LINKS.map(({ link, title }) => (
-          <HeaderLink transition:name={`header-links-${title}`} href={link}>
-            {title}
-          </HeaderLink>
-        ))
-      }
+    <div class="flex">
+      <div class="navigation-links">
+        {
+          NAVIGATION_LINKS.map(({ link, title }) => (
+            <HeaderLink
+              transition:name={`header-links-${title}`}
+              href={link}
+              title={title}
+            />
+          ))
+        }
+      </div>
+      <LanguageSelector />
+      <button
+        class="icon-button"
+        id="burger-trigger"
+        aria-label="Sidebar trigger"
+      >
+        <MorphingBurger />
+      </button>
     </div>
-    <button
-      class="icon-button"
-      id="burger-trigger"
-      aria-label="Sidebar trigger"
-    >
-      <MorphingBurger />
-    </button>
     <Sidebar />
   </nav>
 </header>
@@ -89,6 +95,9 @@ import MorphingBurger from "./MorphingBurger.astro";
     @include breakpoint(tablet) {
       display: none;
     }
+  }
+  .flex {
+    gap: 2rem;
   }
 </style>
 <script>

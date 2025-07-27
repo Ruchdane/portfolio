@@ -1,6 +1,10 @@
 ---
+import { t } from "i18next";
 import { SocialLinks } from "@/components";
 import { getMe } from "@/schema";
+
+const footer = (path: string) => t(`component.footer.${path}`);
+const form = (path: string) => t(`component.footer.form.${path}`);
 
 const today = new Date();
 const mySocials = (await getMe()).socials;
@@ -9,38 +13,43 @@ const mySocials = (await getMe()).socials;
 <footer>
   <section id="contact">
     <div id="contact-links">
-      <label> Contacts </label>
+      <label> {footer("contact_list")} </label>
       <SocialLinks {...mySocials} />
     </div>
     <div>
       <!-- @ts-expect-error netlify is not a native html attribute ! -->
       <form id="contact-form" netlify name="contact" method="POST">
         <div>
-          <label for="email"> Email </label>
+          <label for="email"> {form("email")}</label>
           <input
             id="email"
-            name="email"
+            name={form("email")}
             type="email"
             required
             placeholder="john.doe@gmail.com"
           />
         </div>
         <div>
-          <label for="message">Message</label>
-          <textarea name="message" id="message" rows="5" cols="33" required
-          ></textarea>
+          <label for="message">{form("message")}</label>
+          <textarea
+            name={form("message")}
+            id="message"
+            rows="5"
+            cols="33"
+            required></textarea>
         </div>
         <button class="button primary" data-state="normal">
-          <span id="submit-message"> Envoyer </span>
-          <span id="submit-loading">📨 Envoi en cours </span>
-          <span id="submit-success">✅ Message envoyé </span>
-          <span id="submit-error"> ❌ Erreur d’envoi</span>
+          <span id="submit-message"> {form("cta")} </span>
+          <span id="submit-loading"> {form("state.loading")} </span>
+          <span id="submit-success"> {form("state.success")} </span>
+          <span id="submit-error"> {form("state.error")} </span>
         </button>
       </form>
     </div>
   </section>
   <section id="copyright">
-    &copy; {today.getFullYear()} AMADOU Ruchdane. All rights reserved.
+    &copy; {today.getFullYear()}
+    {footer("copyright")}
   </section>
 </footer>
 <style lang="scss">

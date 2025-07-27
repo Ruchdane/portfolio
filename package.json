@@ -6,8 +6,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "build:unsafe": "astro build",
     "preview": "astro preview",
     "audit:ui": "unlighthouse --site localhost:4321",
+    "i18n:generate": "astro-i18next generate",
     "astro": "astro"
   },
   "dependencies": {
@@ -18,7 +20,11 @@
     "@astrojs/sitemap": "^3.3.0",
     "astro": "^5.6.1",
     "astro-compress": "^2.3.6",
+    "astro-i18next": "1.0.0-beta.21",
     "astro-purgecss": "^5.2.2",
+    "i18next": "^25.3.2",
+    "i18next-fs-backend": "^2.6.0",
+    "i18next-http-backend": "^3.0.2",
     "lucide-astro": "^0.461.0",
     "purgecss": "^7.0.2",
     "sass": "^1.81.0",

@@ -10,7 +10,7 @@ import { BasePage } from "@/layouts";
 import { SquareArrowOutUpRight } from "lucide-astro";
 import { ProjectCard, TechnologieBadge, SocialLinks, AnchorTabs, TabTrigger, TabContent, HistoryElement, } from "@/components";
 
-changeLanguage("fr");
+changeLanguage("en");
 
 const home = (path: string) => t(`page.home.${path}`);
 const section = (path: string) => home(`section.${path}`);
@@ -167,7 +167,7 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
   </section>
 </BasePage>
 <style lang="scss">
-  @use "../styles/media-query" as *;
+  @use "../../styles/media-query" as *;
 
   section {
     padding: 2rem;

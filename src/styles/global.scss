@@ -265,6 +265,19 @@ textarea {
   }
 }
 
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0.25em 0.75em;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
 @view-transition {
   navigation: auto;
 }

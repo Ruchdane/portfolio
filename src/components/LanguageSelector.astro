@@ -1,0 +1,89 @@
+---
+import { Languages, Check } from "lucide-astro";
+import i18next from "i18next";
+import { t } from "i18next";
+
+import { localizePath } from "astro-i18next";
+import { LANGUAGE_MAPPING } from "@/consts";
+---
+
+<div class="selector">
+  <button class="icon-button selector-trigger" popovertarget="selector-options">
+    <Languages width={24} />
+  </button>
+  <ul id="selector-options" class="selector-options" popover>
+    {
+      i18next.languages.map((language) => (
+        <li>
+          <button
+            class="selector-option"
+            onclick={`"location = ${localizePath(Astro.url.pathname, language)}"`}
+          >
+            <div class="option-label">
+              <span class="option-original_name">
+                {" "}
+                {LANGUAGE_MAPPING[language]}{" "}
+              </span>
+              <span class="option-localised_name">
+                {" "}
+                {t(`languages.${language}`)}{" "}
+              </span>
+            </div>
+            {language === i18next.language ? (
+              <Check stroke="var(--accent-600)" size={24} />
+            ) : null}
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style lang="scss">
+  .selector {
+    position: relative;
+    &-trigger + :popover-open {
+      color: var(--accent-600);
+    }
+    // [popover]:popover-open {
+    //   all: initial;
+    //   position: absolute;
+    //   list-style: none;
+    //   right: 0;
+    //   top: 2rem;
+    // }
+    &-option {
+      display: flex;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border: 1px var(--neutral-300);
+      &:hover {
+        background-color: var(--primary-300);
+      }
+
+      &:active,
+      &:focus {
+        border: 1px var(--accent-300);
+      }
+    }
+  }
+
+  .option {
+    &-label {
+      text-align: left;
+    }
+    &-original_name {
+      display: block;
+      font-weight: 600;
+      font-size: var(--font-h5);
+    }
+    &-localised_name {
+      display: block;
+      font-weight: 300;
+      font-size: var(--font-body);
+    }
+  }
+</style>
