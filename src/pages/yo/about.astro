@@ -1,46 +1,40 @@
 ---
-import { changeLanguage } from "i18next";
+import { t, changeLanguage } from "i18next";
 import { Image } from "astro:assets";
-import { CORE_STACK, TOOLS, SITE_URL } from "@/consts";
+import { SITE_URL } from "@/consts";
 import { BasePage } from "@/layouts";
-import { TechnologieBadge, SocialLinks } from "@/components";
-import cicec from "@/assets/icons/cicec.png";
-import hetic from "@/assets/icons/hetic.jpg";
+import { SocialLinks } from "@/components";
 import ileDeFrance from "@/assets/images/ile-de-france.svg";
-import kmex from "@/assets/icons/kmex.png";
-import ga4 from "@/assets/images/certifications/ga4.png";
-import gallery from "@/assets/icons/gallery.svg";
-import akojo from "@/assets/icons/akojo.svg";
-import ubenin from "@/assets/icons/ubenin.png";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { getMe, generatePersonSchema } from "@/schema";
+// @ts-ignore
+import { localizePath } from "astro-i18next";
 
 changeLanguage("yo");
 
+const a = (path: string) => t(`page.project.${path}`);
 const me = await getMe();
 const mySocials = me.socials;
-const technologies = Object.values(CORE_STACK).reduce((result, value) => result?.concat(value ?? []), []);
 ---
 
 <BasePage
-  title="A propos de AMADOU Ruchdane"
-  description="Je suis AMADOU Ruchdane Abiodun Adjao, je viens du Bénin et vie actuellement en ile-de-france. Je suis un Dévellopeur et un designer.  J'étudie actuellement à HÉTIC et recherche une alternance en UX\UI Design"
+  title={a("title")}
+  description={a("description")}
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    url: `${SITE_URL}/about`,
-    name: "A propos de AMADOU Ruchdane",
-    description:
-    "Product Designer & développeur web passionné par l'innovation.",
-    mainEntity:  generatePersonSchema(me)
-    }}
+    url: localizePath(`${SITE_URL}/about`),
+    name: a("title"),
+    description: a("description"),
+    mainEntity: generatePersonSchema(me),
+  }}
   class="fluid"
 >
   <div class="bento">
     <section id="me" class="vertical">
       <Image loading="eager" src={banner_picture} alt="Photo de Ruchdane" />
       <p>
-        <span>Je suis</span>
+        <span>{t("common.i_am")}</span>
         <br />
         <h1>AMADOU Ruchdane Abiodun Adjao</h1>
       </p>
@@ -52,72 +46,17 @@ const technologies = Object.values(CORE_STACK).reduce((result, value) => result?
         alt="Carte de la France avec l'ile de France en évidence"
       />
       <p>
-        <span>Je suis en</span>
+        <span>{t("common.i_am_in")}</span>
         <br />
         <strong> île de france </strong>
       </p>
     </section>
 
     <section id="socials">
-      <h2>Vous me retrouverez sur</h2>
+      <h2>{t("common.find_me_on")}</h2>
       <div>
         <SocialLinks {...mySocials} />
       </div>
-    </section>
-
-    <section id="education" class="horizontal">
-      <Image
-        src={hetic}
-        loading="eager"
-        alt="Hetic l'école internationale de la tech"
-      />
-      <p>
-        <span>j'étudie à </span>
-        <br />
-        <strong> HETIC la grande école du web</strong>
-      </p>
-    </section>
-
-    <section id="experience">
-      <h2>J'ai travaillé chez</h2>
-      <p class="centered">
-        <Image src={cicec} alt="CICEC" />
-        <Image src={kmex} alt="Kmex consulting" />
-      </p>
-    </section>
-
-    <section id="project">
-      <h2>J'ai travaillé sur ces projets</h2>
-      <p>
-        <Image src={ubenin} alt="Ubénin" />
-        <Image src={akojo} alt="akojo" />
-        <Image src={gallery} alt="Gallery" />
-      </p>
-    </section>
-
-    <section id="technologies">
-      <h2>Je travaille avec ces technologies</h2>
-      <div class="badge-marquee">
-        {
-          technologies?.map((technologie) => (
-            <TechnologieBadge name={technologie} />
-          ))
-        }
-      </div>
-    </section>
-
-    <section id="tools">
-      <h2>J'utilise ces outils</h2>
-      <div class="badge-marquee">
-        {TOOLS.map((tool) => <TechnologieBadge name={tool} />)}
-      </div>
-    </section>
-
-    <section id="certification">
-      <h2>J'ai obtenue ces certifications</h2>
-      <p class="centered">
-        <Image src={ga4} alt="Google analytics certification" />
-      </p>
     </section>
   </div>
 </BasePage>
@@ -140,14 +79,10 @@ const technologies = Object.values(CORE_STACK).reduce((result, value) => result?
     @include breakpoint(tablet) {
       display: grid;
       gap: 3rem;
-      grid-template-columns: repeat(4, auto);
-      grid-template-rows: repeat(5, auto);
+      grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
-        "me           me           localisation education"
-        "me           me           socials      experience"
-        "me           me           project      experience"
-        "technologies technologies project      experience"
-        "technologies technologies tools      certification";
+        "me           localisation"
+        "me           socials     ";
     }
 
     section {

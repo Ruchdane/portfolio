@@ -38,7 +38,7 @@ if (me === undefined)
 >
   <section>
     <div class="project-list-header" transition:name="project-list-header">
-      <h1>{t("common.projects", {count: project.Count})}</h1>
+      <h1>{t("common.projects", { count: project.length })}</h1>
       <button
         class="button"
         popovertarget="projectListFilter"
@@ -46,7 +46,7 @@ if (me === undefined)
         id="projectListFilterTrigger"
       >
         <SlidersHorizontal />
-        {(t("common.filter"))}
+        {t("common.filter")}
       </button>
     </div>
     <div class="project">

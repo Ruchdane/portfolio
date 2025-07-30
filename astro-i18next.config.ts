@@ -4,6 +4,7 @@ export default {
   locales: ["fr", "en", "yo"],
   i18nextServer: {
     debug: true,
+    fallbackLng: false,
   },
   // routes: {
   //   fr: {

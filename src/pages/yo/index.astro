@@ -23,16 +23,8 @@ const orderByBeginDate = (a: {
 const experienceList = (await getCollection("experience")).sort(orderByBeginDate);
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
-const designStack: Technologie[] = [
-    "figma",
-    "penpot",
-    "miro"
-];
-const managementStack: Technologie[] = [
-    "notion",
-    "azure_devops",
-    "github",
-];
+const designStack: Technologie[] = ["figma", "penpot", "miro"];
+const managementStack: Technologie[] = ["notion", "azure_devops", "github"];
 const webStack: Technologie[] = [
     "aspnet",
     "astro",
@@ -69,9 +61,10 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     <div class="banner-content">
       <div class="banner-text">
         <h1>
-          {home("greeting")} <strong> {home("role")} </strong>
+          {home("greeting")}
+          <strong> {home("role")} </strong>
         </h1>
-        <p> {home("value_proposition")} </p>
+        <p>{home("value_proposition")}</p>
         <a href="#email" class="button primary">{home("cta")}</a>
         <div class="banner-links">
           <SocialLinks {...me.socials} />
@@ -86,13 +79,14 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
         <a
           class="icon-button"
           href="/project"
-          aria-label={section("projects.view_all")}>
+          aria-label={section("projects.view_all")}
+        >
           <SquareArrowOutUpRight /></a
         >
       </h2>
       <p itemprop="name" class="text-body">
         {section("projects.description")}
-      s</p>
+      </p>
     </div>
     <div class="project-container">
       {featuredProject.map((data) => <ProjectCard {...data} />)}
@@ -120,7 +114,7 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
           {managementStack.map((name) => <TechnologieBadge name={name} />)}
         </div>
       </div>
-     <div class="tech-stack-item">
+      <div class="tech-stack-item">
         <h3>
           <Package />
           <span>{section("stacks.web")}</span>
@@ -153,7 +147,8 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     <AnchorTabs>
       <div class="history-trigger">
         <TabTrigger key="education">{section("history.education")}</TabTrigger>
-        <TabTrigger key="experience">{section("history.experience")}</TabTrigger>
+        <TabTrigger key="experience">{section("history.experience")}</TabTrigger
+        >
       </div>
       <div class="history-content">
         <TabContent key="experience">
@@ -167,7 +162,7 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
   </section>
 </BasePage>
 <style lang="scss">
-  @use "../../styles/media-query" as *;
+  @use "../styles/media-query" as *;
 
   section {
     padding: 2rem;

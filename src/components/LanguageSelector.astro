@@ -17,9 +17,9 @@ import { LANGUAGE_MAPPING } from "@/consts";
     {
       Object.keys(LANGUAGE_MAPPING).map((language) => (
         <li>
-          <button
+          <a
             class="selector-option"
-            onclick={`"location = ${localizePath(Astro.url.pathname, language)}"`}
+            href={localizePath(Astro.url.pathname, language)}
           >
             <div class="option-label">
               <span class="option-original_name">
@@ -34,7 +34,7 @@ import { LANGUAGE_MAPPING } from "@/consts";
             {language === i18next.language ? (
               <Check stroke="var(--accent-600)" size={24} />
             ) : null}
-          </button>
+          </a>
         </li>
       ))
     }
@@ -54,6 +54,12 @@ import { LANGUAGE_MAPPING } from "@/consts";
       right: 0;
       top: 4rem;
     }
+
+    a {
+      text-decoration: none;
+      color: var(--neutral-800);
+    }
+
     &-option {
       display: flex;
       width: 100%;
