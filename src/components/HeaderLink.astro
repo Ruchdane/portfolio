@@ -4,6 +4,7 @@ import { t } from "i18next";
 
 type Props = HTMLAttributes<"a"> & { title: string };
 
+// @ts-ignore
 import { localizePath } from "astro-i18next";
 const { href, class: className, title, ...props } = Astro.props;
 

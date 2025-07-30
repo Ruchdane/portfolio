@@ -4,42 +4,74 @@
     "en": "Gẹẹsi",
     "yo": "Yorùbá"
   },
+  "common": {
+    "projects": "Àwọn iṣẹ́",
+    "filter": "Àyẹ̀wò",
+    "platform": "Pẹpẹ",
+    "programming_languages": "Èdá ìṣàkóso",
+    "programming_framework": "Ilana iṣẹ́",
+    "i_am": "Emi ni",
+    "i_am_in": "Mo wa ni",
+    "find_me_on": "O le rii mi lori"
+  },
   "navigation": {
     "home": "Ilé",
     "projects": "Àwọn iṣẹ́",
-    "contact": "Kan sí mi",
+    "contact": "Pe wa",
     "about": "Nípa mi"
+  },
+  "component": {
+    "footer": {
+      "contact_list": "Àkọsílẹ̀ ìbánisọ̀rọ̀",
+      "form": {
+        "email": "Imeeli",
+        "message": "Ìfiranṣẹ́",
+        "cta": "Firanṣẹ́",
+        "state": {
+          "loading": "📨 Ìfiranṣẹ́ ń lọ...",
+          "success": "✅ Ìfiranṣẹ́ ránṣẹ́",
+          "error": "❌ Àṣìṣe ìfiranṣẹ́"
+        }
+      },
+      "copyright": "AMADOU Ruchdane. Gbogbo ẹ̀tọ́ dákẹ́."
+    }
   },
   "page": {
     "home": {
-      "title": "AMADOU Ruchdane - Olùdàgbàsókè & Aṣaájú Oníṣe",
-      "description": "Oníṣe ọja pẹ̀lú amúludun ìmọ̀ imọ̀-ẹrọ. Mo n yí ìmọ̀ oníbàárà padà sí ojútùú díjítàlì pẹ̀lú àgọ̀kọ̀ọ̀kan mi ní àpẹrẹ àti àgbàsọ̀sọ̀.",
-
+      "title": "AMADOU Ruchdane - Oníṣe & Apẹrẹ",
+      "description": "Oníṣe ọja pẹ̀lú imọ̀ ọgbọ́n pataki. Mo ń yí àǹfààní àwọn oníbàárà padà sí àbájáde oni-nọmba pẹ̀lú ọgbọ́n mi ní àpẹrẹ àti ìdàgbàsókè.",
       "greeting": "Báwo, orúkọ mi ni AMADOU Ruchdane",
-      "role": "Olùdàgbàsókè & Aṣaájú Oníṣe",
-      "value_proposition": "Olùdàgbàsókè & Aṣaájú Oníṣe",
-      "cta": "Ẹ jé ká bá a sọrọ nípa amúlùmọ̀",
-
+      "role": "Oníṣe & Apẹrẹ",
+      "value_proposition": "n ṣiṣẹ́da irírí oni-nọmba níbi tí imọ̀ ṣe pàdé ènìyàn.",
+      "cta": "Jẹ́ ká bá ọ sọrọ nípa ìfọ̀rọ̀wẹ̀sìn",
       "section": {
-        "project": {
-          "title": "Àwọn iṣẹ́ tó ṣẹ̀ṣẹ̀",
+        "projects": {
+          "title": "Àwọn iṣẹ́ tuntun",
           "view_all": "Wo gbogbo iṣẹ́",
-          "description": "Diẹ lára àwọn iṣẹ́ tí mo ti ṣiṣẹ́ lórí"
+          "description": "Diẹ̀ nínú àwọn iṣẹ́ tí mo ṣiṣẹ́ lórí"
         },
-        "stack": {
-          "title": "Àwọn imọ̀-ẹrọ",
-          "description": "Àwọn imọ̀ ẹrọ tí mo fẹ́ràn jùlọ",
+        "stacks": {
+          "title": "Imọ̀-ẹrọ",
+          "description": "Àwọn imọ̀ tí mo fẹ́ràn jùlọ",
           "design": "Apẹrẹ",
           "management": "Ìṣàkóso",
-          "web": "Ayelujara",
-          "desktop": "Ìkànnì kọ̀mùpútà",
-          "mobile": "Ẹ̀rọ alágbèéká"
+          "web": "Akọ́sọ Ayelujara",
+          "desktop": "Orí kọ̀ǹpútà",
+          "mobile": "Orí alágbèéká"
         },
         "history": {
-          "education": "Ìtàn ẹ̀kọ́",
+          "education": "Ìtàn Ẹ̀kọ́",
           "experience": "Ìrírí iṣẹ́"
         }
       }
+    },
+    "project": {
+      "title": "Àwọn iṣẹ́ mi",
+      "description": "Ṣàwárí àwọn iṣẹ́ tí mo kópa nínú rẹ̀, láti iṣẹ́ wẹẹbu (NextJS) sí alágbèéká (Flutter), àti àwọn irinṣẹ́ CLI pẹ̀lú Rust."
+    },
+    "about": {
+      "title": "Nipa AMADOU Ruchdane",
+      "description": "Orukọ mi ni AMADOU Ruchdane Abiodun Adjao. Mo wa lati orílẹ̀-èdè Bénin, mo sì n gbe lọwọlọwọ ní Île-de-France. Emi jẹ oníṣe àgbékà àti oníṣàwárí àwòrán. Lọwọlọwọ, mo n kọ́ ẹ̀kọ́ ní HÉTIC, mo sì n wa àǹfààní iṣẹ́-ìmọ̀ọ́mọ̀ ni UX/UI Design."
     }
   },
   "image": {

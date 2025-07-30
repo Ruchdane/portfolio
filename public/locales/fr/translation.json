@@ -1,10 +1,18 @@
 {
+  "languages": {
+    "fr": "Français",
+    "en": "Anglais",
+    "yo": "Yoruba"
+  },
   "common": {
     "projects": "Projets",
     "filter": "Filtre",
     "platform": "Plateforme",
     "programming_languages": "Languages",
-    "programming_framework": "Framework"
+    "programming_framework": "Framework",
+    "i_am": "Je suis",
+    "i_am_in": "Je suis en",
+    "find_me_on": "Vous me retrouverez sur"
   },
   "navigation": {
     "home": "Accueil",
@@ -26,6 +34,13 @@
         }
       },
       "copyright": "AMADOU Ruchdane. Tout droit réservé."
+    },
+
+    "project_card": {
+      "read_more": "Lire plus",
+      "checkout": "Visitez",
+      "download": "Télécharger",
+      "view_source": "Source"
     }
   },
   "page": {
@@ -40,9 +55,8 @@
 
       "section": {
         "projects": {
-          "title": "Projets récents",
-          "view_all": "Voir tous les projets",
-          "description": "Quelques projets sur lesquels j'ai travaillé"
+          "title": "Projets",
+          "view_all": "Voir tous les projets"
         },
         "stacks": {
           "title": "Technologies",
@@ -62,6 +76,10 @@
     "project": {
       "title": "Mes projets",
       "description": "Parcourez les projets sur lesquels j'ai participer du web avec NextJS au mobile avec Flutter en passant par des cli avec Rust"
+    },
+    "about": {
+      "title": "A propos de AMADOU Ruchdane",
+      "description": "Je suis AMADOU Ruchdane Abiodun Adjao, je viens du Bénin et vie actuellement en ile-de-france. Je suis un Dévellopeur et un designer.  J'étudie actuellement à HÉTIC et recherche une alternance en UXUI Design"
     }
   },
   "image": {

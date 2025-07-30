@@ -4,31 +4,55 @@
     "en": "English",
     "yo": "Yoruba"
   },
+  "common": {
+    "projects": "Projects",
+    "filter": "Filter",
+    "platform": "Platform",
+    "programming_languages": "Languages",
+    "programming_framework": "Framework",
+    "i_am": "I am",
+    "i_am_in": "I'm in",
+    "find_me_on": "You can find me on"
+  },
   "navigation": {
     "home": "Home",
     "projects": "Projects",
     "contact": "Contact",
     "about": "About"
   },
+  "component": {
+    "footer": {
+      "contact_list": "Contacts",
+      "form": {
+        "email": "Email",
+        "message": "Message",
+        "cta": "Send",
+        "state": {
+          "loading": "📨 Sending...",
+          "success": "✅ Message sent",
+          "error": "❌ Sending error"
+        }
+      },
+      "copyright": "AMADOU Ruchdane. All rights reserved."
+    }
+  },
   "page": {
     "home": {
       "title": "AMADOU Ruchdane - Developer & Designer",
-      "description": "Product Designer with a unique technical background. I turn user insights into digital solutions through my dual expertise in design and development.",
-
+      "description": "Product Designer with a unique technical background. I turn user insights into digital solutions thanks to my dual skillset in design and development.",
       "greeting": "Hi, I'm AMADOU Ruchdane",
       "role": "Developer & Designer",
-      "value_proposition": "Developer & Designer",
-      "cta": "Let's talk about an apprenticeship",
-
+      "value_proposition": "crafting digital experiences where tech meets people.",
+      "cta": "Let’s talk",
       "section": {
-        "project": {
-          "title": "Recent Projects",
+        "projects": {
+          "title": "Projects",
           "view_all": "View all projects",
           "description": "Some projects I’ve worked on"
         },
-        "stack": {
+        "stacks": {
           "title": "Technologies",
-          "description": "My favorite technologies",
+          "description": "My favorite tools and technologies",
           "design": "Design",
           "management": "Management",
           "web": "Web",
@@ -40,9 +64,17 @@
           "experience": "Professional Experience"
         }
       }
+    },
+    "project": {
+      "title": "My Projects",
+      "description": "Browse projects I’ve contributed to, from web (Next.js) to mobile (Flutter), and even CLI tools in Rust."
+    },
+    "about": {
+      "title": "About AMADOU Ruchdane",
+      "description": "My name is AMADOU Ruchdane Abiodun Adjao, I’m from Benin and currently living in Île-de-France. I’m a developer and a designer. I’m currently studying at HÉTIC and looking for a work-study position in UX/UI Design"
     }
   },
   "image": {
-    "ruchdane": "Photo of Ruchdane"
+    "ruchdane": "Picture of Ruchdane"
   }
 }

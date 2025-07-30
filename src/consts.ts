@@ -286,8 +286,8 @@ export const TECHNOLOGY_CATEGORIES = [
   },
 ] as const;
 
-export const LANGUAGE_MAPPING = {
+export const LANGUAGE_MAPPING: Record<string, string> = {
   fr: "Français",
   en: "English",
-  yo: "Yoruba",
-}
+  yo: "Yorùbá",
+};

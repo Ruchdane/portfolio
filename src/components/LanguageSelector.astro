@@ -3,7 +3,9 @@ import { Languages, Check } from "lucide-astro";
 import i18next from "i18next";
 import { t } from "i18next";
 
+// @ts-ignore
 import { localizePath } from "astro-i18next";
+
 import { LANGUAGE_MAPPING } from "@/consts";
 ---
 
@@ -13,7 +15,7 @@ import { LANGUAGE_MAPPING } from "@/consts";
   </button>
   <ul id="selector-options" class="selector-options" popover>
     {
-      i18next.languages.map((language) => (
+      Object.keys(LANGUAGE_MAPPING).map((language) => (
         <li>
           <button
             class="selector-option"
@@ -42,16 +44,16 @@ import { LANGUAGE_MAPPING } from "@/consts";
 <style lang="scss">
   .selector {
     position: relative;
-    &-trigger + :popover-open {
+    &-trigger + ul:popover-open {
       color: var(--accent-600);
     }
-    // [popover]:popover-open {
-    //   all: initial;
-    //   position: absolute;
-    //   list-style: none;
-    //   right: 0;
-    //   top: 2rem;
-    // }
+
+    ul {
+      position: absolute;
+      list-style: none;
+      right: 0;
+      top: 4rem;
+    }
     &-option {
       display: flex;
       width: 100%;
