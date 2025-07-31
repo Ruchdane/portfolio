@@ -3,6 +3,7 @@ import { ImageSchema } from "@/schema/image";
 import { TechnologieEnum, PlatformeEnum } from "@/schema/enum";
 import { SITE_URL } from "@/consts";
 import s from "schema-dts";
+import { i18nString } from "./i18nString";
 const projectSeoType = z.enum([
   "WebApplication",
   "WebSite",
@@ -13,8 +14,8 @@ const projectSeoType = z.enum([
 export const ProjectSchema = (image: ImageFunction) =>
   z.object({
     logo: image().optional(),
-    title: z.string(),
-    description: z.string(),
+    title: i18nString,
+    description: i18nString,
     thumbs: z.array(ImageSchema(image)).min(1),
     showcases: z.array(ImageSchema(image)).min(1).optional(),
 
@@ -66,7 +67,7 @@ const GenerateCreativeWorkSchema = {
     return {
       "@type": "WebSite",
       name: project.title,
-      description: project.description,
+      description: project.description.fr,
       url: project.websiteUrl ?? `${SITE_URL}/projects/${project.title}`,
     };
   },
@@ -79,7 +80,7 @@ const GenerateCreativeWorkSchema = {
     return {
       "@type": "SoftwareApplication",
       name: project.title,
-      description: project.description,
+      description: project.description.fr,
       operatingSystem: project.platformes.join(", "),
       downloadUrl: project.downloadUrl,
       applicationCategory: project.seo?.category.join(", "),

@@ -1,6 +1,7 @@
 import { Globe, LaptopMinimal, Smartphone } from "lucide-astro";
 import logo from "./assets/icons/logo.svg";
 import { Platforme, Technologie } from "@/schema/enum";
+import type { I18nString } from "./schema/i18nString";
 export const SITE_URL = "https://ruchdane.me";
 export const SITE_LOGO = logo;
 
@@ -286,7 +287,8 @@ export const TECHNOLOGY_CATEGORIES = [
   },
 ] as const;
 
-export const LANGUAGE_MAPPING: Record<string, string> = {
+export type Language = "fr" | "en" | "yo";
+export const LANGUAGE_MAPPING: I18nString = {
   fr: "Français",
   en: "English",
   yo: "Yorùbá",

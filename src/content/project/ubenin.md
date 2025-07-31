@@ -1,7 +1,13 @@
 ---
 logo: "../../assets/icons/ubenin.png"
-title: La plateforme d’orientation pour les étudiants béninois
-description: Une application mobile qui facilite l'orientation des jeunes bachelier du Bénin en leur fournissant un catalogue d'information fiable et validée par des pairs ains que des alumni des différents université.
+title:
+  fr: La plateforme d’orientation pour les étudiants béninois
+  en: The orientation platform for Beninese students
+  yo: Syeed fun itọsọna fun awọn akẹkọ ọmọ ile-iwe Benin
+description:
+  fr: Une application mobile qui facilite l'orientation des jeunes bacheliers du Bénin en leur fournissant un catalogue d'informations fiable et validée par des pairs ainsi que des alumni des différentes universités.
+  en: A mobile application that facilitates the orientation of young graduates in Benin by providing them with a reliable catalog of information validated by peers and alumni from various universities.
+  yo: Ohun elo alagbeka ti o ṣe iranlọwọ fun itọsọna awọn ọdọ ti o pari ile-iwe giga ni Benin nipa fifun wọn ni katalogi alaye ti o gbẹkẹle ti awọn ẹlẹgbẹ ati awọn akẹkọ tẹlẹ ti awọn ile-ẹkọ giga oriṣiriṣi ti fọwọsi.
 thumbs:
   [
     {
@@ -31,7 +37,7 @@ collaborators:
   - ruchdane
 seo:
   type: WebApplication
-  category: 
+  category:
     - Education
     - Exploration d'univeristé
 ---

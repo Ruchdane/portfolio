@@ -1,24 +1,25 @@
 ---
 import { Globe, Download, Code, ArrowRight } from "lucide-astro";
 import { Image } from "astro:assets";
-import { PLATFORME_MAP } from "@/consts";
+import { PLATFORME_MAP, type Language } from "@/consts";
 import { type Project } from "@/schema";
 import { Carousel } from "@/components/Carousel";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 interface Props {
   id: string;
   data: Project;
 }
 
 const p = (path: string) => t(`component.project_card.${path}`);
+const language = (i18next.language || "fr") as Language;
 
 const {
   id,
   data: {
     logo,
-    title,
-    description,
+    title: titles,
+    description: descriptions,
     technologies: rawTechnologies,
     platformes: rawPlatformes,
     thumbs,
@@ -27,6 +28,8 @@ const {
     sourceUrl,
   },
 } = Astro.props;
+const title = titles[language] || id;
+const description = descriptions[language] || "";
 const technologies = rawTechnologies.sort(
   (techA, techB) => techA.length - techB.length
 );

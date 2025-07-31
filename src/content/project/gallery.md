@@ -1,7 +1,13 @@
 ---
 logo: "../../assets/icons/gallery.svg"
-title: Gallery - Lecteur de manga pour pc rapide et léger
-description: Un lecteur de manga desktop léger qui vous permet de naviger votre médiathéque de manga, manwa, ou webcommic avec une interface intuitif et ultra rapide.
+title:
+  fr: Gallery - Lecteur de manga pour pc rapide et léger
+  en: Gallery - Fast and lightweight manga reader for PC
+  yo: Gallery - Onka kika manga fun PC ti o yara ati fẹẹrẹfẹ
+description:
+  fr: Un lecteur de manga desktop léger qui vous permet de naviger votre médiathéque de manga, manwa, ou webcommic avec une interface intuitif et ultra rapide.
+  en: A lightweight desktop manga reader that allows you to browse your manga, manhwa, or webcomic library with an intuitive and ultra-fast interface.
+  yo: Onka kika manga fun deskitọpu ti o fẹẹrẹfẹ ti o fun ọ laaye lati lọ kiri ninu ile-ikawe manga, manhwa, tabi webcomic rẹ pẹlu wiwo ti o rọrun ati iyara pupọ.
 thumbs: [{ src: ../../assets/images/gallery/placeholder.svg, alt: "gallery" }]
 sourceUrl: https://github.com/Ruchdane/Gallery
 downloadUrl: https://github.com/Ruchdane/Gallery/releases/tag/app-v0.0.2
@@ -13,5 +19,4 @@ seo:
   type: SoftwareApplication
   category:
     - Lecteur de manga
-
 ---

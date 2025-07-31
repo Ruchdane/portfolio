@@ -34,6 +34,12 @@
         }
       },
       "copyright": "AMADOU Ruchdane. All rights reserved."
+    },
+    "project_card": {
+      "read_more": "Read more",
+      "checkout": "Checkout",
+      "download": "Download",
+      "view_source": "Source"
     }
   },
   "page": {
