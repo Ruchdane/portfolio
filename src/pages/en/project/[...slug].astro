@@ -1,6 +1,11 @@
 ---
 import { changeLanguage } from "i18next";
-import { type CollectionEntry, getCollection, getEntry, render, } from "astro:content";
+import {
+  type CollectionEntry,
+  getCollection,
+  getEntry,
+  render,
+} from "astro:content";
 import { Globe, Download, Code } from "lucide-astro";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import { Image } from "astro:assets";
@@ -11,17 +16,31 @@ import { generateProjectSchema } from "@/schema";
 changeLanguage("en");
 
 export async function getStaticPaths() {
-    const project = await getCollection("project");
-    return project.map((project) => ({
-        params: { slug: project.id },
-        props: { ...project },
-    }));
+  const project = await getCollection("project");
+  return project.map((project) => ({
+    params: { slug: project.id },
+    props: { ...project },
+  }));
 }
 type Props = CollectionEntry<"project">;
 const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
-const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
-const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
+const {
+  logo,
+  title,
+  description,
+  thumbs,
+  showcases,
+  websiteUrl,
+  downloadUrl,
+  sourceUrl,
+  technologies,
+} = projectEntry.data;
+const collaborators = await Promise.all(
+  projectEntry.data.collaborators.map(
+    async (entry) => (await getEntry("people", entry.id))?.data
+  )
+);
 const { Content } = await render(projectEntry);
 ---
 
@@ -107,7 +126,7 @@ const { Content } = await render(projectEntry);
   </div>
 </BasePage>
 <style lang="scss">
-  @use "../../styles/media-query" as *;
+  @use "~/media-query" as *;
 
   h1 {
     font-size: var(--font-h3);

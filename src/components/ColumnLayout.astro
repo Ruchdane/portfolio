@@ -12,7 +12,7 @@ const { className = "", columnCount = 2, ...rest } = Astro.props;
 </div>
 
 <style lang="scss" define:vars={{ columnCount }}>
-  @use "../styles/media-query" as *;
+  @use "~/media-query" as *;
   div {
     display: grid;
     grid-template-columns: 1fr;
