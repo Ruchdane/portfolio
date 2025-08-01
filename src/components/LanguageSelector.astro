@@ -6,7 +6,7 @@ import { t } from "i18next";
 // @ts-ignore
 import { localizePath } from "astro-i18next";
 
-import { LANGUAGE_MAPPING } from "@/consts";
+import { LANGUAGE_MAPPING, type Language } from "@/consts";
 ---
 
 <div class="selector">
@@ -24,7 +24,7 @@ import { LANGUAGE_MAPPING } from "@/consts";
             <div class="option-label">
               <span class="option-original_name">
                 {" "}
-                {LANGUAGE_MAPPING[language]}{" "}
+                {LANGUAGE_MAPPING[language as Language]}{" "}
               </span>
               <span class="option-localised_name">
                 {" "}

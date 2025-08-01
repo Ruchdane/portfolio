@@ -1,5 +1,6 @@
 import { z, type ImageFunction } from "astro:content";
 import { ImageSchema } from "./image";
+import { i18nString } from "./i18nString";
 
 const BaseHistoryItemSchema = (image: ImageFunction) =>
   z.object({
@@ -7,7 +8,7 @@ const BaseHistoryItemSchema = (image: ImageFunction) =>
     endDate: z.coerce.date().optional(),
     name: z.string(),
     image: ImageSchema(image),
-    description: z.string(),
+    description: i18nString,
   });
 
 export const EducationSchema = (image: ImageFunction) =>
@@ -18,7 +19,7 @@ export const EducationSchema = (image: ImageFunction) =>
 
 export const ExperienceSchema = (image: ImageFunction) =>
   BaseHistoryItemSchema(image).extend({
-    role: z.string(),
+    role: i18nString,
   });
 
 export type Education = z.infer<ReturnType<typeof EducationSchema>>;

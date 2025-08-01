@@ -2,14 +2,27 @@
 import { Image } from "astro:assets";
 import type { Education, Experience } from "@/schema";
 import FormattedDate from "./FormattedDate.astro";
+import type { Language } from "@/consts";
+import i18next from "i18next";
 interface Props {
   slug: string;
   data: Education | Experience;
 }
 
+const language = (i18next.language || "fr") as Language;
+
 const {
-  data: { image, beginDate, endDate, name, description, ...props },
+  data: {
+    image,
+    beginDate,
+    endDate,
+    name,
+    description: descriptions,
+    ...props
+  },
 } = Astro.props;
+
+const description = descriptions[language] || "";
 const dateFormat: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "short",
@@ -18,7 +31,7 @@ const dateFormat: Intl.DateTimeFormatOptions = {
 const title =
   "formation" in props
     ? `${props.formation} ${props?.diplome ?? ""}`
-    : props?.role;
+    : (props?.role[language] ?? "");
 ---
 
 <div class="history">
@@ -65,18 +78,6 @@ const title =
       @include breakpoint(desktop) {
         grid-row-end: 4;
       }
-    }
-
-    &-title {
-      place-self: end;
-      justify-self: auto;
-    }
-    &-name {
-      place-self: center;
-      justify-self: auto;
-    }
-    &-date {
-      place-self: top;
     }
 
     &-title,

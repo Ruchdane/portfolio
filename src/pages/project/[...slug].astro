@@ -1,52 +1,34 @@
 ---
-import { changeLanguage } from "i18next";
-import {
-  type CollectionEntry,
-  getCollection,
-  getEntry,
-  render,
-} from "astro:content";
+import i18n, { changeLanguage } from "i18next";
+import { getCollection, getEntry, render } from "astro:content";
 import { Globe, Download, Code } from "lucide-astro";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import { Image } from "astro:assets";
 import BasePage from "@/layouts/BasePage.astro";
 import { Carousel, PeopleProfile } from "@/components";
 import { generateProjectSchema } from "@/schema";
+import type { Language } from "@/consts";
 
 changeLanguage("fr");
 
+const language = (i18n.language ?? "fr") as Language;
 export async function getStaticPaths() {
-  const project = await getCollection("project");
-  return project.map((project) => ({
-    params: { slug: project.id },
-    props: { ...project },
-  }));
+    const project = await getCollection("project");
+    return project.map((project) => ({
+        params: { slug: project.id },
+        props: { ...project },
+    }));
 }
-type Props = CollectionEntry<"project">;
 const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
-const {
-  logo,
-  title,
-  description,
-  thumbs,
-  showcases,
-  websiteUrl,
-  downloadUrl,
-  sourceUrl,
-  technologies,
-} = projectEntry.data;
-const collaborators = await Promise.all(
-  projectEntry.data.collaborators.map(
-    async (entry) => (await getEntry("people", entry.id))?.data
-  )
-);
+const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
+const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
 const { Content } = await render(projectEntry);
 ---
 
 <BasePage
-  title={`${slug} - ${title}`}
-  description={description}
+  title={`${slug} - ${title[language]}`}
+  description={description[language]}
   jsonLd={generateProjectSchema(slug, projectEntry.data)}
   image={thumbs[0]?.src}
 >
@@ -101,7 +83,7 @@ const { Content } = await render(projectEntry);
         imagesLayout="full-width"
       />
       <div>
-        <h1>{title}</h1>
+        <h1>{title[language]}</h1>
         <ul class="project-collaborator">
           {
             collaborators.map((collaborator) =>
@@ -114,7 +96,7 @@ const { Content } = await render(projectEntry);
             )
           }
         </ul>
-        <p>{description}</p>
+        <p>{description[language]}</p>
         <div class="project-technologies">
           {technologies.map((tech) => <TechnologieBadge name={tech} />)}
         </div>

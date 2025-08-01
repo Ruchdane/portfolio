@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { t } from "i18next";
-
+import i18next from "i18next";
 type Props = HTMLAttributes<"a"> & { title: string };
 
 // @ts-ignore
@@ -9,8 +9,11 @@ import { localizePath } from "astro-i18next";
 const { href, class: className, title, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === "/" + subpath?.[0];
+const localizedPath = localizePath(href, i18next.language);
+const basepath = localizePath("/", i18next.language);
+const isActive =
+  localizedPath === pathname ||
+  (localizedPath !== basepath && pathname.startsWith(localizedPath));
 ---
 
 <a

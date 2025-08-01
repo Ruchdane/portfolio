@@ -6,6 +6,9 @@ import { type Project } from "@/schema";
 import { Carousel } from "@/components/Carousel";
 import TechnologieBadge from "@/components/TechnologieBadge.astro";
 import i18next, { t } from "i18next";
+// @ts-ignore
+import { localizePath } from "astro-i18next";
+
 interface Props {
   id: string;
   data: Project;
@@ -47,7 +50,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
       <h1>
         <a
           class="icon-button"
-          href={`/project/${id}`}
+          href={localizePath(`/project/${id}`)}
           title={p("read_more")}
           aria-label={p("read_more")}
         >

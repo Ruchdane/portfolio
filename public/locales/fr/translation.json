@@ -56,7 +56,9 @@
       "section": {
         "projects": {
           "title": "Projets",
-          "view_all": "Voir tous les projets"
+          "view_all": "Voir tous les projets",
+          "name": "Project",
+          "description": "Découvrez mes projets"
         },
         "stacks": {
           "title": "Technologies",

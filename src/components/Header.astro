@@ -4,12 +4,18 @@ import { Image } from "astro:assets";
 import HeaderLink from "./HeaderLink.astro";
 import Sidebar from "./Sidebar.astro";
 import MorphingBurger from "./MorphingBurger.astro";
-import { LanguageSelector } from "@/components";
+
+// @ts-ignore
+import { localizePath } from "astro-i18next";
 ---
 
 <header transition:name="main-header">
   <nav>
-    <a href="/" class="navigation-icon" transition:name="main-logo">
+    <a
+      href={localizePath("/")}
+      class="navigation-icon"
+      transition:name="main-logo"
+    >
       <Image
         src={SITE_LOGO}
         alt="\_<"
@@ -32,7 +38,6 @@ import { LanguageSelector } from "@/components";
           ))
         }
       </div>
-      <LanguageSelector />
       <button
         class="icon-button"
         id="burger-trigger"

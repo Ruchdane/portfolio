@@ -1,7 +1,13 @@
 ---
 # logo: "../../assets/icons/zender.svg"
-title: Logiciel d'échange de fichiers sur un réseau local
-description: Une application desktop disponible sur pc pour faciliter le partage de fichier sur n réseau local sans passer par internet
+title:
+  fr: Logiciel d'échange de fichiers sur un réseau local
+  en: File sharing software on a local network
+  yo: Sọfitiwia pinpin faili lori nẹtiwọọki agbegbe kan
+description:
+  fr: Une application desktop disponible sur pc pour faciliter le partage de fichier sur un réseau local sans passer par internet
+  en: A desktop application available on PC to facilitate file sharing on a local network without using the internet
+  yo: Ohun elo tabili ti o wa lori PC lati ṣe irọrun pinpin faili lori nẹtiwọọki agbegbe laisi lilo intanẹẹti
 thumbs:
   [
     {

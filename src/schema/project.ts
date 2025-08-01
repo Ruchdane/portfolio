@@ -66,7 +66,7 @@ const GenerateCreativeWorkSchema = {
   generateWebSite(_: string, project: Project): s.WebSite {
     return {
       "@type": "WebSite",
-      name: project.title,
+      name: project.title.fr,
       description: project.description.fr,
       url: project.websiteUrl ?? `${SITE_URL}/projects/${project.title}`,
     };
@@ -79,7 +79,7 @@ const GenerateCreativeWorkSchema = {
     // @ts-ignore
     return {
       "@type": "SoftwareApplication",
-      name: project.title,
+      name: project.title.fr,
       description: project.description.fr,
       operatingSystem: project.platformes.join(", "),
       downloadUrl: project.downloadUrl,

@@ -1,18 +1,22 @@
 ---
+import i18n from "i18next";
 interface Props {
-	date: Date;
-	format?: Intl.DateTimeFormatOptions,
+  date: Date;
+  format?: Intl.DateTimeFormatOptions;
 }
 
 const { date, format } = Astro.props;
 ---
 
 <time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('fr-FR', format ?? {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+  {
+    date.toLocaleDateString(
+      i18n.language,
+      format ?? {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }
+    )
+  }
 </time>
