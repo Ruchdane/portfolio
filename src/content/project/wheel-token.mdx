@@ -49,7 +49,7 @@ seo:
 isFeatured: true
 
 ---
-import {ColumnLayout, Carousel}  from "@/components"
+import {LocaleCheck, ColumnLayout, Carousel}  from "@/components"
 import GoogleTrendsRevenuPassif from "../../assets/images/wheel-token/google_trends_revenu_passif.png"
 import GoogleTrendsLocationVoiture from "../../assets/images/wheel-token/google_trends_location_de_voiture.png"
 import StatistaCovoiturage from "../../assets/images/wheel-token/statista_covoiturage_user_2017_2023_2029.png"
@@ -57,16 +57,38 @@ import StatistaCovoiturage from "../../assets/images/wheel-token/statista_covoit
 export const contexteStats = [
   { 
     src: GoogleTrendsRevenuPassif, 
-    alt: "Tendance de l'intêret sur le revenues passif" 
+    alt: {
+      fr: "Tendance de l'intérêt sur les revenus passifs",
+      en: "Trend of interest in passive income",
+      yo: "Ipele ti ifẹ si owo-wiwọle alaiduro"
+    }
   }, 
   {
     src: GoogleTrendsLocationVoiture, 
-    alt: "Tendance de l'intêret sur le covoiturage"
+    alt: {
+      fr: "Tendance de l'intérêt sur le covoiturage",
+      en: "Trend of interest in carpooling",
+      yo: "Ipele ti ifẹ si pinpin ọkọ ayọkẹlẹ"
+    }
   }, 
   {
     src: StatistaCovoiturage,
-    alt: "État et prévision des utilisateurs des application de covoiturage" 
-  }];
+    alt: {
+      fr: "État et prévision des utilisateurs des applications de covoiturage",
+      en: "State and forecast of carpooling app users",
+      yo: "Ipo ati asọtẹlẹ ti awọn olumulo ohun elo pinpin ọkọ ayọkẹlẹ"
+    }
+  }
+];
+
+export function getContexteStats(locale){
+  return contexteStats.map((stat) => ({
+    ...stat,
+    alt: stat.alt[locale] || stat.alt.fr
+  }));
+}
+
+<LocaleCheck locale="fr">
 
 ## Contexte
 <ColumnLayout>
@@ -79,7 +101,7 @@ export const contexteStats = [
 
   </div>
 
-<Carousel images={contexteStats}/>
+<Carousel images={getContexteStats("fr")}/>
 
 </ColumnLayout>
 ## Recherche
@@ -125,3 +147,124 @@ export const contexteStats = [
 
 ![Deux écrans de l'application wheel token montrant comment investir dans une voiture](../../assets/images/wheel-token/investissement.png)
 
+</LocaleCheck>
+
+<LocaleCheck locale="en">
+
+## Context
+<ColumnLayout>
+  <div>
+    Investing in vehicle rental is still a privilege reserved for a minority. Indeed, the entry cost is very high and requires a good understanding of legal and tax procedures. Meanwhile, interest in **carpooling** is booming with platforms such as Uber, BlaBlaCar, etc.
+
+    This is an opportunity to lower the entry barrier through **asset tokenization**. Asset tokenization is a process that allows creating digital tokens representing ownership of a physical or digital asset stored on the blockchain. The blockchain is used here to ensure that once a token is purchased, no authority can revoke or delete it.
+
+    Our goal is to enable everyone to **become an investor, without paperwork** or technical expertise.
+  </div>
+
+<Carousel images={getContexteStats("en")}/>
+
+</ColumnLayout>
+## Research
+<ColumnLayout>
+<div>
+  For user research, we interviewed users familiar with blockchain and others who are not. Here are the key points we noted:
+  - **Lack of trust**: Most of those unfamiliar with crypto did not trust it, citing scams.
+  - **Interest in passive income**: The idea of easily investing in a car and earning income was very appealing.
+  - **Importance of liquidity**: Investors want to easily trade their tokens if they are no longer interested.
+  - **Need for transparency**: They want to understand how their income is generated and know what happens if the company disappears.
+
+  We decided to focus on transparency to help users understand exactly what is happening.
+</div>
+<div>
+<figure class="image">
+![Paul Lefévre, a finance expert curious about new trends in the investment world](../../assets/images/wheel-token/persona_investisseur.jpg)
+  <center> <figcaption> </figcaption></center>
+</figure>
+<figure class="image">
+![Emilie Beson, HR manager with an eye on her finances, loves spending vacations with her family in comfort](../../assets/images/wheel-token/personna_locataire.jpg)
+  <center> <figcaption> </figcaption></center>
+</figure>
+
+</div>
+
+</ColumnLayout>
+
+## Design
+
+Given the complexity and lack of popularization of asset tokenization, we opted for a design focused on progressive disclosure with a set of materials aimed at helping users understand everything about the domain.
+
+> Onboarding flow
+
+![Onboarding flow (with Figma screens) targeting investors with no experience in crypto](../../assets/images/wheel-token/onboarding_flow.svg)
+
+
+> Mockups
+
+![Various screens of the Wheel Token application](../../assets/images/wheel-token/thumbnail.png)
+
+![Two screens of the Wheel Token application showing resources and the tutorial list](../../assets/images/wheel-token/tutoriel.png)
+
+
+![Two screens of the Wheel Token application showing how to invest in a car](../../assets/images/wheel-token/investissement.png)
+
+</LocaleCheck>
+
+<LocaleCheck locale="yo">
+
+## Àkójọpọ̀
+<ColumnLayout>
+  <div>
+    Idoko-owo ninu yiyalo ọkọ ayọkẹlẹ ṣi jẹ ẹtọ ti o wa fun diẹ. Ni otitọ, iye owo titẹsi ga pupọ ati pe o nilo oye to dara ti awọn ilana ofin ati owo-ori. Ni akoko kanna, ifẹ si **pinpin ọkọ ayọkẹlẹ** n pọ si pẹlu awọn iru ẹrọ bii Uber, BlaBlaCar, ati bẹbẹ lọ.
+
+    Eyi jẹ aye lati dinku idena titẹsi nipasẹ **tokenization dukia**. Tokenization dukia jẹ ilana ti o gba laaye lati ṣẹda awọn ami oni-nọmba ti o nsoju nini ohun-ini ti ara tabi oni-nọmba ti o wa lori blockchain. Blockchain ni a lo nibi lati rii daju pe ni kete ti ami kan ba ra, ko si alaṣẹ ti o le fagile tabi paarẹ rẹ.
+
+    Ero wa ni lati jẹ ki gbogbo eniyan **di oludokoowo, laisi iwe-aṣẹ** tabi oye imọ-ẹrọ.
+  </div>
+
+<Carousel images={getContexteStats("yo")}/>
+
+</ColumnLayout>
+## Ìwádìí
+<ColumnLayout>
+<div>
+  Fun iwadi olumulo, a ṣe ifọrọwanilẹnuwo awọn olumulo ti o mọ nipa blockchain ati awọn miiran ti ko mọ. Eyi ni awọn aaye pataki ti a ṣe akiyesi:
+  - **Aini igbẹkẹle**: Pupọ ninu awọn ti ko mọ nipa crypto ko gbẹkẹle rẹ, ti n tọka si awọn ete itanjẹ.
+  - **Ifẹ si owo-wiwọle alaiduro**: Erongba ti idoko-owo ni ọkọ ayọkẹlẹ ni irọrun ati nini owo-wiwọle jẹ ohun ti o nifẹ pupọ.
+  - **Pataki ti omi**: Awọn oludokoowo fẹ lati ni irọrun lati ṣowo awọn ami wọn ti wọn ko ba nifẹ mọ.
+  - **Ibeere fun akoyawo**: Wọn fẹ lati loye bi owo-wiwọle wọn ṣe n ṣe ati mọ ohun ti o ṣẹlẹ ti ile-iṣẹ ba parẹ.
+
+  A pinnu lati dojukọ akoyawo lati ṣe iranlọwọ fun awọn olumulo lati loye gangan ohun ti n ṣẹlẹ.
+</div>
+<div>
+<figure class="image">
+![Paul Lefévre, amoye ninu eto-inawo ti o nifẹ si awọn aṣa tuntun ni agbaye idoko-owo](../../assets/images/wheel-token/persona_investisseur.jpg)
+  <center> <figcaption> </figcaption></center>
+</figure>
+<figure class="image">
+![Emilie Beson, Oludari HR pẹlu oju lori awọn inawo rẹ, fẹran lilo isinmi pẹlu ẹbi rẹ ni itunu](../../assets/images/wheel-token/personna_locataire.jpg)
+  <center> <figcaption> </figcaption></center>
+</figure>
+
+</div>
+
+</ColumnLayout>
+
+## Apẹrẹ
+
+Niwọn igba ti idiju ati aini gbajumọ ti tokenization dukia, a yan apẹrẹ ti o da lori ifihan ilọsiwaju pẹlu ṣeto awọn ohun elo ti o ni ero lati ṣe iranlọwọ fun awọn olumulo lati loye ohun gbogbo nipa aaye naa.
+
+> Ilana onboarding
+
+![Ilana onboarding (pẹlu awọn iboju Figma) ti o fojusi awọn oludokoowo ti ko ni iriri ninu crypto](../../assets/images/wheel-token/onboarding_flow.svg)
+
+
+> Awọn awoṣe
+
+![Awọn iboju oriṣiriṣi ti ohun elo Wheel Token](../../assets/images/wheel-token/thumbnail.png)
+
+![Awọn iboju meji ti ohun elo Wheel Token ti n fihan awọn orisun ati atokọ ẹkọ](../../assets/images/wheel-token/tutoriel.png)
+
+
+![Awọn iboju meji ti ohun elo Wheel Token ti n fihan bi o ṣe le nawo ni ọkọ ayọkẹlẹ](../../assets/images/wheel-token/investissement.png)
+
+</LocaleCheck>

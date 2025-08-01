@@ -1,0 +1,175 @@
+---
+logo: "../../assets/icons/ubenin.png"
+title:
+  fr: La plateforme d’orientation pour les étudiants béninois
+  en: The orientation platform for Beninese students
+  yo: Syeed fun itọsọna fun awọn akẹkọ ọmọ ile-iwe Benin
+description:
+  fr: Une application mobile qui facilite l'orientation des jeunes bacheliers du Bénin en leur fournissant un catalogue d'informations fiable et validée par des pairs ainsi que des alumni des différentes universités.
+  en: A mobile application that facilitates the orientation of young graduates in Benin by providing them with a reliable catalog of information validated by peers and alumni from various universities.
+  yo: Ohun elo alagbeka ti o ṣe iranlọwọ fun itọsọna awọn ọdọ ti o pari ile-iwe giga ni Benin nipa fifun wọn ni katalogi alaye ti o gbẹkẹle ti awọn ẹlẹgbẹ ati awọn akẹkọ tẹlẹ ti awọn ile-ẹkọ giga oriṣiriṣi ti fọwọsi.
+thumbs:
+  [
+    {
+      src: ../../assets/images/ubenin/thumbs.png,
+      alt: "thumb alumni chat",
+      width: 960,
+      height: 720,
+    },
+  ]
+showcases:
+  [
+    {
+      src: ../../assets/images/ubenin/mobile-grid-showcase.gif,
+      alt: "thumb alumni chat",
+      width: [240, 540, 720],
+      height: 720,
+      loading: lazy,
+    },
+  ]
+websiteUrl: https://ubenin.dinyad.fr/
+technologies: ["flutter", "firebase", "dart", "trello"]
+platformes: ["android"]
+collaborators:
+  - yeto
+  - ewinsou
+  - jules
+  - ruchdane
+seo:
+  type: WebApplication
+  category:
+    - Education
+    - Exploration d'univeristé
+---
+import { LocaleCheck }  from "@/components"
+
+## Contexte
+
+<LocaleCheck locale="fr">
+
+> Pourquoi Ubénin ?
+
+L’idée d’Ubénin est née d’un constat simple partagé par Donatien : la recherche de formations universitaires au Bénin est souvent longue, confuse et peu encadrée, en particulier pour les nouveaux bacheliers. L’orientation dans l’enseignement supérieur au Bénin manque de clarté, de centralisation et de retours d’expérience fiables.
+
+Face à ce constat, nous avons imaginé une plateforme capable de centraliser les données essentielles, de faciliter l’échange entre étudiants et de rendre plus lisible le paysage de l’enseignement supérieur béninois.
+
+> Quels bénéfices pour la communauté éducative ?
+
+Ubénin s’adresse à toute une génération de futurs bacheliers en quête de repères, mais aussi aux étudiants qui souhaitent se réorienter ou approfondir leur parcours. Les établissements d’enseignement supérieur y trouvent également un espace de visibilité, tandis que les alumni peuvent y partager leurs expériences et guider les plus jeunes.
+
+En créant un lien direct entre ces acteurs, Ubénin contribue à construire une communauté éducative plus solidaire, plus informée, et tournée vers l’avenir.
+
+## Valeurs
+
+Ubénin repose sur ces piliers essentiels qui guident à la fois son fonctionnement et son utilité auprès de ses utilisateurs.
+
+> Orientation et Découverte
+
+![Trois capture d'écran de ubénin montrant l'aspect orientation et decouverte](../../assets/images/ubenin/orientation_et_decouverte.png)
+
+Ubénin accompagne les étudiants dans leurs choix en leur offrant une vision claire et accessible du paysage universitaire béninois. Grâce à une interface intuitive, ils peuvent explorer les différentes filières, comparer les établissements et découvrir des opportunités auxquelles ils n’auraient peut-être pas pensé.
+
+> Avis et Communication
+
+![Trois capture d'écran de ubénin montrant l'aspect orientation ](../../assets/images/ubenin/avis_et_communication.png)
+
+L’application encourage le partage d’expériences à travers les avis d’anciens étudiants et la possibilité d’échanger directement avec d’autres membres de la communauté. Ce lien direct favorise une prise de décision plus informée et alimente une dynamique d’entraide entre les générations.
+
+> Répertoire Centralisé
+
+Ubénin centralise les informations clés sur les établissements d’enseignement supérieur du Bénin. L’utilisateur accède en quelques clics à une base de données fiable, régulièrement mise à jour, qui réunit les principales universités, écoles et formations disponibles dans le pays.
+
+## Réalisation
+
+En équipe avec Donatien, Roméo et Ghislain
+Concernant les technologies utilisées, flutter est notre outil de développement.
+Pour la base de données des universités, nous avons opté pour Firebase de Google.
+Le serveur de chat est implémenté avec la technologie Socket.io en NodeJS.
+
+</LocaleCheck>
+
+<LocaleCheck locale="en">
+
+> Why Ubénin?
+
+The idea of Ubénin was born from a simple observation shared by Donatien: the search for university programs in Benin is often lengthy, confusing, and poorly guided, especially for new graduates. Orientation in higher education in Benin lacks clarity, centralization, and reliable feedback.
+
+In response to this, we envisioned a platform capable of centralizing essential data, facilitating exchanges between students, and making the landscape of higher education in Benin more transparent.
+
+> What benefits for the educational community?
+
+Ubénin is aimed at an entire generation of future graduates seeking guidance, as well as students who wish to reorient or deepen their academic journey. Higher education institutions also find a space for visibility, while alumni can share their experiences and guide younger students.
+
+By creating a direct link between these stakeholders, Ubénin helps build a more supportive, informed, and forward-looking educational community.
+
+## Values
+
+Ubénin is built on these essential pillars that guide both its functionality and its usefulness to its users.
+
+> Orientation and Discovery
+
+![Three screenshots of Ubénin showcasing the orientation and discovery aspect](../../assets/images/ubenin/orientation_et_decouverte.png)
+
+Ubénin supports students in their choices by offering a clear and accessible view of the Beninese university landscape. Through an intuitive interface, they can explore various programs, compare institutions, and discover opportunities they might not have considered.
+
+> Reviews and Communication
+
+![Three screenshots of Ubénin showcasing the review and communication aspect](../../assets/images/ubenin/avis_et_communication.png)
+
+The application encourages the sharing of experiences through reviews from former students and the ability to interact directly with other community members. This direct connection fosters more informed decision-making and promotes a dynamic of mutual support across generations.
+
+> Centralized Directory
+
+Ubénin centralizes key information about higher education institutions in Benin. Users can access a reliable, regularly updated database that brings together the main universities, schools, and programs available in the country with just a few clicks.
+
+## Implementation
+
+In collaboration with Donatien, Roméo, and Ghislain.  
+Regarding the technologies used, Flutter is our development tool.  
+For the university database, we opted for Google's Firebase.  
+The chat server is implemented using Socket.io technology in NodeJS.
+
+</LocaleCheck>
+
+<LocaleCheck locale="yo">
+
+> Kí ló dé tí Ubénin fi wà?
+
+Ero Ubénin ti wa lati inu akiyesi kan ti Donatien pin: wiwa fun eto ẹkọ giga ni Benin maa n gba akoko, jẹ́ idiju, ati pe ko ni itọsọna to dara, paapaa fun awọn ọdọ ti o ṣẹṣẹ pari ile-iwe giga. Itọsọna ninu eto ẹkọ giga ni Benin ko ni kedere, ko ni aarin, ati pe ko ni awọn esi ti o gbẹkẹle.
+
+Lati koju iṣoro yii, a ṣe awokose pẹpẹ kan ti o le ṣajọ data pataki, ṣe irọrun ibaraẹnisọrọ laarin awọn akẹkọ, ati jẹ ki oju-ọna eto ẹkọ giga ni Benin yege si gbogbo eniyan.
+
+> Àwọn àǹfààní fún àgbájọ ẹ̀kọ́?
+
+Ubénin jẹ́ fún gbogbo iran awọn ọdọ ti n wa itọsọna, ati fun awọn akẹkọ ti o fẹ lati tun ṣe itọsọna wọn tabi jinlẹ ninu irin-ajo ẹkọ wọn. Awọn ile-ẹkọ giga tun le lo bi aaye lati ṣe afihan ara wọn, nigba ti awọn akẹkọ tẹlẹ le pin iriri wọn ati dari awọn ọdọ.
+
+Nipa ṣiṣẹda asopọ taara laarin awọn ẹgbẹ wọnyi, Ubénin ṣe iranlọwọ lati kọ agbegbe ẹkọ ti o ni atilẹyin diẹ sii, ti o ni alaye diẹ sii, ati ti o dojukọ ọjọ iwaju.
+
+## Àwọn Àṣà
+
+Ubénin da lori awọn ipilẹ pataki wọnyi ti o ṣe itọsọna iṣẹ rẹ ati iwulo rẹ si awọn olumulo rẹ.
+
+> Itọsọna ati Ìwádìí
+
+![Àwọn àwòrán mẹ́ta ti Ubénin tó ń fi hàn ipa itọsọna àti ìwádìí](../../assets/images/ubenin/orientation_et_decouverte.png)
+
+Ubénin n ṣe atilẹyin fun awọn akẹkọ ninu awọn yiyan wọn nipa fifun wọn ni iran kedere ati irọrun ti oju-ọna eto ẹkọ giga ni Benin. Pẹlu wiwo ti o rọrun lati lo, wọn le ṣawari awọn ẹka oriṣiriṣi, ṣe afiwe awọn ile-ẹkọ, ati ṣawari awọn anfani ti wọn le ma ti ronu tẹlẹ.
+
+> Àwọn Àwòṣe àti Ìbáraẹnisọrọ
+
+![Àwọn àwòrán mẹ́ta ti Ubénin tó ń fi hàn ipa àwòṣe àti ìbáraẹnisọrọ](../../assets/images/ubenin/avis_et_communication.png)
+
+Ohun elo naa n ṣe iwuri fun pinpin iriri nipasẹ awọn àwòṣe lati ọdọ awọn akẹkọ tẹlẹ ati agbara lati ba awọn ọmọ ẹgbẹ agbegbe miiran sọrọ taara. Asopọ taara yii n ṣe atilẹyin fun ṣiṣe ipinnu ti o ni alaye diẹ sii ati ṣe agbega iṣe atilẹyin laarin awọn iran.
+
+> Ìkànsí Àkópọ̀
+
+Ubénin ṣajọ alaye pataki nipa awọn ile-ẹkọ giga ni Benin. Olumulo le wọle si ibi ipamọ data ti o gbẹkẹle, ti a ṣe imudojuiwọn nigbagbogbo, ti o ṣajọ awọn ile-ẹkọ giga pataki, awọn ile-iwe, ati awọn eto ti o wa ni orilẹ-ede naa ni irọrun diẹ.
+
+## Ìmúṣẹ
+
+Pẹlu ifowosowopo Donatien, Roméo, ati Ghislain.  
+Nipa awọn imọ-ẹrọ ti a lo, Flutter ni irinṣẹ idagbasoke wa.  
+Fun ibi ipamọ data awọn ile-ẹkọ giga, a yan Firebase ti Google.  
+Olupin iwiregbe ti wa ni imuse pẹlu imọ-ẹrọ Socket.io ni NodeJS.
+
+</LocaleCheck>
