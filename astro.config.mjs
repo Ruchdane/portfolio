@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import compress from "astro-compress";
 import purgecss from "astro-purgecss";
 import astroI18next from "astro-i18next";
+import preact from "@astrojs/preact";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import path from "path";
 
@@ -13,6 +15,7 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "~": path.resolve("./src/styles"),
@@ -25,6 +28,7 @@ export default defineConfig({
   site: "https://ruchdane.me",
   integrations: [
     astroI18next(),
+    preact({ devtools: true }),
     mdx(),
     sitemap(),
     /* partytown(),*/
