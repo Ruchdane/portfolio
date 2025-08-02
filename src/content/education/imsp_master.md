@@ -3,7 +3,7 @@ beginDate: 10/01/2021
 endDate: 06/01/2023
 name: IMSP
 formation: Master TIC
-image: { src: "../../assets/icons/imsp.jpg", alt: "IMSP logo" }
+image: { src: "@/assets/icons/imsp.jpg", alt: "IMSP logo" }
 description:
   fr: "Ce master m'a permis de développer une expertise approfondie en technologies numériques, en me concentrant sur l'<strong>architecture</strong> et le <strong>développement</strong> logiciel, avec des compétences pratiques en <strong>assurance qualité </strong> ainsi qu'en <strong>gestion de projet</strong>."
   en: "This master's program allowed me to develop in-depth expertise in digital technologies, focusing on <strong>architecture</strong> and <strong>software development</strong>, with practical skills in <strong>quality assurance</strong> and <strong>project management</strong>."

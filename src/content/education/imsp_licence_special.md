@@ -3,7 +3,7 @@ beginDate: 10/01/2020
 endDate: 06/01/2021
 name: IMSP
 formation: Licence infomatique
-image: { src: "../../assets/icons/imsp.jpg", alt: "IMSP logo" }
+image: { src: "@/assets/icons/imsp.jpg", alt: "IMSP logo" }
 description:
   {
     fr: "J'ai intégré une Licence Informatique, consolidant mes connaissances en <strong>structure de données, programmation, algorithmique </strong> avec une formation approfondie sur <strong>le réseaux , les bases de données et l'infrastructure</strong>",

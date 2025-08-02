@@ -2,7 +2,7 @@
 beginDate: "08/01/2022"
 endDate: "11/01/2022"
 name: KMEX
-image: { src: ../../assets/icons/kmex.png, alt: KMEX logo }
+image: { src: "@/assets/icons/kmex.png", alt: KMEX logo }
 role:
   fr: "Développeur C#"
   en: "C# Developer"

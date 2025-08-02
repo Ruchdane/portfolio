@@ -1,5 +1,5 @@
 ---
-# logo: "../../assets/icons/zender.svg"
+# logo: "@/assets/icons/zender.svg"
 title:
   fr: Logiciel d'échange de fichiers sur un réseau local
   en: File sharing software on a local network
@@ -11,7 +11,7 @@ description:
 thumbs:
   [
     {
-      src: ../../assets/images/zender/placeholder.svg,
+      src: "@/assets/images/zender/placeholder.svg",
       alt: "",
       width: 300,
       height: 600,

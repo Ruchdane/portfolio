@@ -19,7 +19,6 @@ export default defineConfig({
     resolve: {
       alias: {
         "~": path.resolve("./src/styles"),
-        "#": path.resolve("./src/assets"),
       },
     },
   },
