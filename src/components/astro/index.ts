@@ -3,6 +3,7 @@ export * from "./IconLinks";
 export * from "./Carousel";
 
 export { default as ColumnLayout } from "./ColumnLayout.astro";
+export { default as CheckBoxBadge } from "./CheckBoxBadge.astro";
 export { default as LocaleCheck } from "./LocaleCheck.astro";
 export { default as LanguageSelector } from "./LanguageSelector.astro";
 export { default as BaseHead } from "./BaseHead.astro";

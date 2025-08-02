@@ -5,32 +5,54 @@ import { SITE_URL } from "@/consts";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { generatePersonSchema, generateProjectListSchema, getMe, type Education, type Experience, type Technologie, } from "@/schema";
+import {
+  generatePersonSchema,
+  generateProjectListSchema,
+  getMe,
+  type Education,
+  type Experience,
+  type Technologie,
+} from "@/schema";
 import { BasePage } from "@/layouts";
 import { SquareArrowOutUpRight } from "lucide-astro";
-import { ProjectCard, TechnologieBadge, SocialLinks, AnchorTabs, TabTrigger, TabContent, HistoryElement, } from "@/components";
+import {
+  ProjectCard,
+  TechnologieBadge,
+  SocialLinks,
+  AnchorTabs,
+  TabTrigger,
+  TabContent,
+  HistoryElement,
+} from "@/components/astro";
 
 changeLanguage("fr");
 
 const home = (path: string) => t(`page.home.${path}`);
 const section = (path: string) => home(`section.${path}`);
-const featuredProject = (await getCollection("project")).filter(({ data: project }) => project.isFeatured);
-const orderByBeginDate = (a: {
+const featuredProject = (await getCollection("project")).filter(
+  ({ data: project }) => project.isFeatured
+);
+const orderByBeginDate = (
+  a: {
     data: Education | Experience;
-}, b: {
+  },
+  b: {
     data: Education | Experience;
-}): number => b.data.beginDate.getTime() - a.data.beginDate.getTime();
-const experienceList = (await getCollection("experience")).sort(orderByBeginDate);
+  }
+): number => b.data.beginDate.getTime() - a.data.beginDate.getTime();
+const experienceList = (await getCollection("experience")).sort(
+  orderByBeginDate
+);
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
 const designStack: Technologie[] = ["figma", "penpot", "miro"];
 const managementStack: Technologie[] = ["notion", "azure_devops", "github"];
 const webStack: Technologie[] = [
-    "aspnet",
-    "astro",
-    "next",
-    "tailwindcss",
-    "postgresql",
+  "aspnet",
+  "astro",
+  "next",
+  "tailwindcss",
+  "postgresql",
 ];
 const mobileStack: Technologie[] = ["flutter", "firebase"];
 const desktopStack: Technologie[] = ["winform", "tauri"];
