@@ -28,6 +28,7 @@
     "i18next-fs-backend": "^2.6.0",
     "i18next-http-backend": "^3.0.2",
     "lucide-astro": "^0.461.0",
+    "lucide-preact": "^0.536.0",
     "preact": "^10.27.0",
     "purgecss": "^7.0.2",
     "sass": "^1.81.0",

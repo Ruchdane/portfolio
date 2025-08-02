@@ -1,5 +1,10 @@
 ---
-import { SITE_LOGO, NAVIGATION_LINKS } from "@/consts";
+import {
+  SITE_LOGO,
+  NAVIGATION_LINKS,
+  LANGUAGE_MAPPING,
+  type Language,
+} from "@/consts";
 import { Image } from "astro:assets";
 import HeaderLink from "./HeaderLink.astro";
 import Sidebar from "./Sidebar.astro";
@@ -7,6 +12,17 @@ import MorphingBurger from "./MorphingBurger.astro";
 
 // @ts-ignore
 import { localizePath } from "astro-i18next";
+import { LanguageSelector } from "@/components/preact/LanguageSelector";
+import i18next, { t } from "i18next";
+
+const localisedLanguage = {} as Record<Language, string>;
+const localisedPathname = {} as Record<Language, string>;
+
+Object.keys(LANGUAGE_MAPPING).forEach((element) => {
+  const lang = element as Language;
+  localisedLanguage[lang] = t(`languages.${lang}`);
+  localisedPathname[lang] = localizePath(Astro.url.pathname, lang);
+});
 ---
 
 <header transition:name="main-header">
@@ -38,6 +54,13 @@ import { localizePath } from "astro-i18next";
           ))
         }
       </div>
+      <LanguageSelector
+        localisedPathname={localisedPathname}
+        languages={LANGUAGE_MAPPING}
+        localisedLanguages={localisedLanguage}
+        selectedLanguage={i18next.language as Language}
+        client:load
+      />
       <button
         class="icon-button"
         id="burger-trigger"
