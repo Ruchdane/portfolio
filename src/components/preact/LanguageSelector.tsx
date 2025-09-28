@@ -36,13 +36,15 @@ export function LanguageSelector<T extends string>({
   return (
     <div className="relative">
       <button
-        className="icon-button"
+        className="icon-button inline-flex items-center gap-2"
         onClick={togglePopover}
         role="combobox"
+        aria-label="Language"
         aria-haspopup="listbox"
         aria-expanded={popover}
       >
         <Languages width={24} />
+        {selectedLanguage.toUpperCase()}
       </button>
       <ul
         id="selector-options"

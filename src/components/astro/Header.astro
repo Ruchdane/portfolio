@@ -43,6 +43,13 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
       <span> Ruchdane </span>
     </a>
     <div class="flex">
+      <LanguageSelector
+        localisedPathname={localisedPathname}
+        languages={LANGUAGE_MAPPING}
+        localisedLanguages={localisedLanguage}
+        selectedLanguage={i18next.language as Language}
+        client:load
+      />
       <div class="navigation-links">
         {
           NAVIGATION_LINKS.map(({ link, title }) => (
@@ -54,13 +61,6 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
           ))
         }
       </div>
-      <LanguageSelector
-        localisedPathname={localisedPathname}
-        languages={LANGUAGE_MAPPING}
-        localisedLanguages={localisedLanguage}
-        selectedLanguage={i18next.language as Language}
-        client:load
-      />
       <button
         class="icon-button"
         id="burger-trigger"
