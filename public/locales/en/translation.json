@@ -45,7 +45,7 @@
   "page": {
     "home": {
       "title": "AMADOU Ruchdane - Developer & Designer",
-      "description": "Product Designer with a unique technical background. I turn user insights into digital solutions thanks to my dual skillset in design and development.",
+      "description": "Product Designer with a technical background. I turn user insights into digital solutions thanks to my dual skillset in design and development.",
       "greeting": "Hi, I'm AMADOU Ruchdane",
       "role": "Developer & Designer",
       "value_proposition": "crafting digital experiences where tech meets people.",
@@ -58,7 +58,7 @@
         },
         "stacks": {
           "title": "Technologies",
-          "description": "My favorite tools and technologies",
+          "description": "My tech stack",
           "design": "Design",
           "management": "Management",
           "web": "Web",
@@ -73,7 +73,7 @@
     },
     "project": {
       "title": "My Projects",
-      "description": "Browse projects I’ve contributed to, from web (Next.js) to mobile (Flutter), and even CLI tools in Rust."
+      "description": "Browse projects and case study I’ve worked on."
     },
     "about": {
       "title": "About AMADOU Ruchdane",

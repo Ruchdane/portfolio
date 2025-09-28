@@ -92,13 +92,39 @@
 @font-face {
   font-family: JetBrainsMono;
   font-display: swap;
-  src: url("/fonts/JetBrainsMono.ttf") format("truetype");
+  src: url("/fonts/JetBrainsMono.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: Figtree;
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
-  src: url("/fonts/Figtree.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 html {
@@ -108,7 +134,7 @@ html {
 }
 
 body {
-  font-family: "Figtree", sans-serif;
+  font-family: "Liberation Sans", sans-serif;
   margin: 0;
   padding: 0;
   display: flex;

@@ -10,14 +10,14 @@
     "platform": "Pẹpẹ",
     "programming_languages": "Èdá ìṣàkóso",
     "programming_framework": "Ilana iṣẹ́",
-    "i_am": "Emi ni",
+    "i_am": "Oruko mi ni",
     "i_am_in": "Mo wa ni",
-    "find_me_on": "O le rii mi lori"
+    "find_me_on": "E le rii mi lori"
   },
   "navigation": {
     "home": "Ilé",
-    "projects": "Àwọn iṣẹ́",
-    "contact": "Pe wa",
+    "projects": "Iṣẹ́",
+    "contact": "Pe mi",
     "about": "Nípa mi"
   },
   "component": {
@@ -28,9 +28,9 @@
         "message": "Ìfiranṣẹ́",
         "cta": "Firanṣẹ́",
         "state": {
-          "loading": "📨 Ìfiranṣẹ́ ń lọ...",
-          "success": "✅ Ìfiranṣẹ́ ránṣẹ́",
-          "error": "❌ Àṣìṣe ìfiranṣẹ́"
+          "loading": "O tin lo ń lọ...",
+          "success": "O ti wa",
+          "error": "Ao ri gba"
         }
       },
       "copyright": "AMADOU Ruchdane. Gbogbo ẹ̀tọ́ dákẹ́."

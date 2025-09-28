@@ -23,15 +23,22 @@ const { title, description, image = defaultImage } = Astro.props;
 
 <!-- Font preloads -->
 <link
-  rel="preload"
-  href="/fonts/Figtree.ttf"
-  as="font"
-  type="font/ttf"
-  crossorigin
+   rel="preload"
+   href="/fonts/LiberationSans-Regular.woff2"
+   as="font"
+   type="font/woff2"
+   crossorigin
+/>
+<link
+   rel="preload"
+   href="/fonts/LiberationSans-Bold.woff2"
+   as="font"
+   type="font/woff2"
+   crossorigin
 />
 <link
   rel="preload"
-  href="/fonts/JetBrainsMono.ttf"
+  href="/fonts/JetBrainsMono.woff2"
   as="font"
   type="font/ttf"
   crossorigin
