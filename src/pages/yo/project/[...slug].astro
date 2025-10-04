@@ -12,30 +12,16 @@ changeLanguage("yo");
 
 const language = (i18n.language ?? "fr") as Language;
 export async function getStaticPaths() {
-  const project = await getCollection("project");
-  return project.map((project) => ({
-    params: { slug: project.id },
-    props: { ...project },
-  }));
+    const project = await getCollection("project");
+    return project.map((project) => ({
+        params: { slug: project.id },
+        props: { ...project },
+    }));
 }
 const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
-const {
-  logo,
-  title,
-  description,
-  thumbs,
-  showcases,
-  websiteUrl,
-  downloadUrl,
-  sourceUrl,
-  technologies,
-} = projectEntry.data;
-const collaborators = await Promise.all(
-  projectEntry.data.collaborators.map(
-    async (entry) => (await getEntry("people", entry.id))?.data
-  )
-);
+const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
+const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
 const { Content } = await render(projectEntry);
 ---
 

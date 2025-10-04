@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components"
 import { Technologie } from "@/schema";
 import { TECHNOLOGIE_MAP } from "@/consts.ts";
 interface Props {
@@ -16,7 +17,7 @@ const { name, icon } = technologie;
   data-technology={name.toLowerCase()}
   href={`/project?filter=${name}`}
 >
-  <i class={`devicon-${icon}`}></i>
+  <Icon name={icon}/>
   <span>{name}</span>
 </a>
 

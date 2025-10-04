@@ -1,28 +1,20 @@
 ---
 import { t, changeLanguage } from "i18next";
-import {
-  TECHNOLOGY_CATEGORIES,
-  PLATFORME_MAP,
-  TECHNOLOGIE_MAP,
-  SITE_URL,
-} from "@/consts";
+import { TECHNOLOGY_CATEGORIES, PLATFORME_MAP, TECHNOLOGIE_MAP, SITE_URL, } from "@/consts";
 import { ProjectCard, CheckBoxBadge } from "@/components/astro";
 import { BasePage } from "@/layouts";
 import { getCollection } from "astro:content";
 import { ArrowLeftFromLine, SlidersHorizontal } from "lucide-astro";
 import DevProductivity from "@/assets/images/dev-productivity.svg";
-import {
-  generatePersonSchema,
-  generateProjectListSchema,
-  getMe,
-} from "@/schema";
+import { generatePersonSchema, generateProjectListSchema, getMe, } from "@/schema";
 
 changeLanguage("fr");
 
 const p = (path: string) => t(`page.project.${path}`);
 const project = await getCollection("project");
 const me = await getMe();
-if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
+if (me === undefined)
+    throw new Error("Entry for `ruchdane` must be defined");
 ---
 
 <BasePage

@@ -54,25 +54,27 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     },
   }}
 >
-  <section class="banner">
-    <div class="banner-image">
-      <Image src={banner_picture} loading="eager" alt={t("image.ruchdane")} />
-    </div>
-    <div class="banner-content">
-      <div class="banner-text">
-        <h1>
-          {home("greeting")}
-          <strong> {home("role")} </strong>
-        </h1>
-        <p>{home("value_proposition")}</p>
-        <a href="#email" class="button primary">{home("cta")}</a>
-        <div class="banner-links">
-          <SocialLinks {...me.socials} />
+  <div class="banner-wrapper">
+    <section class="banner wrapper-xl">
+      <div class="banner-image">
+        <Image src={banner_picture} loading="eager" alt={t("image.ruchdane")} />
+      </div>
+      <div class="banner-content">
+        <div class="banner-text">
+          <h1>
+            {home("greeting")}
+            <strong> {home("role")} </strong>
+          </h1>
+          <p>{home("value_proposition")}</p>
+          <a href="#email" class="button primary">{home("cta")}</a>
+          <div class="banner-links">
+            <SocialLinks {...me.socials} />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="wrapper project" itemprop="hasPart">
+    </section>
+  </div>
+  <section class="wrapper-xl project" itemprop="hasPart">
     <div>
       <h2 transition:name="project-section-title">
         <span> {section("projects.title")}</span>
@@ -169,9 +171,11 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
   }
   .banner {
     font-family: "JetBrainsMono", monospace;
-    background-color: var(--primary-200);
     font-weight: 800;
     font-size: var(--font-h5);
+    &-wrapper{
+      background-color: var(--primary-200);
+    }
     @include breakpoint(desktop) {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -180,11 +184,6 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
       padding: 6rem;
     }
 
-    &-content {
-      @include breakpoint(desktop) {
-        max-width: 500%;
-      }
-    }
     &-image {
       margin-inline: auto;
       width: fit-content;

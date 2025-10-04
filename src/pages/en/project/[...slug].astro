@@ -12,30 +12,16 @@ changeLanguage("en");
 
 const language = (i18n.language ?? "fr") as Language;
 export async function getStaticPaths() {
-  const project = await getCollection("project");
-  return project.map((project) => ({
-    params: { slug: project.id },
-    props: { ...project },
-  }));
+    const project = await getCollection("project");
+    return project.map((project) => ({
+        params: { slug: project.id },
+        props: { ...project },
+    }));
 }
 const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
-const {
-  logo,
-  title,
-  description,
-  thumbs,
-  showcases,
-  websiteUrl,
-  downloadUrl,
-  sourceUrl,
-  technologies,
-} = projectEntry.data;
-const collaborators = await Promise.all(
-  projectEntry.data.collaborators.map(
-    async (entry) => (await getEntry("people", entry.id))?.data
-  )
-);
+const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
+const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
 const { Content } = await render(projectEntry);
 ---
 
@@ -128,6 +114,7 @@ const { Content } = await render(projectEntry);
   }
   .project {
     &-hero {
+      font-family: "JetBrainsMono", monospace;
       background-color: var(--primary-200);
       padding: 2rem;
       @include breakpoint(desktop) {
@@ -149,7 +136,6 @@ const { Content } = await render(projectEntry);
     @include breakpoint(desktop) {
       &-header {
         display: flex;
-        font-weight: 700;
         margin-bottom: 1rem;
         justify-content: space-between;
         align-items: center;

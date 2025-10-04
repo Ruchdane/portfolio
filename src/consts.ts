@@ -61,175 +61,175 @@ export const TECHNOLOGIE_MAP: Record<
 > = {
   next: {
     name: "NextJS",
-    icon: "nextjs-plain",
+    icon: "devicon:nextjs",
   },
   rust: {
     name: "rust",
-    icon: "rust-original",
+    icon: "devicon:rust",
   },
   dart: {
     name: "dart",
-    icon: "dart-plain colored",
+    icon: "devicon:dart",
   },
   typescript: {
     name: "typescript",
-    icon: "typescript-plain colored",
+    icon: "devicon:typescript",
   },
   javascript: {
     name: "javascript",
-    icon: "javascript-plain colored",
+    icon: "devicon:javascript",
   },
   c: {
     name: "c",
-    icon: "c-plain",
+    icon: "devicon:c",
   },
   c_sharp: {
     name: "C#",
-    icon: "csharp-plain",
+    icon: "devicon:csharp",
   },
   php: {
     name: "PHP",
-    icon: "php-plain colored",
+    icon: "devicon:php",
   },
   html: {
     name: "HTML",
-    icon: "html-plain colored",
+    icon: "devicon:html",
   },
   css: {
     name: "CSS",
-    icon: "css-plain colored",
+    icon: "devicon:css",
   },
   sass: {
     name: "SASS",
-    icon: "sass-plain colored",
+    icon: "devicon:sass",
   },
   react: {
     name: "react",
-    icon: "react-plain colored",
+    icon: "devicon:react",
   },
   mithril: {
     name: "mithril",
-    icon: "mithril-original",
+    icon: "devicon:mithril",
   },
   tauri: {
     name: "tauri",
-    icon: "tauri-plain colored",
+    icon: "devicon:tauri",
   },
   flutter: {
     name: "flutter",
-    icon: "flutter-plain colored",
+    icon: "devicon:flutter",
   },
   astro: {
     name: "astro",
-    icon: "astro-plain colored",
+    icon: "devicon:astro",
   },
   postgresql: {
     name: "postgresql",
-    icon: "postgresql-plain colored",
+    icon: "devicon:postgresql",
   },
   mysql: {
     name: "mysql",
-    icon: "mysql-plain",
+    icon: "devicon:mysql",
   },
   firebase: {
     name: "firebase",
-    icon: "firebase-plain colored",
+    icon: "devicon:firebase",
   },
   supabase: {
     name: "supabase",
-    icon: "supabase-plain colored",
+    icon: "devicon:supabase",
   },
   vercel: {
     name: "vercel",
-    icon: "vercel-plain colored",
+    icon: "devicon:vercel",
   },
   netlify: {
     name: "netlify",
-    icon: "netlify-plain colored",
+    icon: "devicon:netlify",
   },
   aws: {
     name: "aws",
-    icon: "aws-plain colored",
+    icon: "devicon:aws",
   },
   google_cloud: {
     name: "google_cloud",
-    icon: "google_cloud-plain colored",
+    icon: "devicon:google_cloud",
   },
   digital_ocean: {
     name: "digital_ocean",
-    icon: "digital_ocean-plain colored",
+    icon: "devicon:digital_ocean",
   },
   cloudflare: {
     name: "cloudflare",
-    icon: "cloudflare-plain colored",
+    icon: "devicon:cloudflare",
   },
   heroku: {
     name: "heroku",
-    icon: "heroku-plain colored",
+    icon: "devicon:heroku",
   },
   github: {
     name: "github",
-    icon: "github-original",
+    icon: "simple-icons:github",
   },
   gitlab: {
     name: "gitlab",
-    icon: "gitlab-plain colored",
+    icon: "devicon:gitlab",
   },
   azure_devops: {
     name: "azure devops",
-    icon: "azuredevops-plain colored",
+    icon: "devicon:azuredevops",
   },
   trello: {
     name: "trello",
-    icon: "trello-plain colored",
+    icon: "devicon:trello",
   },
   tailwindcss: {
     name: "tailwindcss",
-    icon: "tailwindcss-plain colored",
+    icon: "devicon:tailwindcss",
   },
   prisma: {
     name: "prisma",
-    icon: "prisma-original",
+    icon: "simple-icons:prisma",
   },
   aspnet: {
     name: "ASP.NET",
-    icon: "aspnet",
+    icon: "simple-icons:dotnet",
   },
   winform: {
     name: "winform",
-    icon: "winform",
+    icon: "simple-icons:formspree",
   },
   figma: {
     name: "figma",
-    icon: "figma-plain",
+    icon: "devicon:figma",
   },
   penpot: {
     name: "penpot",
-    icon: "penpot-plain",
+    icon: "simple-icons:penpot",
   },
   storybook: {
     name: "storybook",
-    icon: "storybook-plain colored",
+    icon: "devicon:storybook",
   },
   cypress: {
     name: "cypress",
-    icon: "cypressio-plain",
+    icon: "vscode-icons:file-type-light-cypress",
   },
   canva: {
     name: "canva",
-    icon: "canva-plain",
+    icon: "simple-icons:canva",
   },
   posthog: {
     name: "posthog",
-    icon: "posthog-plain",
+    icon: "devicon:posthog",
   },
   notion: {
     name: "notion",
-    icon: "notion-plain colored",
+    icon: "devicon:notion",
   },
   miro: {
     name: "miro",
-    icon: "miro",
+    icon: "logos:miro-icon",
   },
 };
 

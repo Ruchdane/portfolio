@@ -65,7 +65,7 @@ export function LanguageSelector<T extends string>({
               href={localisedPathname[language as T]}
             >
               <div className="text-left">
-                <span className="block font-semibold text-lg">
+                <span className="block font-semibold text-accent-700 text-lg">
                   {languages[language as T]}
                 </span>
                 <span className="block font-light text-sm text-gray-600">

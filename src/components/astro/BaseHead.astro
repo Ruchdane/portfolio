@@ -1,7 +1,7 @@
 ---
 import "~/tailwind.css";
 import "~/global.scss";
-import "@/assets/style/devicon.min.css";
+import { ClientRouter } from "astro:transitions";
 import "~/markdown.scss";
 import defaultImage from "@/assets/images/banner_picture.jpg";
 interface Props {
@@ -70,3 +70,5 @@ const { title, description, image = defaultImage } = Astro.props;
   content="_iERf55q3i9y9QhHitfItjbSDinpXDZ9P8nTaGD4uEY"
 />
 <link rel="sitemap" href="/sitemap-index.xml" />
+
+<ClientRouter />
