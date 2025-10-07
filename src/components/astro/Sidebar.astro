@@ -20,45 +20,43 @@ import HeaderLink from "./HeaderLink.astro";
 <style lang="scss">
   @use "~/media-query" as *;
   nav {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
     background-color: var(--neutral-100);
     position: absolute;
-    top: var(--navbar-height);
-    z-index: var(--z-index-sidebar-backdrop);
-    right: -100vh;
-    height: calc(-6rem + 100vh);
-    width: 45vw;
+    z-index: var(--z-index-sidebar);
+    top: -10rem;
+    width: 100vw;
 
-    transition: all 0.3s ease-in-out;
+    transition: top 0.3s ease-in-out;
     @include breakpoint(tablet) {
       display: none !important;
     }
 
-    &.show {
+    .links {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      right: 0;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: 1.25rem;
+    }
+    .backdrop {
+      transition: bottom 0.1s ease-in-out;
+    }
 
-      & .links {
-        display: flex;
-        flex-direction: column;
-      }
+    &.show {
+      top: var(--navbar-height);
 
       & + .backdrop {
-        display: block;
         position: fixed;
         background-color: var(--neutral-700);
         opacity: 70%;
         inset: var(--navbar-height) 0 0 0;
         content: "";
-        z-index: -1;
+        z-index: var(--z-index-sidebar-backdrop);
       }
     }
-  }
-  .backdrop {
-    top: var(--navbar-height);
-    display: none;
   }
 </style>

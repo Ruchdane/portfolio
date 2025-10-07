@@ -60,8 +60,11 @@
   --font-caption: 0.889em;
   --font-tiny: 0.79em;
 
-  --z-index-header: 2;
-  --z-index-sidebar: 2;
+  --z-index-header: 4;
+
+  --z-index-sidebar: 3;
+
+  --z-index-sidebar-backdrop: 2;
 
   --z-index-project-actions: 1;
   --z-index-project-filter: 1;
