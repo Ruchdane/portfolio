@@ -132,10 +132,12 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
   const sidebar = document.getElementById("sidebar");
   const backdrop = document.getElementById("sidebar-backdrop");
   const trigger = document.getElementById("burger-trigger");
+  const links = sidebar?.querySelectorAll("a") ?? [];
   const toggleSidebarVisibility = () => {
     sidebar?.classList.toggle("show");
     trigger?.firstElementChild?.classList.toggle("cross");
   };
   trigger?.addEventListener("click", toggleSidebarVisibility);
   backdrop?.addEventListener("click", toggleSidebarVisibility);
+  links.forEach(link => link.addEventListener("click", toggleSidebarVisibility));
 </script>
