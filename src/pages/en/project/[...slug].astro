@@ -31,15 +31,15 @@ const { Content } = await render(projectEntry);
   jsonLd={generateProjectSchema(slug, projectEntry.data)}
   image={thumbs[0]?.src}
 >
-  <div class="project-hero">
-    <div class="project-header">
+  <div class="project-hero" transition:name={`project-hero-${slug}`}>
+    <div class="project-header" transition:name={`project-${slug}-name`}>
       <span class="project-logo">
         {logo !== undefined ? <Image src={logo} alt={slug[0]} /> : slug[0]}
         <span> {slug} </span>
       </span>
     </div>
     <div class="project-meta">
-      <div class="project-actions">
+      <div class="project-actions" transition:name={`project-${slug}-actions`}>
         {
           websiteUrl && (
             <a
@@ -78,6 +78,7 @@ const { Content } = await render(projectEntry);
       </div>
       <Carousel
         class="project-cover"
+        transition:name={`project-${slug}-thumbnails`}
         images={showcases ?? thumbs}
         imagesLayout="full-width"
       />
@@ -95,8 +96,8 @@ const { Content } = await render(projectEntry);
             )
           }
         </ul>
-        <p>{description[language]}</p>
-        <div class="project-technologies">
+        <p transition:name={`project-${slug}-description`}>{description[language]}</p>
+        <div class="project-technologies" transition:name={`project-${slug}-technologies`}>
           {technologies.map((tech) => <TechnologieBadge name={tech} />)}
         </div>
       </div>

@@ -2,7 +2,7 @@
 import i18next from "i18next";
 import { BaseHead, Header, Footer } from "@/components/astro";
 import { SEOSchema } from "@/schema/seo";
-import { slide } from "astro:transitions";
+import { fade } from "astro:transitions";
 import type { WithContext, Thing } from "schema-dts";
 
 interface Props<T extends Thing> {
@@ -55,7 +55,7 @@ if (import.meta.env.DEV && !result.success) {
   </head>
   <body>
     <Header />
-    <main transition:animate={slide()} class={className} {...rest}>
+    <main transition:animate={fade()} class={className} {...rest}>
       <slot />
     </main>
     <Footer />

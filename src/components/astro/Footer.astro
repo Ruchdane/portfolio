@@ -134,35 +134,37 @@ const mySocials = (await getMe()).socials;
   }
 </style>
 <script>
-  function handleSubmit(event: SubmitEvent) {
-    event.preventDefault();
-    const myForm = event.target as HTMLFormElement;
-    const submitButton = myForm?.querySelector("button");
-    if (myForm === null || submitButton === undefined || submitButton === null)
-      return;
-    const formData = new FormData(myForm);
-    submitButton.dataset.state = "loading";
-    submitButton.disabled = true;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      // @ts-expect-error this is form netlify docs ?
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then((response) => {
-        if (!response.ok) throw Error();
-        submitButton.disabled = false;
-        submitButton.dataset.state = "success";
-        setTimeout(() => (submitButton.dataset.state = "normal"), 3 * 1000);
+  document.addEventListener("astro:page-load", () => {
+    function handleSubmit(event: SubmitEvent) {
+      event.preventDefault();
+      const myForm = event.target as HTMLFormElement;
+      const submitButton = myForm?.querySelector("button");
+      if (myForm === null || submitButton === undefined || submitButton === null)
+        return;
+      const formData = new FormData(myForm);
+      submitButton.dataset.state = "loading";
+      submitButton.disabled = true;
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        // @ts-expect-error this is form netlify docs ?
+        body: new URLSearchParams(formData).toString(),
       })
-      .catch(() => {
-        submitButton.disabled = false;
-        submitButton.dataset.state = "error";
-        setTimeout(() => (submitButton.dataset.state = "normal"), 3 * 1000);
-      });
-  }
+        .then((response) => {
+          if (!response.ok) throw Error();
+          submitButton.disabled = false;
+          submitButton.dataset.state = "success";
+          setTimeout(() => (submitButton.dataset.state = "normal"), 3 * 1000);
+        })
+        .catch(() => {
+          submitButton.disabled = false;
+          submitButton.dataset.state = "error";
+          setTimeout(() => (submitButton.dataset.state = "normal"), 3 * 1000);
+        });
+    }
 
-  document
-    .getElementById("contact-form")
-    ?.addEventListener("submit", handleSubmit);
+    document
+      .getElementById("contact-form")
+      ?.addEventListener("submit", handleSubmit);
+    })
 </script>

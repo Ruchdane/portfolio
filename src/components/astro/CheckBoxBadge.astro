@@ -78,15 +78,17 @@
   }
 </style>
 <script>
-  document.querySelectorAll("[data-checkbox-badge]").forEach((badge) => {
-    const checkbox = badge.querySelector(
-      'input[type="checkbox"]'
-    ) as HTMLInputElement | null;
-    if (!checkbox) return;
-    badge.addEventListener(
-      "click",
-      () => (checkbox.checked = !checkbox.checked)
-    );
-    checkbox.addEventListener("click", (e) => e.stopPropagation());
-  });
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("[data-checkbox-badge]").forEach((badge) => {
+      const checkbox = badge.querySelector(
+        'input[type="checkbox"]'
+      ) as HTMLInputElement | null;
+      if (!checkbox) return;
+      badge.addEventListener(
+        "click",
+        () => (checkbox.checked = !checkbox.checked)
+      );
+      checkbox.addEventListener("click", (e) => e.stopPropagation());
+    });
+  })
 </script>

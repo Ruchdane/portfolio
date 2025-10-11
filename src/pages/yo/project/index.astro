@@ -147,18 +147,16 @@ if (me === undefined)
         justify-content: space-between;
       }
 
-      &-container {
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        width: 100%;
-        gap: 32px;
-
-        @include breakpoint(tablet) {
-          display: grid;
-          align-content: baseline;
-        }
+    &-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 32px;
+      @include breakpoint(tablet) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
       }
+    }
 
       #projectEmptyState {
         display: flex;
@@ -250,23 +248,25 @@ if (me === undefined)
     history.replaceState(null, "", newUrl);
   }
 
-  const projects = document.querySelectorAll(
-    "#projectContainer>article"
-  ) as NodeListOf<HTMLElement>;
-  const badges = document.querySelectorAll(
-    "[data-checkbox-badge]"
-  ) as NodeListOf<HTMLElement>;
-  const searchParams = new URLSearchParams(window.location.search);
-  const selected = searchParams.get("filter")?.split(",") ?? [];
-  badges.forEach((badge) => {
-    const checkbox = badge.querySelector(
-      "input[type='checkbox']"
-    ) as HTMLInputElement | null;
-    if (checkbox !== null)
-      checkbox.checked = selected.includes(badge.innerText);
-    badge.addEventListener("click", () => updateProjectList(projects));
-  });
-  updateProjectList(projects);
+  document.addEventListener("astro:page-load", () => {
+    const projects = document.querySelectorAll(
+      "#projectContainer>article"
+    ) as NodeListOf<HTMLElement>;
+    const badges = document.querySelectorAll(
+      "[data-checkbox-badge]"
+    ) as NodeListOf<HTMLElement>;
+    const searchParams = new URLSearchParams(window.location.search);
+    const selected = searchParams.get("filter")?.split(",") ?? [];
+    badges.forEach((badge) => {
+      const checkbox = badge.querySelector(
+        "input[type='checkbox']"
+      ) as HTMLInputElement | null;
+      if (checkbox !== null)
+        checkbox.checked = selected.includes(badge.innerText);
+      badge.addEventListener("click", () => updateProjectList(projects));
+    });
+    updateProjectList(projects);
 
-  setupFilterToggle();
+    setupFilterToggle();
+  })
 </script>
