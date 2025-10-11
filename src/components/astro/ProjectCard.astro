@@ -38,12 +38,44 @@ const technologies = rawTechnologies.sort(
 const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
   rawPlatformes.some((value) => items.includes(value))
 );
+const actions = [
+  {
+    id: "download",
+    href: downloadUrl,
+    label: p("download"),
+    icon: Download,
+    class: "button primary",
+    rel: null,
+  },
+  {
+    id: "website",
+    href: websiteUrl,
+    label: p("checkout"),
+    icon: Globe,
+    class: "button secondary",
+    rel: "noopener",
+  },
+  {
+    id: "source",
+    href: sourceUrl,
+    label: p("view_source"),
+    icon: Code,
+    class: "button secondary",
+    rel: "noopener",
+  },
+]
+  .filter((action) => !!action.href)
+  .slice(0, 2);
 ---
 
 <article class="project-card" transition:name={`project-card-${id}`}>
   <div class="project-container">
     <div class="project-thumbnails">
-      <Carousel limit={3} images={thumbs} />
+      <Carousel
+        limit={3}
+        images={thumbs}
+        transition:name={`project-${id}-thumbnails`}
+      />
     </div>
     <div class="project-content">
       <h1>
@@ -53,7 +85,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
           title={p("read_more")}
           aria-label={p("read_more")}
         >
-          <div class="project-name">
+          <div class="project-name" transition:name={`project-${id}-name`}>
             {
               logo === undefined ? (
                 id[0]
@@ -73,45 +105,26 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
           ))
         }
       </div>
-      <p class="project-description">{description}</p>
-      <div class="project-technologies">
+      <p
+        class="project-description"
+        transition:name={`project-${id}-description`}
+      >
+        {description}
+      </p>
+      <div
+        class="project-technologies"
+        transition:name={`project-${id}-technologies`}
+      >
         {technologies.map((tech) => <TechnologieBadge name={tech} />)}
       </div>
-      <div class="project-actions">
+      <div class="project-actions" transition:name={`project-${id}-actions`}>
         {
-          websiteUrl && (
-            <a
-              href={websiteUrl}
-              target="_blank"
-              rel="noopener"
-              class="button secondary"
-            >
-              <Globe />
-              <span> {p("checkout")} </span>
+          actions.map(({ icon: IconComponent, label, ...props }) => (
+            <a target="_blank" {...props}>
+              <IconComponent />
+              <span> {label} </span>
             </a>
-          )
-        }
-        {
-          downloadUrl && (
-            <a href={downloadUrl} target="_blank" class="button primary">
-              <Download />
-              <span> {p("download")} </span>
-            </a>
-          )
-        }
-        {
-          sourceUrl && (
-            <a
-              href={sourceUrl}
-              target="_blank"
-              target="_blank"
-              rel="noopener"
-              class="button secondary"
-            >
-              <Code />
-              <span> {p("view_source")} </span>
-            </a>
-          )
+          ))
         }
       </div>
     </div>
@@ -123,6 +136,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
   .project {
     &-container {
       display: flex;
+      height: 100%;
       flex-direction: column;
       @container (min-width: 900px) {
         display: grid;
@@ -151,6 +165,7 @@ const platformes = Object.values(PLATFORME_MAP).filter(({ items }) =>
 
     &-content {
       display: flex;
+      height: 100%;
       flex-direction: column;
       @include breakpoint(desktop) {
         width: 100%;
