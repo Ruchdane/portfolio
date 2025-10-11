@@ -83,7 +83,7 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
   header {
     position: fixed;
     z-index: var(--z-index-header);
-    width: 100vw;
+    width: 100%;
     margin: 0;
     background: var(--neutral-100);
     box-shadow:
@@ -129,15 +129,35 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
   }
 </style>
 <script>
-  const sidebar = document.getElementById("sidebar");
-  const backdrop = document.getElementById("sidebar-backdrop");
-  const trigger = document.getElementById("burger-trigger");
-  const links = sidebar?.querySelectorAll("a") ?? [];
-  const toggleSidebarVisibility = () => {
-    sidebar?.classList.toggle("show");
-    trigger?.firstElementChild?.classList.toggle("cross");
-  };
-  trigger?.addEventListener("click", toggleSidebarVisibility);
-  backdrop?.addEventListener("click", toggleSidebarVisibility);
-  links.forEach(link => link.addEventListener("click", toggleSidebarVisibility));
+  function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const trigger = document.getElementById("burger-trigger");
+  
+    if (sidebar?.classList.contains("show")) {
+      sidebar.classList.remove("show");
+      trigger?.firstElementChild?.classList.remove("cross");
+    }
+  
+    if (backdrop?.classList.contains("show")) {
+      backdrop.classList.remove("show");
+    }
+  }
+
+  function attachSidebarListeners() {
+    const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const trigger = document.getElementById("burger-trigger");
+  
+    const toggleSidebarVisibility = () => {
+      sidebar?.classList.toggle("show");
+      trigger?.firstElementChild?.classList.toggle("cross");
+    };
+  
+    trigger?.addEventListener("click", toggleSidebarVisibility);
+    backdrop?.addEventListener("click", toggleSidebarVisibility);
+    document.addEventListener("astro:before-preparation", closeSidebar);
+  }
+
+document.addEventListener("astro:page-load", attachSidebarListeners);
 </script>

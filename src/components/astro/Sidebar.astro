@@ -16,7 +16,7 @@ import HeaderLink from "./HeaderLink.astro";
     }
   </div>
 </nav>
-<div class="backdrop" id="sidebar-backdrop"></div>
+<div class="backdrop" id="sidebar-backdrop" transition:name="sidebar-backdrop"></div>
 <style lang="scss">
   @use "~/media-query" as *;
   nav {
@@ -28,7 +28,7 @@ import HeaderLink from "./HeaderLink.astro";
     position: fixed;
     z-index: var(--z-index-sidebar);
     top: -10rem;
-    width: 100vw;
+    width: 100%;
 
     transition: top 0.3s ease-in-out;
     @include breakpoint(tablet) {

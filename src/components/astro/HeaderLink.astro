@@ -2,23 +2,28 @@
 import type { HTMLAttributes } from "astro/types";
 import { t } from "i18next";
 import i18next from "i18next";
-type Props = HTMLAttributes<"a"> & { title: string };
+type Props = HTMLAttributes<"a"> & { title: string, href: string };
 
 // @ts-ignore
 import { localizePath } from "astro-i18next";
 const { href, class: className, title, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
-const localizedPath = localizePath(href, i18next.language);
+const localizedPath = href.startsWith("#") ? href : localizePath(href, i18next.language);
 const basepath = localizePath("/", i18next.language);
-const isActive =
-  localizedPath === pathname ||
-  (localizedPath !== basepath && pathname.startsWith(localizedPath));
+
+const isActive = !href.startsWith("#") && localizedPath === pathname;
+
+const isSubpathActive = !href.startsWith("#") && 
+  !isActive && 
+  localizedPath !== basepath && 
+  pathname.startsWith(localizedPath + "/");
 ---
 
 <a
-  href={localizePath(href)}
-  class:list={[className, { active: isActive }]}
+  href={localizedPath}
+  class:list={[className, { active: isActive | isSubpathActive, subpath: isSubpathActive }]}
+  aria-current={isActive ? "page" : undefined}
   {...props}
 >
   {t(title)}
@@ -48,6 +53,9 @@ const isActive =
 
     &.active {
       font-weight: bolder;
+      &:not(.subpath){
+        pointer-events: none;
+      }
       border-bottom: 2px solid var(--accent-800);
     }
   }
