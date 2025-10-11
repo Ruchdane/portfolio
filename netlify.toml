@@ -1,3 +1,8 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self';"
+
 [[redirects]]
   from = "https://ruchdane.netlify.app/*"
   to = "https://ruchdane.me/:splat"
