@@ -1,49 +1,51 @@
 <slot />
 <script>
-  const tabs = document.querySelectorAll(".tab-link");
-  if (tabs.length > 0) {
-    tabs.forEach((tabLink) =>
-      tabLink.addEventListener("click", (e) => {
-        const targetTrigger = e.target;
-        e.preventDefault();
-        if (targetTrigger instanceof HTMLElement) {
-          window.location.hash = targetTrigger.getAttribute("href") ?? "";
-          toggleContent(targetTrigger);
-        }
-      })
-    );
+  document.addEventListener("astro:page-load", () => {
+    const tabs = document.querySelectorAll(".tab-link");
+    if (tabs.length > 0) {
+      tabs.forEach((tabLink) =>
+        tabLink.addEventListener("click", (e) => {
+          const targetTrigger = e.target;
+          e.preventDefault();
+          if (targetTrigger instanceof HTMLElement) {
+            window.location.hash = targetTrigger.getAttribute("href") ?? "";
+            toggleContent(targetTrigger);
+          }
+        })
+      );
 
-    toggleTab(tabs);
-  }
-
-  function toggleTab(tabs: NodeListOf<Element>) {
-    const defaultTab = tabs[0];
-    if (!defaultTab) return false;
-    let selectTab = defaultTab;
-
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      const tabLink = document.querySelector(`[href="${hash}"]`);
-      if (tabLink) selectTab = tabLink;
+      toggleTab(tabs);
     }
 
-    return toggleContent(selectTab) || toggleContent(defaultTab);
-  }
+    function toggleTab(tabs: NodeListOf<Element>) {
+      const defaultTab = tabs[0];
+      if (!defaultTab) return false;
+      let selectTab = defaultTab;
 
-  function toggleContent(targetTrigger: Element): boolean {
-    const targetTabLink = targetTrigger.getAttribute("href");
-    const targetContent = document.querySelector(
-      `[data-tab-anchor="${targetTabLink}"]`
-    );
-    const activeTabTrigger = document.querySelector(`.tab-link.active`);
-    const activeTabContent = document.querySelector(`.tab-pane.active`);
-    if (targetContent === null) {
-      return false;
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        const tabLink = document.querySelector(`[href="${hash}"]`);
+        if (tabLink) selectTab = tabLink;
+      }
+
+      return toggleContent(selectTab) || toggleContent(defaultTab);
     }
-    activeTabTrigger?.classList.remove("active");
-    activeTabContent?.classList.remove("active");
-    targetTrigger.classList.add("active");
-    targetContent.classList.add("active");
-    return true;
-  }
+
+    function toggleContent(targetTrigger: Element): boolean {
+      const targetTabLink = targetTrigger.getAttribute("href");
+      const targetContent = document.querySelector(
+        `[data-tab-anchor="${targetTabLink}"]`
+      );
+      const activeTabTrigger = document.querySelector(`.tab-link.active`);
+      const activeTabContent = document.querySelector(`.tab-pane.active`);
+      if (targetContent === null) {
+        return false;
+      }
+      activeTabTrigger?.classList.remove("active");
+      activeTabContent?.classList.remove("active");
+      targetTrigger.classList.add("active");
+      targetContent.classList.add("active");
+      return true;
+    }
+  });
 </script>
