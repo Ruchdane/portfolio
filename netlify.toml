@@ -1,7 +1,7 @@
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "default-src 'self';"
+# [[headers]]
+#   for = "/*"
+#   [headers.values]
+#     Content-Security-Policy = "default-src 'self';"
 
 [[redirects]]
   from = "https://ruchdane.netlify.app/*"
@@ -22,3 +22,4 @@
   host = "us.i.posthog.com"
   status = 200
   force = true
+  
