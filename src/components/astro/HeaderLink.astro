@@ -22,7 +22,7 @@ const isSubpathActive = !href.startsWith("#") &&
 
 <a
   href={localizedPath}
-  class:list={[className, { active: isActive | isSubpathActive, subpath: isSubpathActive }]}
+  class:list={[className, { active: isActive || isSubpathActive, subpath: isSubpathActive }]}
   aria-current={isActive ? "page" : undefined}
   {...props}
 >
