@@ -3,8 +3,7 @@ import { Globe, Download, Code, ArrowRight } from "lucide-astro";
 import { Image } from "astro:assets";
 import { PLATFORME_MAP, type Language } from "@/consts";
 import { type Project } from "@/schema";
-import { Carousel, CarouselItem } from "@/components/preact/Carousel";
-import { TechnologieBadge } from "@/components/astro";
+import { Carousel, TechnologieBadge } from "@/components/astro";
 import i18next, { t } from "i18next";
 // @ts-ignore
 import { localizePath } from "astro-i18next";
@@ -73,22 +72,10 @@ const actions = [
   <div class="project-container">
     <div class="project-thumbnails">
       <Carousel
-        client:load
+        limit={3}
+        images={thumbs}
         transition:name={`project-${id}-thumbnails`}
-        count={thumbs.length}
-      >
-        {
-          thumbs.map((image, i) => (
-            <CarouselItem>
-              <Image
-                {...image}
-                layout="full-width"
-                loading={i === 0 ? "eager" : "lazy"}
-              />
-            </CarouselItem>
-          ))
-        }
-      </Carousel>
+      />
     </div>
     <div class="project-content">
       <h1>

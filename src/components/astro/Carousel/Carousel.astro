@@ -1,143 +1,35 @@
 ---
 import { Image } from "astro:assets";
 import type { Image as ImageType } from "@/schema";
-
-interface Props  {
+import {
+  Carousel as PreactCarousel,
+  CarouselItem,
+} from "@/components/preact/Carousel";
+interface Props {
   images: ImageType[];
   limit?: number;
   class?: string;
   imagesLayout?: "constrained" | "full-width" | "fixed" | "none";
-  isLazyLoaded? : boolean;
+  isLazyLoaded?: boolean;
 }
 
-let { images, limit, class: className, imagesLayout, isLazyLoaded, ...other } = Astro.props;
+let { images, limit, imagesLayout, isLazyLoaded } = Astro.props;
 if (limit !== undefined) {
   images = images.slice(0, limit);
 }
 ---
 
-<div class:list={["carousel", className]} data-carousel {...other}>
-  <div class="carousel-slides">
-    {
-      images.map((image, index) => {
-        const active = index === 0;
-        return (
-            <div
-            class:list={["carousel-slide", active]}>
-                 <!-- @ts-expect-error the value constrainde is clearly defined in [docs](https://docs.astro.build/en/reference/experimental-flags/responsive-images/#image-layout) -->
-                <Image {...image} layout={ imagesLayout ?? "full-width" } loading={isLazyLoaded  || !active ? "lazy" : "eager"}/>
-            </div>
-          )})
-    }
-  </div>
+<!-- How does transition name work with child component -->
+<PreactCarousel client:load count={images.length}>
   {
-    images.length > 1 ? (
-      <div class="carousel-triggers">
-        {images.map((_image, index) => (
-          <button
-            class:list={["carousel-trigger", { active: index === 0 }]}
-            aria-label={`Afficher l'image ${index + 1}`}
-            data-index={index}
-          />
-        ))}
-      </div>
-    ) : null
+    images.map((image, i) => (
+      <CarouselItem>
+        <Image
+          {...image}
+          loading={isLazyLoaded || i !== 0 ? "lazy" : "eager"}
+          layout={imagesLayout ?? "full-width"}
+        />
+      </CarouselItem>
+    ))
   }
-</div>
-
-<style lang="scss">
-  .carousel {
-    position: relative;
-    width: 100%;
-    overflow-behaviour-inline: contain;
-
-    &-slides {
-      display: flex;
-    }
-
-    &-slide {
-      min-width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.8s ease-in;
-      opacity: 0;
-      margin-block: auto;
-      img {
-        width: auto;
-      }
-      &.active {
-        opacity: 1;
-      }
-    }
-
-    &-triggers {
-      display: flex;
-      gap: 4px;
-      justify-content: center;
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-    }
-    &-trigger {
-      background-color: var(--neutral-600);
-      height: 5px;
-      width: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all ease-in-out 0.3s;
-      &.active {
-        background-color: var(--accent-600);
-        width: 40px;
-      }
-    }
-  }
-</style>
-
-<script>
-  const carouselDuration = 3000;
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
-      let currentIndex = 0;
-      let direction = 1;
-      const slides = carousel.querySelectorAll(".carousel-slide");
-      const triggers = carousel.querySelectorAll(".carousel-trigger");
-      let intervalTimer = window.setInterval(switchToNext, carouselDuration);
-      function setActiveSlide(target: unknown) {
-        if (!(target instanceof HTMLButtonElement)) return;
-        const index = parseInt(target.dataset.index ?? "0");
-
-        slides.forEach((slide) => {
-          if (!(slide instanceof HTMLElement)) return;
-          slide.classList.remove("active");
-          slide.style.transform = `translateX(${-1 * index * 100}%)`;
-        });
-        triggers.forEach((trigger) => trigger.classList.remove("active"));
-
-        slides[index]?.classList.add("active");
-        triggers[index]?.classList.add("active");
-
-        currentIndex = index;
-      }
-      triggers.forEach((trigger) =>
-        trigger.addEventListener("click", (e) => {
-          clearInterval(intervalTimer);
-          setActiveSlide(e.target);
-          intervalTimer = window.setInterval(switchToNext, carouselDuration);
-        })
-      );
-      function switchToNext() {
-        currentIndex = currentIndex + direction * 1;
-        if (currentIndex < 0 || currentIndex >= slides.length) {
-          direction *= -1;
-          currentIndex = currentIndex + direction * 2;
-        }
-        setActiveSlide(triggers[currentIndex]);
-      }
-    })
-  })  
-</script>
+</PreactCarousel>
