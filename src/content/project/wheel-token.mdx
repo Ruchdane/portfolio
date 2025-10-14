@@ -131,6 +131,27 @@ export function getContexteStats(locale){
 
 ## Design
 
+```md
+flowchart TD
+ SplashScreen[Écran de démarrage] --> Connection(Connexion)
+ SplashScreen --> Register(Création de compte)
+ Register --> Acceuil(Accueil)
+ Connection --> Acceuil(Accueil)
+ Acceuil(Accueil) --> Ressources
+ Acceuil(Accueil) --> Investissements
+ Acceuil(Accueil) --> Portfolio
+
+ Ressources --> WhitePaper(White paper)
+ Ressources --> Tutoriels
+ Ressources --> MentionLegales(Mentions Légales)
+
+ Investissements --> Investment(Investissement)
+ Investment --> ConfirmInvestment(Confirmer l'investissement)
+
+ Portfolio --> PortfolioInvestment(Investissements du Portfolio)
+  
+```
+
 Étant donné la complexité et le manque de vulgarisation de la tokenisation d'actif, nous avons opté pour un design orienté autour d'une divulgation progressive avec un ensemble de matériel qui a pour but d'aider l'utilisateur à comprendre tout ce qu'il y a autour du domaine
 
 > Onboarding flow
