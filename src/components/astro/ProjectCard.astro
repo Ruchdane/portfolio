@@ -3,13 +3,8 @@ import { Globe, Download, Code, ArrowRight } from "lucide-astro";
 import { Image } from "astro:assets";
 import { PLATFORME_MAP, type Language } from "@/consts";
 import { type Project } from "@/schema";
-import {
-  CarouselProvider,
-  CarouselTriggers,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/preact/Carousel";
-import { Carousel, TechnologieBadge } from "@/components/astro";
+import { Carousel, CarouselItem } from "@/components/preact/Carousel";
+import { TechnologieBadge } from "@/components/astro";
 import i18next, { t } from "i18next";
 // @ts-ignore
 import { localizePath } from "astro-i18next";
@@ -78,79 +73,72 @@ const actions = [
   <div class="project-container">
     <div class="project-thumbnails">
       <Carousel
-        limit={3}
-        images={thumbs}
-        transition:name={`project-${id}-thumbnails`}
-      />
-      <CarouselProvider
         client:load
         transition:name={`project-${id}-thumbnails`}
+        count={thumbs.length}
       >
-        <CarouselContent client:load>
-          {
-            thumbs.map((image, i) => (
-              <CarouselItem>
-                <Image
-                  {...image}
-                  layout="full-width"
-                  loading={i === 0 ? "eager" : "lazy"}
-                />
-              </CarouselItem>
-            ))
-          }
-          <CarouselTriggers client:load />
-        </CarouselContent>
-      </CarouselProvider>
-      <div class="project-content">
-        <h1>
-          <a
-            class="icon-button"
-            href={localizePath(`/project/${id}`)}
-            title={p("read_more")}
-            aria-label={p("read_more")}
-          >
-            <div class="project-name" transition:name={`project-${id}-name`}>
-              {
-                logo === undefined ? (
-                  id[0]
-                ) : (
-                  <Image src={logo} height="36" width="36" alt={title[0]} />
-                )
-              }
-              <span> {id?.toUpperCase()} </span>
-            </div>
-            <ArrowRight alt={p("read_more")} />
-          </a>
-        </h1>
-        <div class="project-platformes hidden">
-          {
-            platformes.map(({ name, icon: Icon }) => (
-              <Icon data-platform={name.toLowerCase()} />
-            ))
-          }
-        </div>
-        <p
-          class="project-description"
-          transition:name={`project-${id}-description`}
+        {
+          thumbs.map((image, i) => (
+            <CarouselItem>
+              <Image
+                {...image}
+                layout="full-width"
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            </CarouselItem>
+          ))
+        }
+      </Carousel>
+    </div>
+    <div class="project-content">
+      <h1>
+        <a
+          class="icon-button"
+          href={localizePath(`/project/${id}`)}
+          title={p("read_more")}
+          aria-label={p("read_more")}
         >
-          {description}
-        </p>
-        <div
-          class="project-technologies"
-          transition:name={`project-${id}-technologies`}
-        >
-          {technologies.map((tech) => <TechnologieBadge name={tech} />)}
-        </div>
-        <div class="project-actions" transition:name={`project-${id}-actions`}>
-          {
-            actions.map(({ icon: IconComponent, label, ...props }) => (
-              <a target="_blank" {...props}>
-                <IconComponent />
-                <span> {label} </span>
-              </a>
-            ))
-          }
-        </div>
+          <div class="project-name" transition:name={`project-${id}-name`}>
+            {
+              logo === undefined ? (
+                id[0]
+              ) : (
+                <Image src={logo} height="36" width="36" alt={title[0]} />
+              )
+            }
+            <span> {id?.toUpperCase()} </span>
+          </div>
+          <ArrowRight alt={p("read_more")} />
+        </a>
+      </h1>
+      <div class="project-platformes hidden">
+        {
+          platformes.map(({ name, icon: Icon }) => (
+            <Icon data-platform={name.toLowerCase()} />
+          ))
+        }
+      </div>
+      <p
+        class="project-description"
+        transition:name={`project-${id}-description`}
+      >
+        {description}
+      </p>
+      <div
+        class="project-technologies"
+        transition:name={`project-${id}-technologies`}
+      >
+        {technologies.map((tech) => <TechnologieBadge name={tech} />)}
+      </div>
+      <div class="project-actions" transition:name={`project-${id}-actions`}>
+        {
+          actions.map(({ icon: IconComponent, label, ...props }) => (
+            <a target="_blank" {...props}>
+              <IconComponent />
+              <span> {label} </span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -184,6 +172,7 @@ const actions = [
         margin-block: auto;
         & :global(img) {
           max-height: 300px;
+          width: auto;
         }
       }
 
@@ -236,7 +225,7 @@ const actions = [
         justify-content: center;
         gap: 0.75rem;
         .button {
-          max-width: 300px;
+          max-width: 500px;
         }
         @include breakpoint(tablet) {
           flex-direction: row;

@@ -1,52 +1,40 @@
-import {
-  batch,
-  Signal,
-  useComputed,
-  useSignal,
-  useSignalEffect,
-  type ReadonlySignal,
-} from "@preact/signals";
+// TODO: Remove scrollbar
+// TODO: Track drag event handler
+// TODO: Add resize observer
+
+import { batch, Signal, useSignal, useSignalEffect } from "@preact/signals";
 import { useSignalRef } from "@preact/signals/utils";
-import {
-  createContext,
-  type ComponentChildren,
-  type FunctionComponent,
-} from "preact";
+import { createContext, type ComponentChildren } from "preact";
 import { useEffect, useMemo } from "preact/hooks";
 
-type Provider = {
+type State = "click" | "system";
+
+type Context = {
   scrollSnap: () => void;
   ref: Signal<HTMLDivElement | null> & { current: HTMLDivElement | null };
   intervalId: Signal<number | null>;
   current: Signal<number>;
-  count: ReadonlySignal<number>;
+  count: number;
+  state: Signal<State>;
   // slideDelay: number;
 };
-const Context = createContext<Provider | null>(null);
 
-const ContextConsumer: FunctionComponent<{
-  children: (value: Provider) => ComponentChildren;
-}> = ({ children }) => (
-  <Context.Consumer>
-    {(value) => (value ? children(value) : null)}
-  </Context.Consumer>
-);
+// @ts-expect-error expected one argument but got zero ? WHO DECIDED THAT 🌞
+const Context = createContext<Context>();
+
 export function CarouselProvider({
+  count,
   slideDelay,
   children,
 }: {
-  slideDelay: number;
+  count: number;
+  slideDelay?: number;
   children: ComponentChildren;
 }) {
   const ref = useSignalRef<HTMLDivElement | null>(null);
   const intervalId = useSignal<number | null>(null);
   const current = useSignal(0);
-  const count = useComputed(() =>
-    ref.current
-      ? Math.floor(ref.current.scrollWidth / ref.current.clientWidth)
-      : 0
-  );
-  const state = useSignal<"user" | "system">("system");
+  const state = useSignal<State>("system");
   const direction = useSignal(1);
   const scrollSnap = () => {
     const container = ref.current;
@@ -70,16 +58,17 @@ export function CarouselProvider({
       const container = ref.current;
       if (container === null) return;
       batch(() => {
-        if (0 > current.value || current.value >= count.value)
-          direction.value *= -1;
+        const next = current.value + direction.value;
+        if (next < 0 || next >= count) direction.value *= -1;
         current.value += direction.value;
+        state.value = "system";
       });
     }, slideDelay ?? 3000);
 
     return () => {
       if (intervalId.value) clearInterval(intervalId.value);
     };
-  }, [ref.current, current.value]);
+  }, [state.value]);
 
   const value = useMemo(
     () => ({
@@ -88,19 +77,20 @@ export function CarouselProvider({
       current,
       ref,
       scrollSnap,
+      state,
     }),
     []
   );
-  return <Context.Provider value={value}>{children}</Context.Provider>;
-}
-export function CarouselContent({
-  children,
-}: {
-  children: ComponentChildren;
-  slideDelay: number;
-}) {
   return (
-    <ContextConsumer>
+    <Context.Provider value={value}>
+      {children}
+      {Context.Consumer({ children: JSON.stringify })}
+    </Context.Provider>
+  );
+}
+export function CarouselContent({ children }: { children: ComponentChildren }) {
+  return (
+    <Context.Consumer>
       {({ ref, scrollSnap }) => (
         <div
           ref={ref}
@@ -111,7 +101,7 @@ export function CarouselContent({
           {children}
         </div>
       )}
-    </ContextConsumer>
+    </Context.Consumer>
   );
 }
 
@@ -124,32 +114,54 @@ export function CarouselItem({ children }: { children: ChildNode }) {
 }
 
 export function CarouselTriggers() {
-  <div class="flex items-center gap-1  absolute bottom-2.5 left-1/2 z-1">
-    <ContextConsumer>
-      {({ count, intervalId, current }) =>
-        Array(count.value)
-          .fill(0)
-          .map((_, i) => (
-            <button
-              onClick={() => {
-                if (intervalId.value) {
-                  clearInterval(intervalId.value);
-                  batch(() => {
-                    current.value = i;
-                    intervalId.value = null;
-                  });
-                }
-              }}
-              class={`${
-                current.value === i
-                  ? "bg-accent-600 w-10"
-                  : "bg-neutral-600 w-4"
-              } h-1.5 rounded-sm transition-width duration-300`}
-              disabled={current.value === i}
-              aria-label={`Afficher l'image ${i + 1}`}
-            />
-          ))
-      }
-    </ContextConsumer>
-  </div>;
+  return (
+    <div class="flex items-center gap-1  absolute bottom-2.5 left-1/2 -translate-1/2 z-1">
+      <Context.Consumer>
+        {({ count, intervalId, current, state }) =>
+          Array(count)
+            .fill(0)
+            .map((_, i) => (
+              <button
+                onClick={() => {
+                  if (intervalId.value) {
+                    clearInterval(intervalId.value);
+                    batch(() => {
+                      current.value = i;
+                      intervalId.value = null;
+                      state.value = "click";
+                    });
+                  }
+                }}
+                class={`${
+                  current.value === i
+                    ? "bg-accent-600 w-10"
+                    : "bg-neutral-600 w-4"
+                } h-1.5 rounded-sm transition-width duration-300`}
+                disabled={current.value === i}
+                aria-label={`Afficher l'image ${i + 1}`}
+              />
+            ))
+        }
+      </Context.Consumer>
+    </div>
+  );
+}
+
+export function Carousel({
+  children,
+  count,
+}: {
+  count: number;
+  children: ComponentChildren;
+}) {
+  return count > 1 ? (
+    <div class="relative">
+      <CarouselProvider count={count}>
+        <CarouselContent>{children}</CarouselContent>
+        <CarouselTriggers />
+      </CarouselProvider>
+    </div>
+  ) : (
+    children
+  );
 }
