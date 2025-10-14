@@ -38,9 +38,12 @@ importers:
       '@iconify-json/vscode-icons':
         specifier: ^1.2.30
         version: 1.2.30
+      '@preact/signals':
+        specifier: ^2.3.2
+        version: 2.3.2(preact@10.27.0)
       '@tailwindcss/vite':
         specifier: ^4.1.11
-        version: 4.1.11(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0))
+        version: 4.1.11(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0))
       astro:
         specifier: ^5.6.1
         version: 5.6.1(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.37.0)(sass@1.81.0)(terser@5.39.0)(typescript@5.7.2)(yaml@2.7.0)
@@ -804,13 +807,13 @@ packages:
       '@babel/core': 7.x
       vite: 2.x || 3.x || 4.x || 5.x || 6.x || 7.x
 
-  '@preact/signals-core@1.11.0':
-    resolution: {integrity: sha512-jglbibeWHuFRzEWVFY/TT7wB1PppJxmcSfUHcK+2J9vBRtiooMfw6tAPttojNYrrpdGViqAYCbPpmWYlMm+eMQ==}
+  '@preact/signals-core@1.12.1':
+    resolution: {integrity: sha512-BwbTXpj+9QutoZLQvbttRg5x3l5468qaV2kufh+51yha1c53ep5dY4kTuZR35+3pAZxpfQerGJiQqg34ZNZ6uA==}
 
-  '@preact/signals@2.2.1':
-    resolution: {integrity: sha512-cX3mijdjHbbz3dBoJ6z687CGYEOp9ifj3uFnm4UKW+DxXKPMvE2y/VSdm0PXhXmHnr6F0iSnDJ+dLwmV7CYT5A==}
+  '@preact/signals@2.3.2':
+    resolution: {integrity: sha512-Q22avIn4z0BQnmFeo6Y5HCnJTo8VufN84zN51OtqeNgZOVCYgdwEOcJKVX1x/IrjRVxUnOy6Ubn7H5aVFujXaQ==}
     peerDependencies:
-      preact: '>= 10.25.0'
+      preact: '>= 10.25.0 || >=11.0.0-0'
 
   '@prefresh/babel-plugin@0.5.2':
     resolution: {integrity: sha512-AOl4HG6dAxWkJ5ndPHBgBa49oo/9bOiJuRDKHLSTyH+Fd9x00shTXpdiTj1W41l6oQIwUOAgJeHMn4QwIDpHkA==}
@@ -4701,7 +4704,7 @@ snapshots:
   '@astrojs/preact@4.1.0(@babel/core@7.26.10)(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(preact@10.27.0)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0)':
     dependencies:
       '@preact/preset-vite': 2.10.2(@babel/core@7.26.10)(preact@10.27.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0))
-      '@preact/signals': 2.2.1(preact@10.27.0)
+      '@preact/signals': 2.3.2(preact@10.27.0)
       preact: 10.27.0
       preact-render-to-string: 6.5.13(preact@10.27.0)
       vite: 6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0)
@@ -5397,11 +5400,11 @@ snapshots:
       - preact
       - supports-color
 
-  '@preact/signals-core@1.11.0': {}
+  '@preact/signals-core@1.12.1': {}
 
-  '@preact/signals@2.2.1(preact@10.27.0)':
+  '@preact/signals@2.3.2(preact@10.27.0)':
     dependencies:
-      '@preact/signals-core': 1.11.0
+      '@preact/signals-core': 1.12.1
       preact: 10.27.0
 
   '@prefresh/babel-plugin@0.5.2': {}
@@ -5723,12 +5726,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.11
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.11
 
-  '@tailwindcss/vite@4.1.11(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0))':
+  '@tailwindcss/vite@4.1.11(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@tailwindcss/node': 4.1.11
       '@tailwindcss/oxide': 4.1.11
       tailwindcss: 4.1.11
-      vite: 6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0)
+      vite: 6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.81.0)(terser@5.39.0)(yaml@2.7.0)
 
   '@tanstack/virtual-core@3.13.5': {}
 

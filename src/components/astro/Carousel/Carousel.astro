@@ -17,21 +17,19 @@ if (limit !== undefined) {
 ---
 
 <div class:list={["carousel", className]} data-carousel {...other}>
-  {
-    (
-      <div class="carousel-slides">
-        {images.map((image, index) => {
-          const className = "carousel-slide" + (index === 0 ? " active" : "");
-          return (
-            <div class={className}>
+  <div class="carousel-slides">
+    {
+      images.map((image, index) => {
+        const active = index === 0;
+        return (
+            <div
+            class:list={["carousel-slide", active]}>
                  <!-- @ts-expect-error the value constrainde is clearly defined in [docs](https://docs.astro.build/en/reference/experimental-flags/responsive-images/#image-layout) -->
-                <Image {...image} layout={ imagesLayout ?? "full-width" } loading={isLazyLoaded  || index !== 0 ? "lazy" : "eager"}/>
+                <Image {...image} layout={ imagesLayout ?? "full-width" } loading={isLazyLoaded  || !active ? "lazy" : "eager"}/>
             </div>
-          );
-        })}
-      </div>
-    )
-  }
+          )})
+    }
+  </div>
   {
     images.length > 1 ? (
       <div class="carousel-triggers">
@@ -51,7 +49,7 @@ if (limit !== undefined) {
   .carousel {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow-behaviour-inline: contain;
 
     &-slides {
       display: flex;
