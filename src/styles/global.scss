@@ -413,6 +413,10 @@ dialog,
   display: none !important;
 }
 
+.hide-scroll{
+  scrollbar-width: none;
+}
+
 .icon-button {
   background-color: transparent;
   cursor: pointer;
