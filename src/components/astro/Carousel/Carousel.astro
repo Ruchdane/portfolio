@@ -9,18 +9,25 @@ interface Props {
   images: ImageType[];
   limit?: number;
   class?: string;
-  imagesLayout?: "constrained" | "full-width" | "fixed" | "none";
+  imagesLayout?: "full-width" | "fixed" | "none";
   isLazyLoaded?: boolean;
 }
 
-let { images, limit, imagesLayout, isLazyLoaded } = Astro.props;
+let {
+  images,
+  limit,
+  imagesLayout,
+  isLazyLoaded,
+  class: className,
+  ...other
+} = Astro.props;
 if (limit !== undefined) {
   images = images.slice(0, limit);
 }
 ---
 
 <!-- How does transition name work with child component -->
-<PreactCarousel client:load count={images.length}>
+<PreactCarousel client:load count={images.length} class={className}>
   {
     images.map((image, i) => (
       <CarouselItem>
@@ -28,8 +35,15 @@ if (limit !== undefined) {
           {...image}
           loading={isLazyLoaded || i !== 0 ? "lazy" : "eager"}
           layout={imagesLayout ?? "full-width"}
+          {...other}
         />
       </CarouselItem>
     ))
   }
 </PreactCarousel>
+<style>
+  img {
+    width: auto;
+    max-height: 100%;
+  }
+</style>

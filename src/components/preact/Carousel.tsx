@@ -2,6 +2,7 @@
 
 import { batch, Signal, useSignal, useSignalEffect } from "@preact/signals";
 import { useSignalRef } from "@preact/signals/utils";
+
 import { createContext, type ComponentChildren } from "preact";
 import { useEffect, useMemo } from "preact/hooks";
 
@@ -134,7 +135,7 @@ export function CarouselTriggers() {
                   current.value === i
                     ? "bg-accent-600 w-10"
                     : "bg-neutral-600 w-4"
-                } h-1.5 rounded-sm transition-width duration-300`}
+                } h-2 rounded-sm transition-width duration-300`}
                 disabled={current.value === i}
                 aria-label={`Afficher l'image ${i + 1}`}
               />
@@ -148,12 +149,15 @@ export function CarouselTriggers() {
 export function Carousel({
   children,
   count,
+  class: className,
+  ...other
 }: {
+  class: string;
   count: number;
   children: ComponentChildren;
 }) {
   return count > 1 ? (
-    <div class="relative">
+    <div class={"relative " + className} {...other}>
       <CarouselProvider count={count}>
         <CarouselContent>{children}</CarouselContent>
         <CarouselTriggers />
