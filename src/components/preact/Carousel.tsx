@@ -131,11 +131,10 @@ export function CarouselTriggers() {
                     });
                   }
                 }}
-                class={`${
-                  current.value === i
-                    ? "bg-accent-600 w-10"
-                    : "bg-neutral-600 w-4"
-                } h-2 rounded-sm transition-width duration-300`}
+                class={`${current.value === i
+                  ? "bg-accent-600 w-10"
+                  : "bg-neutral-600 w-4"
+                  } h-2 rounded-sm transition-width duration-300`}
                 disabled={current.value === i}
                 aria-label={`Afficher l'image ${i + 1}`}
               />
@@ -152,18 +151,20 @@ export function Carousel({
   class: className,
   ...other
 }: {
-  class: string;
+  class?: string;
   count: number;
   children: ComponentChildren;
 }) {
   return count > 1 ? (
-    <div class={"relative " + className} {...other}>
+    <div class={"relative h-fit my-auto " + className} {...other}>
       <CarouselProvider count={count}>
         <CarouselContent>{children}</CarouselContent>
         <CarouselTriggers />
       </CarouselProvider>
     </div>
   ) : (
-    children
-  );
+    <div class={className} {...other}>
+      {children}
+    </div>
+  )
 }

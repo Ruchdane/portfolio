@@ -9,7 +9,7 @@ interface Props {
   images: ImageType[];
   limit?: number;
   class?: string;
-  imagesLayout?: "full-width" | "fixed" | "none";
+  imagesLayout?: "constrained" | "full-width" | "fixed" | "none";
   isLazyLoaded?: boolean;
 }
 
@@ -26,8 +26,12 @@ if (limit !== undefined) {
 }
 ---
 
-<!-- How does transition name work with child component -->
-<PreactCarousel client:load count={images.length} class={className}>
+<PreactCarousel
+  {...other}
+  client:load
+  count={images.length}
+  class={className ?? ""}
+>
   {
     images.map((image, i) => (
       <CarouselItem>

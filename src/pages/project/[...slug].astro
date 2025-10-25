@@ -12,30 +12,16 @@ changeLanguage("fr");
 
 const language = (i18n.language ?? "fr") as Language;
 export async function getStaticPaths() {
-  const project = await getCollection("project");
-  return project.map((project) => ({
-    params: { slug: project.id },
-    props: { ...project },
-  }));
+    const project = await getCollection("project");
+    return project.map((project) => ({
+        params: { slug: project.id },
+        props: { ...project },
+    }));
 }
 const slug = Astro.params.slug.toUpperCase();
 const projectEntry = Astro.props;
-const {
-  logo,
-  title,
-  description,
-  thumbs,
-  showcases,
-  websiteUrl,
-  downloadUrl,
-  sourceUrl,
-  technologies,
-} = projectEntry.data;
-const collaborators = await Promise.all(
-  projectEntry.data.collaborators.map(
-    async (entry) => (await getEntry("people", entry.id))?.data
-  )
-);
+const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
+const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
 const { Content } = await render(projectEntry);
 ---
 
@@ -94,7 +80,7 @@ const { Content } = await render(projectEntry);
         class="project-cover"
         transition:name={`project-${slug}-thumbnails`}
         images={showcases ?? thumbs}
-        imagesLayout="fixed"
+        imagesLayout="constrained"
       />
       <div>
         <h1>{title[language]}</h1>
@@ -106,7 +92,7 @@ const { Content } = await render(projectEntry);
                   {" "}
                   <PeopleProfile {...collaborator} />{" "}
                 </li>
-              ) : null
+              ) : null,
             )
           }
         </ul>
@@ -162,17 +148,10 @@ const { Content } = await render(projectEntry);
       }
     }
 
-    &-cover {
-      margin-inline: auto;
-      width: fit-content;
-      img {
-        max-height: 50vh;
-      }
-    }
-
     @include breakpoint(tablet) {
       &-meta {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 5rem;
         padding-inline: 6rem;
       }
