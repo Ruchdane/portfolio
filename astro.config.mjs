@@ -38,10 +38,13 @@ export default defineConfig({
     purgecss(),
   ],
   image: {
-    experimentalLayout: "responsive",
+    layout: 'constrained',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    breakpoints: [640, 750, 828, 1080, 1280],
+    responsiveStyles: true
   },
   experimental: {
-    responsiveImages: true,
-    svg: true,
-  },
+    chromeDevtoolsWorkspace: true,
+  }
 });
