@@ -1,0 +1,60 @@
+<div id="loading_indicator" transition:persist aria-hidden="true"></div>
+<style>
+    #loading_indicator {
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        opacity: 0;
+        animation: shimmer 2s linear infinite;
+        background: linear-gradient(
+            90deg,
+            var(--accent-600) 25%,
+            var(--accent-400) 50%,
+            var(--accent-600) 75%
+        );
+        background-size: 200% 100%;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform ease 300ms;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+</style>
+<script>
+    document.addEventListener("astro:before-preparation", () => {
+        const style = document.getElementById("loading_indicator")?.style;
+        if (!style) return;
+        let progress = 10;
+        let done = false;
+
+        const step = () => {
+            style.opacity = "1";
+            if (done) return;
+            progress += (90 - progress) * 0.1;
+            style.transform = `scaleX(${progress / 100})`;
+            if (progress < 90) requestAnimationFrame(step);
+        };
+        const showTimeout = window.setTimeout(
+            () => requestAnimationFrame(step),
+            300,
+        );
+
+        document.addEventListener("astro:before-swap", () => {
+            style.transform = "scaleX(1)";
+            done = true;
+            clearTimeout(showTimeout);
+            setTimeout(() => {
+                style.opacity = "0";
+                style.transform = "scaleX(0)";
+            }, 300);
+        });
+    });
+</script>

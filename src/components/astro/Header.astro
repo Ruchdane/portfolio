@@ -14,6 +14,7 @@ import MorphingBurger from "./MorphingBurger.astro";
 import { localizePath } from "astro-i18next";
 import { LanguageSelector } from "@/components/preact/LanguageSelector";
 import i18next, { t } from "i18next";
+import LoadingIndicator from "./LoadingIndicator.astro";
 
 const localisedLanguage = {} as Record<Language, string>;
 const localisedPathname = {} as Record<Language, string>;
@@ -25,7 +26,7 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
 });
 ---
 
-<header transition:name="main-header">
+<header transition:name="main-header" id="header">
   <nav>
     <a
       href={localizePath("/")}
@@ -70,6 +71,7 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
       </button>
     </div>
   </nav>
+  <LoadingIndicator />
 </header>
 <Sidebar />
 <style lang="scss">
@@ -133,12 +135,12 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
     const sidebar = document.getElementById("sidebar");
     const backdrop = document.getElementById("sidebar-backdrop");
     const trigger = document.getElementById("burger-trigger");
-  
+
     if (sidebar?.classList.contains("show")) {
       sidebar.classList.remove("show");
       trigger?.firstElementChild?.classList.remove("cross");
     }
-  
+
     if (backdrop?.classList.contains("show")) {
       backdrop.classList.remove("show");
     }
@@ -148,16 +150,16 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
     const sidebar = document.getElementById("sidebar");
     const backdrop = document.getElementById("sidebar-backdrop");
     const trigger = document.getElementById("burger-trigger");
-  
+
     const toggleSidebarVisibility = () => {
       sidebar?.classList.toggle("show");
       trigger?.firstElementChild?.classList.toggle("cross");
     };
-  
+
     trigger?.addEventListener("click", toggleSidebarVisibility);
     backdrop?.addEventListener("click", toggleSidebarVisibility);
     document.addEventListener("astro:before-preparation", closeSidebar);
   }
 
-document.addEventListener("astro:page-load", attachSidebarListeners);
+  document.addEventListener("astro:page-load", attachSidebarListeners);
 </script>
