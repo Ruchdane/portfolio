@@ -9,6 +9,7 @@ interface Props {
   images: ImageType[];
   limit?: number;
   class?: string;
+  transitionName?: string;
   imagesLayout?: "constrained" | "full-width" | "fixed" | "none";
   isLazyLoaded?: boolean;
 }
@@ -18,6 +19,7 @@ let {
   limit,
   imagesLayout,
   isLazyLoaded,
+  transitionName,
   class: className,
   ...other
 } = Astro.props;
@@ -30,7 +32,7 @@ if (limit !== undefined) {
   {...other}
   client:load
   count={images.length}
-  class={className ?? ""}
+  class={`${className} transition-carousel`}
 >
   {
     images.map((image, i) => (
@@ -45,9 +47,8 @@ if (limit !== undefined) {
     ))
   }
 </PreactCarousel>
-<style>
-  img {
-    width: auto;
-    max-height: 100%;
+<style define:vars={{ transitionName }}>
+  .transition-carousel {
+    view-transition-name: var(--transitionName);
   }
 </style>

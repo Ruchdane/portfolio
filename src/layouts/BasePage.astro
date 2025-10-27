@@ -2,7 +2,6 @@
 import i18next from "i18next";
 import { BaseHead, Header, Footer } from "@/components/astro";
 import { SEOSchema } from "@/schema/seo";
-import { fade } from "astro:transitions";
 import type { WithContext, Thing } from "schema-dts";
 
 interface Props<T extends Thing> {
@@ -34,7 +33,7 @@ if (import.meta.env.PROD && !result.success) {
 if (import.meta.env.DEV && !result.success) {
   console.error(
     "SEO Validation Errors:",
-    result.error.issues.map((issue) => issue.message)
+    result.error.issues.map((issue) => issue.message),
   );
 }
 ---
@@ -55,7 +54,7 @@ if (import.meta.env.DEV && !result.success) {
   </head>
   <body>
     <Header />
-    <main transition:animate={fade()} class={className} {...rest}>
+    <main class={className} {...rest}>
       <slot />
     </main>
     <Footer />

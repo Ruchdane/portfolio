@@ -219,7 +219,12 @@ p {
 
 ul {
   margin: 0;
+  margin-bottom: .5;
   padding: 0;
+}
+
+li:not(:last-child) {
+  margin-bottom: .5rem;
 }
 
 textarea {
@@ -251,7 +256,7 @@ pre {
   padding: 1.5em;
   border-radius: 8px;
 
-  & > code {
+  &>code {
     all: unset;
   }
 }
@@ -349,6 +354,7 @@ dialog,
 
 // Source https://github.com/h5bp/html5-boilerplate/blob/main/dist/css/style.css
 @media print {
+
   *,
   *::before,
   *::after {
@@ -413,7 +419,7 @@ dialog,
   display: none !important;
 }
 
-.hide-scroll{
+.hide-scroll {
   scrollbar-width: none;
 }
 
@@ -429,6 +435,7 @@ dialog,
   &:active {
     color: var(--accent-700);
   }
+
   @at-root {
     a#{&} {
       color: black;
@@ -489,6 +496,7 @@ dialog,
     --shadow-color: var(--neutral-600);
     --text-color: var(--neutral-800);
   }
+
   @at-root {
     a#{&} {
       text-decoration: none;
@@ -517,7 +525,8 @@ dialog,
 .fluid {
   display: flex;
   justify-content: center;
-  & > * {
+
+  &>* {
     max-width: 1980px;
   }
 }

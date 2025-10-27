@@ -13,14 +13,20 @@ thumbs:
     {
       src: "@/assets/images/wheel-token/thumbnail.png",
       alt: "Divers écran de l'application wheel token",
+      width: 1280,
+      height: 800,
     },
     {
       src: "@/assets/images/wheel-token/tutoriel.png",
-      alt: Deux écrans de l'application wheel token montrant les ressources et la liste des tutoriels
+      alt: Deux écrans de l'application wheel token montrant les ressources et la liste des tutoriels,
+      width: 1280,
+      height: 800,
     },
     {
       src: "@/assets/images/wheel-token/investissement.png",
       alt:  Deux écrans de l'application wheel token montrant comment investir dans une voiture,
+      width: 1280,
+      height: 800,
     }
   ]
 showcases:
@@ -28,14 +34,20 @@ showcases:
     {
       src: "@/assets/images/wheel-token/thumbnail.png",
       alt: "Divers écran de l'application wheel token",
+      width: 1280,
+      height: 800,
     },
     {
       src: "@/assets/images/wheel-token/tutoriel.png",
-      alt: Deux écrans de l'application wheel token montrant les ressources et la liste des tutoriels
+      alt: Deux écrans de l'application wheel token montrant les ressources et la liste des tutoriels,
+      width: 1280,
+      height: 800,
     },
     {
       src: "@/assets/images/wheel-token/investissement.png",
       alt:  Deux écrans de l'application wheel token montrant comment investir dans une voiture,
+      width: 1280,
+      height: 800,
     }
   ]
 technologies: ["canva", "figma"]
@@ -49,28 +61,28 @@ seo:
 isFeatured: true
 
 ---
-import {LocaleCheck, ColumnLayout, Carousel}  from "@/components/astro"
+import { LocaleCheck, ColumnLayout, Carousel } from "@/components/astro"
 import GoogleTrendsRevenuPassif from "@/assets/images/wheel-token/google_trends_revenu_passif.png"
 import GoogleTrendsLocationVoiture from "@/assets/images/wheel-token/google_trends_location_de_voiture.png"
 import StatistaCovoiturage from "@/assets/images/wheel-token/statista_covoiturage_user_2017_2023_2029.png"
 
 export const contexteStats = [
-  { 
-    src: GoogleTrendsRevenuPassif, 
+  {
+    src: GoogleTrendsRevenuPassif,
     alt: {
       fr: "Tendance de l'intérêt sur les revenus passifs",
       en: "Trend of interest in passive income",
       yo: "Ipele ti ifẹ si owo-wiwọle alaiduro"
     }
-  }, 
+  },
   {
-    src: GoogleTrendsLocationVoiture, 
+    src: GoogleTrendsLocationVoiture,
     alt: {
       fr: "Tendance de l'intérêt sur le covoiturage",
       en: "Trend of interest in carpooling",
       yo: "Ipele ti ifẹ si pinpin ọkọ ayọkẹlẹ"
     }
-  }, 
+  },
   {
     src: StatistaCovoiturage,
     alt: {
@@ -81,7 +93,7 @@ export const contexteStats = [
   }
 ];
 
-export function getContexteStats(locale){
+export function getContexteStats(locale) {
   return contexteStats.map((stat) => ({
     ...stat,
     alt: stat.alt[locale] || stat.alt.fr

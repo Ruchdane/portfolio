@@ -95,7 +95,7 @@ export function CarouselContent({ children }: { children: ComponentChildren }) {
           ref={ref}
           // @ts-expect-error this event handler does not exist ? WHO DECIDED THAT 🌞
           onScrollSnapChange={scrollSnap}
-          class="flex flex-nowrap overscroll-contain hide-scroll overflow-x-scroll snap-x snap-mandatory"
+          class="flex flex-nowrap overscroll-x-contain hide-scroll overflow-x-scroll snap-x snap-mandatory"
         >
           {children}
         </div>
