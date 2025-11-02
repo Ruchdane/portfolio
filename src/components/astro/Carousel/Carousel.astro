@@ -48,6 +48,9 @@ if (limit !== undefined) {
   }
 </PreactCarousel>
 <style define:vars={{ transitionName }}>
+  :global(astro-slot) {
+      display: contents;
+  }
   .transition-carousel {
     view-transition-name: var(--transitionName);
   }

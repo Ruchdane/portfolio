@@ -106,7 +106,7 @@ export function CarouselContent({ children }: { children: ComponentChildren }) {
 
 export function CarouselItem({ children }: { children: ChildNode }) {
   return (
-    <div class="snap-center w-full flex-shrink-0 flex justify-center">
+    <div class="snap-center w-full shrink-0 flex justify-center">
       {children}
     </div>
   );
@@ -131,10 +131,11 @@ export function CarouselTriggers() {
                     });
                   }
                 }}
-                class={`${current.value === i
-                  ? "bg-accent-600 w-10"
-                  : "bg-neutral-600 w-4"
-                  } h-2 rounded-sm transition-width duration-300`}
+                class={`${
+                  current.value === i
+                    ? "bg-accent-600 w-10"
+                    : "bg-neutral-600 w-4"
+                } h-2 rounded-sm transition-width duration-300`}
                 disabled={current.value === i}
                 aria-label={`Afficher l'image ${i + 1}`}
               />
@@ -166,5 +167,5 @@ export function Carousel({
     <div class={className} {...other}>
       {children}
     </div>
-  )
+  );
 }
