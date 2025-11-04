@@ -54,7 +54,7 @@ if (me === undefined)
         transition:name="project-list-filter"
         id="projectListFilter"
       >
-        <div class="flex">
+        <div class="filter-header">
           <h3>{t("common.filter")}</h3>
           <button class="button button-secondary" id="projectListFilterHide">
             <ArrowLeftFromLine />
@@ -62,7 +62,7 @@ if (me === undefined)
         </div>
         {
           TECHNOLOGY_CATEGORIES.map((category) => (
-            <details open class="filter-sections">
+            <details open class="filter-sections card" name="filter">
               <summary> {t(`common.${category.label}`)} </summary>
               <ul class="filter-options" id="technologie-list">
                 {category.items.map((tech) => {
@@ -80,7 +80,7 @@ if (me === undefined)
             </details>
           ))
         }
-        <details open class="filter-sections">
+        <details open class="filter-sections card" name="filter">
           <summary> {t("common.platform")}</summary>
           <ul class="filter-options" id="platform-list">
             {
@@ -106,88 +106,122 @@ if (me === undefined)
       </div>
     </div>
   </section>
-  <style lang="scss">
-    @use "~/media-query" as *;
+</BasePage>
+<style lang="scss">
+@use "~/media-query" as *;
 
-    section {
-      padding: 1rem 2.5rem;
-      @include breakpoint(tablet) {
+section {
+    padding: 1rem 2.5rem;
+    @include breakpoint(tablet) {
         padding: 2rem 5rem;
-      }
-      h1 {
+    }
+    h1 {
         margin-bottom: 1rem;
-      }
+    }
+}
+
+.project {
+    @include breakpoint(desktop) {
+        display: flex;
+        gap: 2rem;
     }
 
-    .project {
-      @include breakpoint(desktop) {
-        display: flex;
-      }
-
-      &-filter {
+    &-filter {
         display: none;
-        padding: 1rem;
+        background-color: var(--neutral-50);
+        padding: 6rem;
+        min-width: 14rem;
         font-size: 1rem;
 
-        &.toggled {
-          position: fixed;
-          z-index: var(--z-index-project-filter);
-          background: var(--neutral-100);
-          inset: 0;
-          margin-top: 4rem;
-          display: block;
-          @include breakpoint(desktop) {
-            position: relative;
-          }
+        @include breakpoint(desktop) {
+            background-color: inherit;
+            padding: 0;
         }
-      }
 
-      &-list-header {
-        display: flex;
-        justify-content: space-between;
-      }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            @include breakpoint(desktop) {
+                display: none;
+            }
+        }
+        .card {
+            padding: 0;
+        }
 
-    &-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 32px;
-      @include breakpoint(tablet) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-      }
+        details {
+            margin-bottom: 1rem;
+        }
+
+        summary {
+            padding: 0.5rem 1.5rem;
+            font-size: var(--font-h6);
+            font-family: "JetBrainsMono";
+            font-weight: 300;
+            &::marker {
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding-inline: 0.25rem;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            display: flex;
+            margin: 0rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        &.toggled {
+            position: fixed;
+            z-index: var(--z-index-project-filter);
+            inset: 0;
+            display: block;
+            @include breakpoint(desktop) {
+                position: relative;
+            }
+        }
     }
 
-      #projectEmptyState {
+    &-list-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 32px;
+        @include breakpoint(tablet) {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+        }
+    }
+
+    #projectEmptyState {
         display: flex;
         width: 100%;
         flex-direction: column;
         align-items: center;
         &:has(~ :not(article.hidden)) {
-          display: none;
+            display: none;
         }
-      }
-
-      .filter {
-        &-options {
-          list-style: none;
-        }
-        &-item {
-          display: flex;
-          margin: 1rem;
-          align-items: center;
-          text-align: center;
-        }
-      }
     }
-  </style>
-</BasePage>
+}
+</style>
 <script>
   function getAllSelectedIn(id: string) {
     const values = document.querySelectorAll(
       `#${id}>*:has(input:checked)`
     ) as NodeListOf<HTMLElement>;
-    return Array.from(values).map((value) => value.innerText);
+    return Array.from(values).map((value) => value.innerText.trim());
   }
 
   function isIncluded(
@@ -214,17 +248,10 @@ if (me === undefined)
     return matchesTechnology && matchesPlatform;
   }
 
+  const toggleFilterList = () =>  document.getElementById("projectListFilter")?.classList.toggle("toggled")
   function setupFilterToggle() {
-    // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
-    projectListFilterTrigger.addEventListener("click", () =>
-      // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
-      projectListFilter.classList.toggle("toggled")
-    );
-    // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
-    projectListFilterHide.addEventListener("click", () =>
-      // @ts-expect-error Typescript doesn't recognise that a node with this id exist in the html above
-      projectListFilter.classList.toggle("toggled")
-    );
+    document.getElementById("projectListFilterTrigger")?.addEventListener("click", toggleFilterList);
+    document.getElementById("projectListFilterHide")?.addEventListener("click", toggleFilterList);
   }
 
   function updateProjectList(projects: NodeListOf<HTMLElement>) {
@@ -246,6 +273,7 @@ if (me === undefined)
 
     const newUrl = `${window.location.pathname}?${params.toString()}`;
     history.replaceState(null, "", newUrl);
+
   }
 
   document.addEventListener("astro:page-load", () => {
@@ -262,7 +290,7 @@ if (me === undefined)
         "input[type='checkbox']"
       ) as HTMLInputElement | null;
       if (checkbox !== null)
-        checkbox.checked = selected.includes(badge.innerText);
+        checkbox.checked = selected.includes(badge.innerText.trim());
       badge.addEventListener("click", () => updateProjectList(projects));
     });
     updateProjectList(projects);

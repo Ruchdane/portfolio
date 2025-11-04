@@ -144,7 +144,9 @@ body {
   flex-direction: column;
   min-height: 100%;
   text-align: left;
-  background-color: var(--neutral-100);
+  background: linear(var(--neutral-50), var(--neutral-100));
+  accent-color: var(--accent-600);
+  interpolate-size: allow-keywords;
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-size: 16px;
@@ -219,20 +221,16 @@ p {
 
 ul {
   margin: 0;
-  margin-bottom: .5;
+  margin-bottom: 0.5;
   padding: 0;
 }
 
 li:not(:last-child) {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 textarea {
   width: 100%;
-  font-size: var(--font-body);
-}
-
-input {
   font-size: var(--font-body);
 }
 
@@ -256,7 +254,7 @@ pre {
   padding: 1.5em;
   border-radius: 8px;
 
-  &>code {
+  & > code {
     all: unset;
   }
 }
@@ -274,7 +272,13 @@ hr {
 }
 
 input {
+  font-size: var(--font-body);
   height: 36px;
+  &[type="checkbox"] {
+    height: auto;
+    box-shadow: inset 1px 1px 2px 0px var(--accent-200),
+      inset -1px -1px 2px 0px var(--accent-200);
+  }
 }
 
 input,
@@ -334,6 +338,25 @@ dialog,
   opacity: 1;
 }
 
+summary {
+  cursor: pointer;
+  &::marker,
+  &::-webkit-details-marker {
+    content: "";
+    display: none;
+  }
+}
+
+::details-content {
+  height: 0;
+  overflow: clip;
+  transition: height 0.3s ease-out, content-visibility 0.5s ease allow-discrete;
+}
+
+[open]::details-content {
+  height: auto;
+}
+
 .sr-only {
   border: 0;
   padding: 0;
@@ -350,69 +373,6 @@ dialog,
   clip-path: inset(50%);
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
-}
-
-// Source https://github.com/h5bp/html5-boilerplate/blob/main/dist/css/style.css
-@media print {
-
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
 }
 
 .hidden {
@@ -526,7 +486,7 @@ dialog,
   display: flex;
   justify-content: center;
 
-  &>* {
+  & > * {
     max-width: 1980px;
   }
 }
@@ -541,4 +501,27 @@ dialog,
   max-width: 1980px;
   margin-inline: auto;
   padding-inline: 2rem;
+}
+
+.card {
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background-color: var(--neutral-50);
+  box-shadow: 0 6px 10px rgba(24, 24, 27, 0.08),
+    0 12px 20px rgba(39, 39, 42, 0.05);
+}
+
+details[open] summary + * {
+  animation: animateDown 0.2s linear forwards;
+}
+
+@keyframes animateDown {
+  0% {
+    opacity: 0;
+    transform: translatey(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
 }

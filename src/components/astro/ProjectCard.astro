@@ -68,7 +68,7 @@ const actions = [
   .slice(0, 2);
 ---
 
-<article class="project-card" transition:name={`project-card-${id}`}>
+<article class="card project-card" transition:name={`project-card-${id}`}>
   <div class="project-container">
     <div class="project-thumbnails">
       <Carousel
@@ -145,13 +145,7 @@ const actions = [
       }
 
       &-card {
-        padding: 1.5rem;
         container-type: inline-size;
-        border-radius: 0.5rem;
-        background-color: var(--neutral-50);
-        box-shadow:
-          0 6px 10px rgba(24, 24, 27, 0.08),
-          0 12px 20px rgba(39, 39, 42, 0.05);
       }
 
       &-thumbnails {
