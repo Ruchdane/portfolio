@@ -13,7 +13,6 @@ const { name, icon } = technologie;
 ---
 
 <a
-  class="badge"
   data-technology={name.toLowerCase()}
   href={`/project?filter=${name}`}
 >
@@ -22,7 +21,7 @@ const { name, icon } = technologie;
 </a>
 
 <style lang="scss">
-  .badge {
+  a {
     display: flex;
     padding: 0.5rem 1.25rem;
     align-items: center;

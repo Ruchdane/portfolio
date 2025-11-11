@@ -357,6 +357,21 @@ summary {
   height: auto;
 }
 
+details[open] summary + * {
+  animation: animateDown 0.2s linear forwards;
+}
+
+@keyframes animateDown {
+  0% {
+    opacity: 0;
+    transform: translatey(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
 .sr-only {
   border: 0;
   padding: 0;
@@ -511,17 +526,12 @@ summary {
     0 12px 20px rgba(39, 39, 42, 0.05);
 }
 
-details[open] summary + * {
-  animation: animateDown 0.2s linear forwards;
-}
-
-@keyframes animateDown {
-  0% {
-    opacity: 0;
-    transform: translatey(-15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translatey(0);
-  }
+.badge {
+  background-color: var(--accent-300);
+  color: var(--neutral-900);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  box-shadow: 1px 3px 3px rgba(255, 0, 108, 0.25),
+    inset -1px -2px 3px rgba(255, 0, 108, 0.25);
 }

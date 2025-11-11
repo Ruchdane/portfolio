@@ -12,7 +12,8 @@
     "programming_framework": "Framework",
     "i_am": "Je suis",
     "i_am_in": "Je suis en",
-    "find_me_on": "Vous me retrouverez sur"
+    "find_me_on": "Vous me retrouverez sur",
+    "clear_filter": "Réinitialiser les filtres"
   },
   "navigation": {
     "home": "Accueil",
