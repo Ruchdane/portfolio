@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro-i18next generate && astro check && astro build",
     "build:unsafe": "astro build",
     "preview": "astro preview",
     "audit:ui": "unlighthouse --site localhost:4321",

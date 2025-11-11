@@ -23,3 +23,7 @@ pnpm-debug.log*
 .idea/
 .unlighthouse
 .direnv/
+
+# localised page
+src/pages/en/
+src/pages/yo/
