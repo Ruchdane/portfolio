@@ -58,6 +58,11 @@ if (import.meta.env.DEV && !result.success) {
       <slot />
     </main>
     <Footer />
-    {import.meta.env.PROD ? <script src="../script/posthog.js" /> : null}
   </body>
 </html>
+
+<script>
+  import init from "@/script/mouse";
+
+  document.addEventListener("astro:page-load", init);
+</script>
