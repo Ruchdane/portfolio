@@ -2,7 +2,7 @@
 import { t, changeLanguage } from "i18next";
 import { TECHNOLOGY_CATEGORIES, PLATFORME_MAP, TECHNOLOGIE_MAP, SITE_URL, } from "@/consts";
 import { ProjectCard, CheckBoxBadge } from "@/components/astro";
-import { BasePage } from "@/layouts";
+import BasePage from "@/layouts/BasePage.astro";
 import { getCollection } from "astro:content";
 import { ArrowLeftFromLine, SlidersHorizontal } from "lucide-astro";
 import DevProductivity from "@/assets/images/dev-productivity.svg";
@@ -30,7 +30,7 @@ if (me === undefined)
     mainEntity: {
       name: "Projets récents",
       ...generateProjectListSchema(
-        project.map((entry) => ({ id: entry.id, ...entry.data }))
+        project.map((entry) => ({ id: entry.id, ...entry.data })),
       ),
     },
   }}
@@ -39,18 +39,18 @@ if (me === undefined)
     <div class="project-list-header" transition:name="project-list-header">
       <h1>{t("common.projects", { count: project.length })}</h1>
       <div class="project-list-actions">
-          <button
-              class="button secondary"
-              popovertarget="projectListFilter"
-              transition:name="project-list-filter-trigger"
-              id="projectListFilterTrigger"
-          >
-              <SlidersHorizontal />
-              {t("common.filter")}
-          </button>
-        <button class="button secondary " id="clearAllFilter">
-            {t("common.clear_filter")}
-            <span class="badge">1</span>
+        <button
+          class="button secondary"
+          popovertarget="projectListFilter"
+          transition:name="project-list-filter-trigger"
+          id="projectListFilterTrigger"
+        >
+          <SlidersHorizontal />
+          {t("common.filter")}
+        </button>
+        <button class="button secondary" id="clearAllFilter">
+          {t("common.clear_filter")}
+          <span class="badge">1</span>
         </button>
       </div>
     </div>
@@ -114,179 +114,184 @@ if (me === undefined)
   </section>
 </BasePage>
 <style lang="scss">
-@use "~/media-query" as *;
+  @use "~/media-query" as *;
 
-section {
+  section {
     padding: 1rem 2.5rem;
     @include breakpoint(tablet) {
-        padding: 2rem 5rem;
+      padding: 2rem 5rem;
     }
     h1 {
-        margin-bottom: 1rem;
+      margin-bottom: 1rem;
     }
-}
+  }
 
-.project {
+  .project {
     @include breakpoint(desktop) {
-        display: flex;
-        gap: 2rem;
+      display: flex;
+      gap: 2rem;
     }
 
     &-filter {
-        display: none;
-        background-color: var(--neutral-50);
-        font-size: 1rem;
-        transition: all .3s ease allow-discrete;
-        transform-origin: top left;
+      display: none;
+      background-color: var(--neutral-50);
+      font-size: 1rem;
+      transition: all 0.3s ease allow-discrete;
+      transform-origin: top left;
 
+      @include breakpoint(desktop) {
+        background-color: inherit;
+        padding: 0;
+      }
+
+      &.toggled {
+        display: block;
+        position: fixed;
+        z-index: var(--z-index-project-filter);
+        inset: 0;
+        min-inline-size: 14rem;
+        scale: 1;
+        translate: 0;
+        padding-block-start: 6rem;
+        padding-inline: 2rem;
+
+        // FIXME: Exit aniamtion on chrome is clunky
+        @starting-style {
+          scale: 0 1;
+          translate: 0 100vh;
+        }
         @include breakpoint(desktop) {
-            background-color: inherit;
-            padding: 0;
+          position: relative;
+          padding: 0;
         }
+      }
 
-        &.toggled {
-            display: block;
-            position: fixed;
-            z-index: var(--z-index-project-filter);
-            inset: 0;
-            min-inline-size: 14rem;
-            scale: 1;
-            translate: 0;
-            padding-block-start: 6rem;
-            padding-inline: 2rem;
+      .filter-header {
+        display: flex;
+        justify-content: space-between;
+        @include breakpoint(desktop) {
+          display: none;
+        }
+      }
+      .card {
+        padding: 0;
+      }
 
-            // FIXME: Exit aniamtion on chrome is clunky
-            @starting-style {
-                scale: 0 1;
-                translate: 0 100vh;
-            }
-            @include breakpoint(desktop) {
-                position: relative;
-                padding: 0;
-            }
-        }
+      details {
+        margin-bottom: 1rem;
+      }
 
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            @include breakpoint(desktop) {
-                display: none;
-            }
-        }
-        .card {
-            padding: 0;
-        }
+      summary {
+        padding: 0.5rem 1.5rem;
+        font-size: var(--font-h6);
+        font-family: "JetBrainsMono";
+        font-weight: 300;
+      }
 
-        details {
-            margin-bottom: 1rem;
-        }
+      ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0.25rem;
+        gap: 0.25rem;
+        margin-bottom: 1rem;
+      }
 
-        summary {
-            padding: 0.5rem 1.5rem;
-            font-size: var(--font-h6);
-            font-family: "JetBrainsMono";
-            font-weight: 300;
-        }
-
-        ul {
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            padding: 0.25rem;
-            gap: 0.25rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            display: flex;
-            margin: 0rem;
-            align-items: center;
-            text-align: center;
-        }
+      li {
+        display: flex;
+        margin: 0rem;
+        align-items: center;
+        text-align: center;
+      }
     }
 
     &-list {
-        &-actions {
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
-            gap: 1rem;
-
-            @include breakpoint(desktop){
-                flex-direction: row;
-            }
-        }
-
-        &-header {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin-block-end: 1rem;
-            @include breakpoint(desktop){
-                flex-direction: row;
-            }
-        }
-
-    }
-    &-container {
+      &-actions {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        gap: 32px;
-        @include breakpoint(tablet) {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+        height: fit-content;
+        gap: 1rem;
+
+        @include breakpoint(desktop) {
+          flex-direction: row;
         }
+      }
+
+      &-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-block-end: 1rem;
+        @include breakpoint(desktop) {
+          flex-direction: row;
+        }
+      }
+    }
+    &-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 32px;
+      @include breakpoint(tablet) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      }
     }
 
     #projectEmptyState {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        &:has(~ :not(article.hidden)) {
-            display: none;
-        }
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      &:has(~ :not(article.hidden)) {
+        display: none;
+      }
     }
-}
+  }
 </style>
 <script>
-
   function getAllSelectedIn(id: string) {
     const values = document.querySelectorAll(
-      `#${id}>*:has(input:checked)`
+      `#${id}>*:has(input:checked)`,
     ) as NodeListOf<HTMLElement>;
-    return Array.from(values).map((value) => (value as HTMLElement).innerText.trim());
+    return Array.from(values).map((value) =>
+      (value as HTMLElement).innerText.trim(),
+    );
   }
 
   function isIncluded(
     project: Element,
     technologies: string[],
-    platforms: string[]
+    platforms: string[],
   ): boolean {
     const matchesTechnology =
       technologies.length === 0 ||
       technologies.some(
         (technology) =>
           project.querySelector(
-            `[data-technology="${technology.toLowerCase()}"]`
-          ) !== null
+            `[data-technology="${technology.toLowerCase()}"]`,
+          ) !== null,
       );
     const matchesPlatform =
       platforms.length === 0 ||
       platforms.some(
         (platform) =>
           project.querySelector(
-            `[data-platform="${platform.toLowerCase()}"]`
-          ) !== null
+            `[data-platform="${platform.toLowerCase()}"]`,
+          ) !== null,
       );
     return matchesTechnology && matchesPlatform;
   }
 
-  const toggleFilterList = () =>  document.getElementById("projectListFilter")?.classList.toggle("toggled")
+  const toggleFilterList = () =>
+    document.getElementById("projectListFilter")?.classList.toggle("toggled");
   function setupFilterToggle() {
-    document.getElementById("projectListFilterTrigger")?.addEventListener("click", toggleFilterList);
-    document.getElementById("projectListFilterHide")?.addEventListener("click", toggleFilterList);
+    document
+      .getElementById("projectListFilterTrigger")
+      ?.addEventListener("click", toggleFilterList);
+    document
+      .getElementById("projectListFilterHide")
+      ?.addEventListener("click", toggleFilterList);
   }
 
   function updateProjectList(projects: NodeListOf<HTMLElement>) {
@@ -303,49 +308,57 @@ section {
     else projects.forEach(filterProject);
 
     const allFilters = [...technologies, ...platforms];
-    if(allFilters.length === 0){
+    if (allFilters.length === 0) {
       history.replaceState(null, "", window.location.pathname);
       document.getElementById("clearAllFilter")?.classList.add("hidden");
+    } else {
+      const params = new URLSearchParams({
+        filter: allFilters.join(","),
+      });
+      document.getElementById("clearAllFilter")?.classList.remove("hidden");
+      document
+        .querySelectorAll("#clearAllFilter>span")
+        .forEach(
+          (span) =>
+            ((span as HTMLSpanElement).innerText =
+              allFilters.length.toString()),
+        );
+      history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}?${params.toString()}`,
+      );
     }
-    else {
-    const params = new URLSearchParams({
-      filter: allFilters.join(","),
-    });
-    document.getElementById("clearAllFilter")?.classList.remove("hidden")
-    document
-      .querySelectorAll("#clearAllFilter>span")
-      .forEach((span) => (span as HTMLSpanElement).innerText = allFilters.length.toString())
-    history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
-    }
-
   }
 
   document.addEventListener("astro:page-load", () => {
     const projects = document.querySelectorAll(
-      "#projectContainer>article"
+      "#projectContainer>article",
     ) as NodeListOf<HTMLElement>;
     const searchParams = new URLSearchParams(window.location.search);
     const selected = searchParams.get("filter")?.split(",") ?? [];
-    document
-      .querySelectorAll("[data-checkbox-badge]")
-      .forEach((badge) => {
+    document.querySelectorAll("[data-checkbox-badge]").forEach((badge) => {
       const checkbox = badge.querySelector(
-        "input[type='checkbox']"
+        "input[type='checkbox']",
       ) as HTMLInputElement | null;
       if (checkbox !== null)
-        checkbox.checked = selected.includes((badge as HTMLDivElement).innerText.trim());
+        checkbox.checked = selected.includes(
+          (badge as HTMLDivElement).innerText.trim(),
+        );
       badge.addEventListener("click", () => updateProjectList(projects));
     });
-    document
-      .getElementById("clearAllFilter")
-      ?.addEventListener("click", () => {
-        document
-          .querySelectorAll("[data-checkbox-badge]>input[type='checkbox']:checked")
-          .forEach(checkbox => (checkbox as HTMLInputElement).checked = false);
-        updateProjectList(projects)
-      })
+    document.getElementById("clearAllFilter")?.addEventListener("click", () => {
+      document
+        .querySelectorAll(
+          "[data-checkbox-badge]>input[type='checkbox']:checked",
+        )
+        .forEach(
+          (checkbox) => ((checkbox as HTMLInputElement).checked = false),
+        );
+      updateProjectList(projects);
+    });
     updateProjectList(projects);
 
     setupFilterToggle();
-  })
+  });
 </script>
