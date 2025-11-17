@@ -1,14 +1,15 @@
 ---
 import { t, changeLanguage } from "i18next";
-import { Package } from "lucide-astro";
-import { SITE_URL } from "@/consts";
+import { TECHNOLOGIE_MAP, SITE_URL } from "@/consts";
 import banner_picture from "@/assets/images/banner_picture.jpg";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { generatePersonSchema, generateProjectListSchema, getMe, type Education, type Experience, type Technologie, } from "@/schema";
-import { BasePage } from "@/layouts";
+import { generatePersonSchema, generateProjectListSchema, getMe, Technologie, type Education, type Experience, } from "@/schema";
+import BasePage from "@/layouts/BasePage.astro";
 import { SquareArrowOutUpRight } from "lucide-astro";
-import { ProjectCard, TechnologieBadge, SocialLinks, AnchorTabs, TabTrigger, TabContent, HistoryElement, } from "@/components/astro";
+import { ProjectCard, SocialLinks, AnchorTabs, TabTrigger, TabContent, HistoryElement, } from "@/components/astro";
+import BentoStack from "@/components/astro/BentoStack/BentoStack.astro";
+import BentoCard from "@/components/astro/BentoStack/BentoCard.astro";
 
 changeLanguage("fr");
 
@@ -23,17 +24,12 @@ const orderByBeginDate = (a: {
 const experienceList = (await getCollection("experience")).sort(orderByBeginDate);
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
-const designStack: Technologie[] = ["figma", "penpot", "miro"];
-const managementStack: Technologie[] = ["notion", "azure_devops", "github"];
-const webStack: Technologie[] = [
-    "aspnet",
-    "astro",
-    "next",
-    "tailwindcss",
-    "postgresql",
-];
-const mobileStack: Technologie[] = ["flutter", "firebase"];
-const desktopStack: Technologie[] = ["winform", "tauri"];
+const stackMap = {
+    design: ["figma", "penpot", "miro"],
+    management: ["notion", "azure_devops", "github"],
+    web: ["aspnet", "astro", "next", "tailwindcss", "postgresql"],
+    native: ["flutter", "firebase", "winform", "tauri"],
+};
 ---
 
 <BasePage
@@ -49,7 +45,7 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     mainEntity: {
       name: section("projects.title"),
       ...generateProjectListSchema(
-        featuredProject.map((entry) => ({ id: entry.id, ...entry.data }))
+        featuredProject.map((entry) => ({ id: entry.id, ...entry.data })),
       ),
     },
   }}
@@ -95,55 +91,21 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     </div>
   </section>
   <section class="wrapper tech-stack">
-    <h2>{section("stacks.title")}</h2>
-    <p class="text-body">{section("stacks.description")}</p>
-    <div class="tech-stack-container">
-      <div class="tech-stack-item">
-        <h3>
-          <Package />
-          <span>{section("stacks.design")}</span>
-        </h3>
-        <div class="tech-stack-container">
-          {designStack.map((name) => <TechnologieBadge name={name} />)}
-        </div>
-      </div>
-      <div class="tech-stack-item">
-        <h3>
-          <Package />
-          <span>{section("stacks.management")}</span>
-        </h3>
-        <div class="tech-stack-container">
-          {managementStack.map((name) => <TechnologieBadge name={name} />)}
-        </div>
-      </div>
-      <div class="tech-stack-item">
-        <h3>
-          <Package />
-          <span>{section("stacks.web")}</span>
-        </h3>
-        <div class="tech-stack-container">
-          {webStack.map((name) => <TechnologieBadge name={name} />)}
-        </div>
-      </div>
-      <div class="tech-stack-item">
-        <h3>
-          <Package />
-          <span>{section("stacks.desktop")}</span>
-        </h3>
-        <div class="tech-stack-container">
-          {desktopStack.map((name) => <TechnologieBadge name={name} />)}
-        </div>
-      </div>
-      <div class="tech-stack-item">
-        <h3>
-          <Package />
-          <span>{section("stacks.mobile")}</span>
-        </h3>
-        <div class="tech-stack-container">
-          {mobileStack.map((name) => <TechnologieBadge name={name} />)}
-        </div>
-      </div>
-    </div>
+    <BentoStack>
+      {
+        Object.entries(stackMap).map(([key, stack]) => (
+          <div class={`stack-${key}`}>
+            {stack.map((name, index) => (
+              <BentoCard
+                icon={TECHNOLOGIE_MAP[name as Technologie].icon}
+                description=""
+                gridArea={`item-${index}`}
+              />
+            ))}
+          </div>
+        ))
+      }
+    </BentoStack>
   </section>
   <section class="wrapper history">
     <AnchorTabs>
@@ -173,7 +135,7 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     font-family: "JetBrainsMono", monospace;
     font-weight: 800;
     font-size: var(--font-h5);
-    &-wrapper{
+    &-wrapper {
       background-color: var(--primary-200);
     }
     @include breakpoint(desktop) {
@@ -256,56 +218,46 @@ const desktopStack: Technologie[] = ["winform", "tauri"];
     }
   }
 
-  .tech-stack {
-    margin-block: 36px;
-    h3 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      width: 100%;
-      text-align: center;
-      margin-block: 18px;
-      text-transform: capitalize;
-      @include breakpoint(tablet) {
-        width: fit-content;
-        text-align: left;
-      }
-      @include breakpoint(desktop) {
-        text-align: center;
-      }
+  .stack {
+    &-design {
+      display: grid;
+      gap: 1rem;
+      grid-template-areas:
+        "item-0 item-0"
+        "item-1 item-2";
+      grid-template-columns: repeat(2, 1fr); /* Example column definition */
+      grid-template-rows: auto auto; /* Example row definition */
     }
 
-    &-item {
-      :nth-child(n + 6) {
-        display: none;
-      }
-      @include breakpoint(tablet) {
-        :nth-child(n + 6) {
-          display: block;
-        }
-        width: 100%;
-        margin: 36px 18px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      }
+    &-management {
+      display: grid;
+      gap: 1rem;
+      grid-template-areas:
+        "item-0 item-1"
+        "item-0 item-2";
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
     }
 
-    &-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      font-size: var(--font-h6);
-      @include breakpoint(tablet) {
-        width: 100%;
-        justify-content: space-around;
-      }
-      @include breakpoint(desktop) {
-        justify-content: center;
-      }
+    &-web {
+      display: grid;
+      gap: 1rem;
+      grid-template-areas:
+        "item-0 item-0 item-1"
+        "item-2 item-3 item-3"
+        "item-4 item-4 item-4";
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+    }
+
+    &-native {
+      display: grid;
+      gap: 1rem;
+      grid-template-areas:
+        "item-0 item-2 item-3"
+        "item-0 item-1 item-3";
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
     }
   }
 

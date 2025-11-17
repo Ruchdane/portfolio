@@ -1,0 +1,84 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface BentoCardProps {
+  icon: string;
+  description?: string; // Made optional to allow empty string
+  gridArea?: string;
+}
+
+const { icon, description = "", gridArea } = Astro.props; // Default description to empty string
+---
+
+<div class="bento-card" style={{ gridArea }} data-mouse>
+  <div class="icon-wrapper">
+    <Icon name={icon} />
+  </div>
+  {description && <p class="description">{description}</p>}
+</div>
+
+<style lang="scss">
+  .bento-card {
+    position: relative;
+    background-color: var(--neutral-900);
+    cursor: pointer;
+    border: 1px solid var(--neutral-800);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    inline-size: 100%;
+    block-size: 100%;
+    overflow: hidden;
+    background: linear-gradient(-23deg, var(--primary-950), var(--neutral-900));
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      background: radial-gradient(
+        circle at calc(var(--norm-x) * 100%) calc(var(--norm-y) * 100%),
+        #7d4af8 0%,
+        transparent 70%
+      );
+
+      opacity: 0.2; /* Keep it subtle */
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      border-color: var(--neutral-700);
+      translate: -5px -5px;
+      scale: 1.01 1.01;
+      &::before {
+        opacity: 0.5;
+      }
+    }
+
+    .icon-wrapper {
+      margin-bottom: 1rem;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      :global(svg) {
+        width: 100%;
+        height: 100%;
+        color: var(--primary-500);
+      }
+    }
+
+    .description {
+      color: var(--neutral-300);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+</style>

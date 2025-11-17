@@ -1,0 +1,29 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={className}>
+  <slot />
+</div>
+
+<style lang="scss">
+  div {
+    display: grid;
+    gap: .75rem;
+    grid-template-columns: repeat(2, 1fr);
+    & > :global(*) {
+      background-color: var(--neutral-800);
+      border-radius: 2rem;
+      padding: 1rem;
+      gap: 0.25rem;
+      transform: translateZ(-500px);
+      transition:
+        transform 0.5s ease-out,
+        opacity 0.5s ease-out;
+    }
+  }
+</style>
