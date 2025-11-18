@@ -231,6 +231,10 @@ export const TECHNOLOGIE_MAP: Record<
     name: "miro",
     icon: "logos:miro-icon",
   },
+  mongodb: {
+    name: "mongodb",
+    icon: "skill-icons:mongodb",
+  },
 };
 
 export const PLATFORME_MAP: Record<

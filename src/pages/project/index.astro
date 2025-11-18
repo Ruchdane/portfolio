@@ -343,7 +343,7 @@ if (me === undefined)
       ) as HTMLInputElement | null;
       if (checkbox !== null)
         checkbox.checked = selected.includes(
-          (badge as HTMLDivElement).innerText.trim(),
+          (badge as HTMLDivElement).innerText.trim().toLowerCase(),
         );
       badge.addEventListener("click", () => updateProjectList(projects));
     });

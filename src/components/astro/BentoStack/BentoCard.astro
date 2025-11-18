@@ -2,25 +2,25 @@
 import { Icon } from "astro-icon/components";
 
 export interface BentoCardProps {
+  href: string;
   icon: string;
   description?: string; // Made optional to allow empty string
   gridArea?: string;
 }
 
-const { icon, description = "", gridArea } = Astro.props; // Default description to empty string
+const { icon, description = "", gridArea, href } = Astro.props; // Default description to empty string
 ---
 
-<div class="bento-card" style={{ gridArea }} data-mouse>
+<a href={href} class="bento-card" style={{ gridArea }} data-mouse>
   <div class="icon-wrapper">
     <Icon name={icon} />
   </div>
   {description && <p class="description">{description}</p>}
-</div>
+</>
 
 <style lang="scss">
   .bento-card {
     position: relative;
-    background-color: var(--neutral-900);
     cursor: pointer;
     border: 1px solid var(--neutral-800);
     border-radius: 1rem;
@@ -33,7 +33,7 @@ const { icon, description = "", gridArea } = Astro.props; // Default description
     inline-size: 100%;
     block-size: 100%;
     overflow: hidden;
-    background: linear-gradient(-23deg, var(--primary-950), var(--neutral-900));
+    background: linear-gradient(-23deg, var(--primary-800), var(--neutral-900));
 
     &::before {
       content: "";
@@ -43,7 +43,7 @@ const { icon, description = "", gridArea } = Astro.props; // Default description
 
       background: radial-gradient(
         circle at calc(var(--norm-x) * 100%) calc(var(--norm-y) * 100%),
-        #7d4af8 0%,
+        var(--accent-500) 0%,
         transparent 70%
       );
 

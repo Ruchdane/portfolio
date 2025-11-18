@@ -24,11 +24,11 @@ const orderByBeginDate = (a: {
 const experienceList = (await getCollection("experience")).sort(orderByBeginDate);
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
-const stackMap = {
+const stackMap : Record<string, Technologie[]> = {
     design: ["figma", "penpot", "miro"],
     management: ["notion", "azure_devops", "github"],
-    web: ["aspnet", "astro", "next", "tailwindcss", "postgresql"],
-    native: ["flutter", "firebase", "winform", "tauri"],
+    web: ["aspnet", "astro", "flutter","next",  "tauri"],
+    native: ["postgresql", "firebase", "mongodb", "supabase"],
 };
 ---
 
@@ -99,6 +99,7 @@ const stackMap = {
               <BentoCard
                 icon={TECHNOLOGIE_MAP[name as Technologie].icon}
                 description=""
+                href={`/project?filter=${name}`}
                 gridArea={`item-${index}`}
               />
             ))}
@@ -254,10 +255,11 @@ const stackMap = {
       display: grid;
       gap: 1rem;
       grid-template-areas:
-        "item-0 item-2 item-3"
-        "item-0 item-1 item-3";
+        "item-0 item-0 item-3"
+        "item-0 item-0 item-3"
+        "item-1 item-2 item-3";
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
+      grid-template-rows: repeat(3, 1fr);
     }
   }
 

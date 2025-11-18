@@ -23,6 +23,7 @@ export const TechnologieEnum = z.enum([
   "winform",
   "postgresql",
   "mysql",
+  "mongodb",
   "firebase",
   "supabase",
   "vercel",
