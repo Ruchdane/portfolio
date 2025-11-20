@@ -26,7 +26,7 @@
       "contact_list": "Contacts",
       "form": {
         "email": "Email",
-        "message": "Méssage",
+        "message": "Message",
         "cta": "Envoyer",
         "state": {
           "loading": "📨 Envoi en cours",
