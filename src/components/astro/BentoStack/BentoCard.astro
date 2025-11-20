@@ -12,11 +12,12 @@ const { icon, description = "", gridArea, href } = Astro.props; // Default descr
 ---
 
 <a href={href} class="bento-card" style={{ gridArea }} data-mouse>
-  <div class="icon-wrapper">
+    <div class="icon-wrapper">
     <Icon name={icon} />
+    </div>
   </div>
   {description && <p class="description">{description}</p>}
-</>
+</s>
 
 <style lang="scss">
   .bento-card {
