@@ -57,28 +57,27 @@ const { profil, name, socials } = Astro.props;
       right: 1rem;
     }
     &-content {
-      background-color: var(--neutral-200);
-      border: none;
+      background-color: var(--primary-100);
+      border: 2px var(--accent-300) solid;
       border-radius: 1rem;
       flex-direction: column;
       align-items: center;
+      box-shadow: inset -2px -1px 8px var(--primary-200);
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
       @include breakpoint(tablet) {
         padding: 2rem 4rem;
       }
       p {
         font-family: "JetBrainsMono";
-        font-size: var(--font-h2);
       }
       &[open] {
         display: flex;
       }
       &::backdrop {
-        background-image: linear-gradient(
-          45deg,
-          var(--neutral-100),
-          var(--primary-100)
-        );
-        opacity: 0.75;
+          background: var(--neutral-900);
+          opacity: 0.65;
       }
     }
     &-social-links {
