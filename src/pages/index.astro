@@ -24,10 +24,10 @@ const orderByBeginDate = (a: {
 const experienceList = (await getCollection("experience")).sort(orderByBeginDate);
 const educationList = (await getCollection("education")).sort(orderByBeginDate);
 const me = await getMe();
-const stackMap : Record<string, Technologie[]> = {
+const stackMap: Record<string, Technologie[]> = {
     design: ["figma", "penpot", "miro"],
     management: ["notion", "azure_devops", "github"],
-    web: ["aspnet", "astro", "flutter","next",  "tauri"],
+    web: ["aspnet", "astro", "flutter", "next", "tauri"],
     native: ["postgresql", "firebase", "mongodb", "supabase"],
 };
 ---
@@ -46,6 +46,7 @@ const stackMap : Record<string, Technologie[]> = {
       name: section("projects.title"),
       ...generateProjectListSchema(
         featuredProject.map((entry) => ({ id: entry.id, ...entry.data })),
+        me
       ),
     },
   }}

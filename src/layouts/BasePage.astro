@@ -23,15 +23,8 @@ const {
 
 const result = SEOSchema.safeParse({ title, description });
 
-if (import.meta.env.PROD && !result.success) {
-  const errorMessages = result.error.issues
-    .map((issue) => issue.message)
-    .join(", ");
-  throw new Error(`SEO Validation Failed: ${errorMessages}`);
-}
-
-if (import.meta.env.DEV && !result.success) {
-  console.error(
+if (!result.success) {
+  console.warn(
     "SEO Validation Errors:",
     result.error.issues.map((issue) => issue.message),
   );

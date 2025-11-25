@@ -5,7 +5,7 @@ import { Globe, Download, Code } from "lucide-astro";
 import { Image } from "astro:assets";
 import BasePage from "@/layouts/BasePage.astro";
 import { Carousel, PeopleProfile, TechnologieBadge } from "@/components/astro";
-import { generateProjectSchema } from "@/schema";
+import { generateProjectSchema, getMe } from "@/schema";
 import type { Language } from "@/consts";
 
 changeLanguage("fr");
@@ -23,12 +23,13 @@ const projectEntry = Astro.props;
 const { logo, title, description, thumbs, showcases, websiteUrl, downloadUrl, sourceUrl, technologies, } = projectEntry.data;
 const collaborators = await Promise.all(projectEntry.data.collaborators.map(async (entry) => (await getEntry("people", entry.id))?.data));
 const { Content } = await render(projectEntry);
+const me = await getMe();
 ---
 
 <BasePage
   title={`${slug} - ${title[language]}`}
   description={description[language]}
-  jsonLd={generateProjectSchema(slug, projectEntry.data)}
+  jsonLd={generateProjectSchema(slug, projectEntry.data, me)}
   image={thumbs[0]?.src}
 >
   <div class="project-hero" transition:name={`project-hero-${slug}`}>

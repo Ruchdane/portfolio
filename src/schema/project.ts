@@ -1,9 +1,10 @@
 import { reference, z, type ImageFunction } from "astro:content";
-import { ImageSchema } from "@/schema/image";
+import { generateImageSchema, ImageSchema } from "@/schema/image";
 import { TechnologieEnum, PlatformeEnum } from "@/schema/enum";
 import { SITE_URL } from "@/consts";
 import s from "schema-dts";
 import { i18nString } from "./i18nString";
+import { generatePersonSchema, type People } from "./people";
 const projectSeoType = z.enum([
   "WebApplication",
   "WebSite",
@@ -29,6 +30,10 @@ export const ProjectSchema = (image: ImageFunction) =>
     collaborators: z.array(reference("people")),
     isFeatured: z.boolean().optional(),
 
+    // SEO: Date fields for freshness signals
+    publishDate: z.coerce.date().optional(),
+    modifiedDate: z.coerce.date().optional(),
+
     seo: z
       .object({
         type: projectSeoType,
@@ -40,7 +45,8 @@ export const ProjectSchema = (image: ImageFunction) =>
 export type Project = z.infer<ReturnType<typeof ProjectSchema>>;
 
 export function generateProjectListSchema(
-  projects: (Project & { id: string })[]
+  projects: (Project & { id: string })[],
+  me: People
 ): s.ItemList {
   return {
     "@type": "ItemList",
@@ -48,65 +54,107 @@ export function generateProjectListSchema(
       return {
         "@type": "ListItem",
         position: index + 1,
-        item: generateProjectSchema(id, project),
+        item: generateProjectSchema(id, project, me),
       };
     }),
   };
 }
 
-export function generateProjectSchema(id: string, project: Project) {
+export function generateProjectSchema(
+  id: string,
+  project: Project,
+  me: People
+) {
   const generator =
     // @ts-ignore
     GenerateCreativeWorkSchema["generate" + project.seo?.type] ??
     GenerateCreativeWorkSchema.generateSoftwareApplication;
-  return generator(id, project);
+  return generator(id, project, me);
 }
 
 const GenerateCreativeWorkSchema = {
-  generateWebSite(_: string, project: Project): s.WebSite {
+  generateWebSite(id: string, project: Project, me: People): s.WebSite {
+    const image = project.thumbs[0];
     return {
       "@type": "WebSite",
       name: project.title.fr,
       description: project.description.fr,
-      url: project.websiteUrl ?? `${SITE_URL}/projects/${project.title}`,
+      url: project.websiteUrl ?? `${SITE_URL}/project/${id}`,
+      ...(image && {
+        image: generateImageSchema(image),
+        thumbnail: generateImageSchema(image),
+      }),
+      author: generatePersonSchema(me),
     };
   },
 
   generateSoftwareApplication(
     id: string,
-    project: Project
+    project: Project,
+    me: People
   ): s.SoftwareApplication {
-    // @ts-ignore
+    const image = project.thumbs[0];
     return {
       "@type": "SoftwareApplication",
       name: project.title.fr,
       description: project.description.fr,
       operatingSystem: project.platformes.join(", "),
-      downloadUrl: project.downloadUrl,
       applicationCategory: project.seo?.category.join(", "),
-      // Checkout https://github.com/schemaorg/schemaorg/issues/2586#issuecomment-635937169
-      url: project.websiteUrl ?? `${SITE_URL}/projects/${id}`,
+      author: generatePersonSchema(me),
+      ...(project.downloadUrl && {
+        downloadUrl: project.downloadUrl,
+      }),
+      ...(image && {
+        image: generateImageSchema(image),
+      }),
+      ...(project.publishDate && {
+        datePublished: project.publishDate.toISOString(),
+      }),
+      ...(project.modifiedDate && {
+        dateModified: project.modifiedDate.toISOString(),
+      }),
+      url: project.websiteUrl ?? `${SITE_URL}/project/${id}`,
     };
   },
 
-  generateWebApplication(id: string, project: Project): s.WebApplication {
+  generateWebApplication(
+    id: string,
+    project: Project,
+    me: People
+  ): s.WebApplication {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(
+        id,
+        project,
+        me
+      ),
       "@type": "WebApplication",
     };
   },
 
-  generateVideoGame(id: string, project: Project): s.VideoGame {
+  generateVideoGame(id: string, project: Project, me: People): s.VideoGame {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(
+        id,
+        project,
+        me
+      ),
       "@type": "VideoGame",
       gamePlatform: project.platformes,
     };
   },
 
-  generateMobileApplication(id: string, project: Project): s.MobileApplication {
+  generateMobileApplication(
+    id: string,
+    project: Project,
+    me: People
+  ): s.MobileApplication {
     return {
-      ...GenerateCreativeWorkSchema.generateSoftwareApplication(id, project),
+      ...GenerateCreativeWorkSchema.generateSoftwareApplication(
+        id,
+        project,
+        me
+      ),
       "@type": "MobileApplication",
     };
   },

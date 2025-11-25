@@ -1,6 +1,8 @@
 ---
 import "~/tailwind.css";
 import "~/global.scss";
+// @ts-ignore
+import { localizePath } from "astro-i18next";
 import { ClientRouter } from "astro:transitions";
 import "~/markdown.scss";
 import defaultImage from "@/assets/images/banner_picture.jpg";
@@ -47,10 +49,18 @@ const { title, description, image = defaultImage } = Astro.props;
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Localized URLs with full absolute URLs -->
+<link rel="alternate" hreflang="x-default" href={new URL(localizePath(Astro.url.pathname, "fr"), Astro.site)} />
+<link rel="alternate" hreflang="fr" href={new URL(localizePath(Astro.url.pathname, "fr"), Astro.site)} />
+<link rel="alternate" hreflang="en" href={new URL(localizePath(Astro.url.pathname, "en"), Astro.site)} />
+<link rel="alternate" hreflang="yo" href={new URL(localizePath(Astro.url.pathname, "yo"), Astro.site)} />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="author" content="AMADOU Ruchdane" />
+<meta name="language" content={Astro.currentLocale || "fr"} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
