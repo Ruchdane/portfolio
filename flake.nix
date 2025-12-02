@@ -20,6 +20,9 @@
           buildInputs = [
             pkgs.nodejs_20
             pkgs.nodePackages.pnpm
+            pkgs.ripgrep
+            pkgs.htmlq
+            pkgs.woff2
           ];
 
           shellHook = ''

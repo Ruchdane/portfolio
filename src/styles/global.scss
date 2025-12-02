@@ -515,7 +515,9 @@ details[open] summary + * {
 }
 
 .card {
+  border: 1px solid var(--primary-100);
   border-radius: 0.5rem;
+  corner-shape: squricle;
   padding: 1.5rem;
   background-color: var(--neutral-50);
   box-shadow: 0 6px 10px rgba(24, 24, 27, 0.08),

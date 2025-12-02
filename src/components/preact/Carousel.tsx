@@ -135,7 +135,7 @@ export function CarouselTriggers() {
                   current.value === i
                     ? "bg-accent-600 w-10"
                     : "bg-neutral-600 w-4"
-                } h-2 rounded-sm transition-width duration-300`}
+                } h-2 rounded-sm transition-width duration-300 cursor-pointer`}
                 disabled={current.value === i}
                 aria-label={`Afficher l'image ${i + 1}`}
               />
