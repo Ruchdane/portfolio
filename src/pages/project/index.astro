@@ -68,7 +68,7 @@ const me = await getMe();
         {
           TECHNOLOGY_CATEGORIES.map((category) => (
             <details class="filter-sections card" name="filter">
-              <summary> {t(`common.${category.label}`)} </summary>
+              <summary class="font-title"> {t(`common.${category.label}`)} </summary>
               <ul class="filter-options" id="technologie-list">
                 {category.items.map((tech) => {
                   const { name, icon } = TECHNOLOGIE_MAP[tech];
@@ -86,7 +86,7 @@ const me = await getMe();
           ))
         }
         <details class="filter-sections card" name="filter">
-          <summary> {t("common.platform")}</summary>
+          <summary class="font-title"> {t("common.platform")}</summary>
           <ul class="filter-options" id="platform-list">
             {
               Object.values(PLATFORME_MAP).map(({ name, icon: Icon }) => (
@@ -183,7 +183,6 @@ const me = await getMe();
       summary {
         padding: 0.5rem 1.5rem;
         font-size: var(--font-h6);
-        font-family: "JetBrainsMono";
         font-weight: 300;
       }
 

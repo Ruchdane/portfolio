@@ -13,14 +13,14 @@ const mySocials = (await getMe()).socials;
 <footer>
   <section id="contact">
     <div id="contact-links">
-      <label> {footer("contact_list")} </label>
+        <label class="font-title"> {footer("contact_list")} </label>
       <SocialLinks {...mySocials} />
     </div>
     <div>
       <!-- @ts-expect-error netlify is not a native html attribute ! -->
       <form id="contact-form" netlify name="contact" method="POST">
         <div>
-          <label for="email"> {form("email")}</label>
+          <label class="font-title" for="email"> {form("email")}</label>
           <input
             id="email"
             name={form("email")}
@@ -30,7 +30,7 @@ const mySocials = (await getMe()).socials;
           />
         </div>
         <div>
-          <label for="message">{form("message")}</label>
+          <label class="font-title" for="message">{form("message")}</label>
           <textarea
             name={form("message")}
             id="message"
@@ -62,7 +62,6 @@ const mySocials = (await getMe()).socials;
   }
 
   label {
-    font-family: "JetBrainsMono", monospace;
     display: block;
     font-size: var(--font-h3);
     font-weight: bold;

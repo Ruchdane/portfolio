@@ -28,7 +28,7 @@ const { profil, name, socials } = Astro.props;
       </button>
     </form>
     <Image src={profil.src} alt={profil.alt} width={100} height={100} />
-    <p>{name}</p>
+    <p class="font-title">{name}</p>
     <div class="profil-social-links">
       <SocialLinks {...socials} />
     </div>
@@ -68,9 +68,6 @@ const { profil, name, socials } = Astro.props;
       translate: -50% -50%;
       @include breakpoint(tablet) {
         padding: 2rem 4rem;
-      }
-      p {
-        font-family: "JetBrainsMono";
       }
       &[open] {
         display: flex;

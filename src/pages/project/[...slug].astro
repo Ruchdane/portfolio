@@ -32,7 +32,7 @@ const me = await getMe();
   jsonLd={generateProjectSchema(slug, projectEntry.data, me)}
   image={thumbs[0]?.src}
 >
-  <div class="project-hero" transition:name={`project-hero-${slug}`}>
+  <div class="project-hero font-title" transition:name={`project-hero-${slug}`}>
     <div class="project-header" transition:name={`project-${slug}-name`}>
       <span class="project-logo">
         {logo !== undefined ? <Image src={logo} alt={slug[0]} /> : slug[0]}
@@ -121,7 +121,6 @@ const me = await getMe();
   }
   .project {
     &-hero {
-      font-family: "JetBrainsMono", monospace;
       background-color: var(--primary-200);
       padding: 2rem;
       @include breakpoint(desktop) {
