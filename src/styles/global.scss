@@ -144,6 +144,9 @@ body {
     font-size: 18px;
   }
 }
+::selection {
+  background-color: var(--accent-300);
+}
 
 h1,
 h2,

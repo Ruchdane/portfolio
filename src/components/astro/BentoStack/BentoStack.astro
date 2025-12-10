@@ -11,10 +11,13 @@ const { className } = Astro.props;
 </div>
 
 <style lang="scss">
+@use "~/media-query" as *;
   div {
     display: grid;
     gap: .75rem;
-    grid-template-columns: repeat(2, 1fr);
+    @include breakpoint(desktop){
+        grid-template-columns: repeat(2, 1fr);
+    }
     & > :global(*) {
       background-image: linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
       border-radius: 2rem;

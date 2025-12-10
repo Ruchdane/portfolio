@@ -18,6 +18,7 @@ import LoadingIndicator from "./LoadingIndicator.astro";
 
 const localisedLanguage = {} as Record<Language, string>;
 const localisedPathname = {} as Record<Language, string>;
+const language = (i18next.language || "fr") as Language;
 
 Object.keys(LANGUAGE_MAPPING).forEach((element) => {
   const lang = element as Language;
@@ -29,7 +30,7 @@ Object.keys(LANGUAGE_MAPPING).forEach((element) => {
 <header transition:name="main-header" id="header">
   <nav>
     <a
-      href={localizePath("/")}
+      href={localizePath("/", language)}
       class="navigation-icon"
       transition:name="main-logo"
     >

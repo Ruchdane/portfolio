@@ -81,7 +81,7 @@ const actions = [
       <h1>
         <a
           class="icon-button"
-          href={localizePath(`/project/${id}`)}
+          href={localizePath(`/project/${id}`, language)}
           title={p("read_more")}
           aria-label={p("read_more")}
         >
@@ -194,8 +194,10 @@ const actions = [
       &-technologies {
         display: flex;
         flex-wrap: wrap;
+        overflow-x: scroll;
         gap: 0.5rem;
         margin-bottom: 1.5rem;
+        max-height: 116px;
       }
 
       &-actions {
