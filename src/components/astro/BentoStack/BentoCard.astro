@@ -11,7 +11,7 @@ export interface BentoCardProps {
 const { icon, description = "", gridArea, href } = Astro.props; // Default description to empty string
 ---
 
-<a href={href} class="bento-card" style={{ gridArea }} data-mouse>
+<a href={href} class="bento-card" style={{ gridArea }} data-mouse aria-label="icon">
     <div class="icon-wrapper">
     <Icon name={icon} />
     </div>

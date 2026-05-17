@@ -83,7 +83,7 @@ const actions = [
           class="icon-button"
           href={localizePath(`/project/${id}`, language)}
           title={p("read_more")}
-          aria-label={p("read_more")}
+          aria-label={`${p("read_more")} - ${id}`}
         >
           <div class="project-name" transition:name={`project-${id}-name`}>
             {

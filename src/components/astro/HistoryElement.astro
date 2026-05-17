@@ -34,7 +34,7 @@ const title =
     : (props?.role[language] ?? "");
 ---
 
-<div class="history">
+<article class="history">
   <div class="history-image">
     <Image
       src={image.src}
@@ -44,7 +44,7 @@ const title =
       height="83"
     />
   </div>
-  <h4 class="history-title">{title}</h4>
+  <h1 class="history-title">{title}</h1>
   <p class="history-name">{name}</p>
   <p class="history-date">
     <span>
@@ -59,7 +59,7 @@ const title =
     }
   </p>
   <p class="history-description" set:html={description} />
-</div>
+</article>
 <style lang="scss">
   @use "~/media-query" as *;
 

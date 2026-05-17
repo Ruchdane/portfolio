@@ -52,10 +52,10 @@ if (!result.success) {
     </main>
     <Footer />
   </body>
+  {import.meta.env.PROD ? <script src="@/script/posthog.js" /> : null}
+  <script>
+    import init from "@/script/mouse";
+
+    document.addEventListener("astro:page-load", init);
+  </script>
 </html>
-
-<script>
-  import init from "@/script/mouse";
-
-  document.addEventListener("astro:page-load", init);
-</script>

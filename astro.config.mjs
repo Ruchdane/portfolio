@@ -16,7 +16,14 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss({
+        applyBaseStyles: false, // prevents double-injection of base styles
+      }),
+    ],
+    build: {
+      cssMinify: "lightningcss", // faster + smaller than cssnano
+    },
     resolve: {
       alias: {
         "~": path.resolve("./src/styles"),
@@ -24,7 +31,8 @@ export default defineConfig({
     },
   },
   build: {
-    inlineStylesheets: "never",
+    // inlineStylesheets: "never",
+    assetsInlineLimit: 1024,
   },
   site: "https://ruchdane.me",
   integrations: [
@@ -38,13 +46,13 @@ export default defineConfig({
     purgecss(),
   ],
   image: {
-    layout: 'constrained',
-    objectFit: 'cover',
-    objectPosition: 'center',
+    layout: "constrained",
+    objectFit: "cover",
+    objectPosition: "center",
     breakpoints: [640, 750, 828, 1080, 1280],
-    responsiveStyles: true
+    responsiveStyles: true,
   },
   experimental: {
     chromeDevtoolsWorkspace: true,
-  }
+  },
 });
