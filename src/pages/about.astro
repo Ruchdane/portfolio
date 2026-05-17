@@ -1,5 +1,4 @@
 ---
-import { t, changeLanguage } from "i18next";
 import { Image } from "astro:assets";
 import { SITE_URL } from "@/consts";
 import BasePage from "@/layouts/BasePage.astro";
@@ -9,15 +8,14 @@ import banner_picture from "@/assets/images/banner_picture.jpg";
 import { getMe, generatePersonSchema } from "@/schema";
 // @ts-ignore
 import { localizePath } from "astro-i18next";
-import i18next, { t } from "i18next";
+import i18next, { t, changeLanguage } from "i18next";
 
 changeLanguage("fr");
 
 const a = (path: string) => t(`page.project.${path}`);
 const me = await getMe();
 const mySocials = me.socials;
-const language = (i18next.language || "fr") as Language;
-
+const language = (i18next.language || "fr");
 ---
 
 <BasePage
