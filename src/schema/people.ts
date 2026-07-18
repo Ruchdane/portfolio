@@ -1,5 +1,6 @@
 import { ImageSchema } from "./image";
-import { getEntry, z, type ImageFunction } from "astro:content";
+import { getEntry, type ImageFunction } from "astro:content";
+import { z } from "astro/zod";
 import s from "schema-dts";
 
 const Socials = z.object({

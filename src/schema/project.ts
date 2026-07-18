@@ -1,4 +1,5 @@
-import { reference, z, type ImageFunction } from "astro:content";
+import { reference, type ImageFunction } from "astro:content";
+import { z } from "astro/zod";
 import { generateImageSchema, ImageSchema } from "@/schema/image";
 import { TechnologieEnum, PlatformeEnum } from "@/schema/enum";
 import { SITE_URL } from "@/consts";

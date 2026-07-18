@@ -1,4 +1,5 @@
-import { z, type ImageFunction } from "astro:content";
+import { type ImageFunction } from "astro:content";
+import { z } from "astro/zod";
 import s from "schema-dts";
 
 export const ImageSchema = (image: ImageFunction) =>

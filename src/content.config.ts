@@ -13,12 +13,12 @@ const project = defineCollection({
 });
 
 const experience = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/experience" }),
   schema: ({ image }) => ExperienceSchema(image),
 });
 
 const education = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/education" }),
   schema: ({ image }) => EducationSchema(image),
 });
 
