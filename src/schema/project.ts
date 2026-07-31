@@ -21,9 +21,9 @@ export const ProjectSchema = (image: ImageFunction) =>
     thumbs: z.array(ImageSchema(image)).min(1),
     showcases: z.array(ImageSchema(image)).min(1).optional(),
 
-    websiteUrl: z.string().url().optional(),
-    sourceUrl: z.string().url().optional(),
-    downloadUrl: z.string().url().optional(),
+    websiteUrl: z.url().optional(),
+    sourceUrl: z.url().optional(),
+    downloadUrl: z.url().optional(),
 
     technologies: z.array(TechnologieEnum).min(1),
     platformes: z.array(PlatformeEnum).min(1),
@@ -47,7 +47,7 @@ export type Project = z.infer<ReturnType<typeof ProjectSchema>>;
 
 export function generateProjectListSchema(
   projects: (Project & { id: string })[],
-  me: People
+  me: People,
 ): s.ItemList {
   return {
     "@type": "ItemList",
@@ -64,7 +64,7 @@ export function generateProjectListSchema(
 export function generateProjectSchema(
   id: string,
   project: Project,
-  me: People
+  me: People,
 ) {
   const generator =
     // @ts-ignore
@@ -92,7 +92,7 @@ const GenerateCreativeWorkSchema = {
   generateSoftwareApplication(
     id: string,
     project: Project,
-    me: People
+    me: People,
   ): s.SoftwareApplication {
     const image = project.thumbs[0];
     return {
@@ -121,13 +121,13 @@ const GenerateCreativeWorkSchema = {
   generateWebApplication(
     id: string,
     project: Project,
-    me: People
+    me: People,
   ): s.WebApplication {
     return {
       ...GenerateCreativeWorkSchema.generateSoftwareApplication(
         id,
         project,
-        me
+        me,
       ),
       "@type": "WebApplication",
     };
@@ -138,7 +138,7 @@ const GenerateCreativeWorkSchema = {
       ...GenerateCreativeWorkSchema.generateSoftwareApplication(
         id,
         project,
-        me
+        me,
       ),
       "@type": "VideoGame",
       gamePlatform: project.platformes,
@@ -148,13 +148,13 @@ const GenerateCreativeWorkSchema = {
   generateMobileApplication(
     id: string,
     project: Project,
-    me: People
+    me: People,
   ): s.MobileApplication {
     return {
       ...GenerateCreativeWorkSchema.generateSoftwareApplication(
         id,
         project,
-        me
+        me,
       ),
       "@type": "MobileApplication",
     };

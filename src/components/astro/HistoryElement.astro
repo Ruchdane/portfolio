@@ -5,7 +5,7 @@ import FormattedDate from "./FormattedDate.astro";
 import type { Language } from "@/consts";
 import i18next from "i18next";
 interface Props {
-  slug: string;
+  id: string;
   data: Education | Experience;
 }
 
@@ -53,7 +53,7 @@ const title =
     {
       endDate !== undefined ? (
         <span>
-          <FormattedDate date={endDate} format={dateFormat} />
+          {' - '}<FormattedDate date={endDate} format={dateFormat} />
         </span>
       ) : null
     }

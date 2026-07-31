@@ -47,7 +47,7 @@ export const TechnologieEnum = z.enum([
   "miro",
 ]);
 export type Technologie = z.infer<typeof TechnologieEnum>;
-export const Technologie = TechnologieEnum.Enum;
+export const Technologie = TechnologieEnum.enum;
 
 export const PlatformeEnum = z.enum([
   "android",
@@ -58,4 +58,4 @@ export const PlatformeEnum = z.enum([
   "web",
 ]);
 export type Platforme = z.infer<typeof PlatformeEnum>;
-export const Platforme = PlatformeEnum.Enum;
+export const Platforme = PlatformeEnum.enum;

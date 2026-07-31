@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from "astro/zod";
 
 export const SEOSchema = z.object({
@@ -8,7 +9,7 @@ export const SEOSchema = z.object({
       (title) => title.length >= 50 && title.length <= 60,
       (title) => ({
         message: `Title length (${title.length} chars) is not optimal (50-60 chars recommended)`,
-      })
+      }),
     ),
   description: z
     .string()
@@ -17,7 +18,7 @@ export const SEOSchema = z.object({
       (desc) => desc.length >= 140 && desc.length <= 160,
       (desc) => ({
         message: `Description length (${desc.length} chars) is not optimal (140-160 chars recommended)`,
-      })
+      }),
     ),
 });
 

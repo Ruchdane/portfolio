@@ -4,10 +4,10 @@ import { z } from "astro/zod";
 import s from "schema-dts";
 
 const Socials = z.object({
-  website: z.string().url().optional(),
-  mail: z.string().email().optional(),
-  github: z.string().url().optional(),
-  linkedin: z.string().url().optional(),
+  website: z.url().optional(),
+  mail: z.email().optional(),
+  github: z.url().optional(),
+  linkedin: z.url().optional(),
 });
 
 export const PeopleSchema = (image: ImageFunction) =>
@@ -24,7 +24,7 @@ export function generatePersonSchema(person: People): s.Person {
   const { name, socials, profil } = person;
 
   const sameAs = [socials?.github, socials?.linkedin].filter(
-    (url) => url !== undefined
+    (url) => url !== undefined,
   );
 
   // @ts-ignore
@@ -40,6 +40,6 @@ export function generatePersonSchema(person: People): s.Person {
 
 export async function getMe(): Promise<People> {
   const me = (await getEntry("people", "ruchdane"))?.data;
-  if (me === undefined) throw new Error("Entry for `ruchdane` must be defined");
+  if (!me) throw new Error("Entry for `ruchdane` must be defined");
   return me;
 }
