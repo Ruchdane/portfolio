@@ -46,8 +46,8 @@
   },
   "page": {
     "home": {
-      "title": "AMADOU Ruchdane - Développeur & Designer",
-      "description": "Product Designer avec une expertise technique unique. Je transforme les insights utilisateurs en solutions digitales grâce à ma double compétence design-développement.",
+      "title": "AMADOU Ruchdane - Portfolio de Développeur & Product Designer",
+      "description": "Product Designer avec une expertise technique. Je transforme les insights utilisateurs en solutions digitales via ma double compétence en design et développement.",
 
       "greeting": "Salut, je suis AMADOU Ruchdane",
       "role": "Développeur & Designer",
@@ -77,12 +77,12 @@
       }
     },
     "project": {
-      "title": "Mes projets",
-      "description": "Parcourez les projets sur lesquels j'ai participer du web avec NextJS au mobile avec Flutter en passant par des cli avec Rust"
+      "title": "Portfolio de Projets - AMADOU Ruchdane, Développeur & Designer",
+      "description": "Découvrez mes projets variés : applications web (Next.js), mobiles (Flutter) et des outils en ligne de commande (Rust). Explorez mes études de cas."
     },
     "about": {
-      "title": "A propos de AMADOU Ruchdane",
-      "description": "Je suis AMADOU Ruchdane Abiodun Adjao, je viens du Bénin et vie actuellement en ile-de-france. Je suis un Dévellopeur et un designer.  J'étudie actuellement à HÉTIC et recherche une alternance en UXUI Design"
+      "title": "À Propos de AMADOU Ruchdane - Développeur & Product Designer",
+      "description": "Découvrez mon parcours. Je suis AMADOU Ruchdane, développeur et designer originaire du Bénin. J'étudie à HÉTIC et recherche une alternance en UX/UI Design."
     }
   },
   "image": {

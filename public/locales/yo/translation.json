@@ -45,7 +45,7 @@
   },
   "page": {
     "home": {
-      "title": "AMADOU Ruchdane - Oníṣe & Apẹrẹ",
+      "title": "AMADOU Ruchdane - Apẹrẹ Portfolio ti Oníṣe & Product Designer",
       "description": "Oníṣe ọja pẹ̀lú imọ̀ ọgbọ́n pataki. Mo ń yí àǹfààní àwọn oníbàárà padà sí àbájáde oni-nọmba pẹ̀lú ọgbọ́n mi ní àpẹrẹ àti ìdàgbàsókè.",
       "greeting": "Báwo, orúkọ mi ni AMADOU Ruchdane",
       "role": "Oníṣe & Apẹrẹ",
@@ -73,11 +73,11 @@
       }
     },
     "project": {
-      "title": "Àwọn iṣẹ́ mi",
+      "title": "Portfolio Iṣẹ́ - AMADOU Ruchdane, Oníṣe & Apẹrẹ",
       "description": "Ṣàwárí àwọn iṣẹ́ tí mo kópa nínú rẹ̀, láti iṣẹ́ wẹẹbu (NextJS) sí alágbèéká (Flutter), àti àwọn irinṣẹ́ CLI pẹ̀lú Rust."
     },
     "about": {
-      "title": "Nipa AMADOU Ruchdane",
+      "title": "Nípa AMADOU Ruchdane - Oníṣe & Product Designer",
       "description": "Orukọ mi ni AMADOU Ruchdane Abiodun Adjao. Mo wa lati orílẹ̀-èdè Bénin, mo sì n gbe lọwọlọwọ ní Île-de-France. Emi jẹ oníṣe àgbékà àti oníṣàwárí àwòrán. Lọwọlọwọ, mo n kọ́ ẹ̀kọ́ ní HÉTIC, mo sì n wa àǹfààní iṣẹ́-ìmọ̀ọ́mọ̀ ni UX/UI Design."
     }
   },

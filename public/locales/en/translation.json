@@ -45,7 +45,7 @@
   },
   "page": {
     "home": {
-      "title": "AMADOU Ruchdane - Developer & Designer",
+      "title": "AMADOU Ruchdane - Developer & Product Designer Portfolio",
       "description": "Product Designer with a technical background. I turn user insights into digital solutions thanks to my dual skillset in design and development.",
       "greeting": "Hi, I'm AMADOU Ruchdane",
       "role": "Developer & Designer",
@@ -73,12 +73,12 @@
       }
     },
     "project": {
-      "title": "My Projects",
-      "description": "Browse projects and case study I’ve worked on."
+      "title": "Project Portfolio of AMADOU Ruchdane - Developer & Designer",
+      "description": "Explore a collection of my projects and case studies, from web and mobile apps to design systems. See how I solve problems with technology and design."
     },
     "about": {
-      "title": "About AMADOU Ruchdane",
-      "description": "My name is AMADOU Ruchdane Abiodun Adjao, I’m from Benin and currently living in Île-de-France. I’m a developer and a designer. I’m currently studying at HÉTIC and looking for a work-study position in UX/UI Design"
+      "title": "About AMADOU Ruchdane - Developer & Product Designer",
+      "description": "Learn more about me, AMADOU Ruchdane. I'm a Developer and Designer from Benin, currently studying at HÉTIC and seeking a UX/UI Design work-study position."
     }
   },
   "image": {
