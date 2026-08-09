@@ -83,5 +83,10 @@
   },
   "image": {
     "ruchdane": "Àwòrán Ruchdane"
+  },
+  "not_found": {
+    "title": "Project Portfolio - AMADOU Ruchdane, Developer & Designer",
+    "description": "Explore my diverse projects: web applications (Next.js), mobile (Flutter), and command-line tools (Rust). Discover my case studies.",
+    "header": "You seem to be lost, here are some projects that should interest you"
   }
 }

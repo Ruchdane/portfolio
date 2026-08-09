@@ -83,6 +83,11 @@
     "about": {
       "title": "À Propos de AMADOU Ruchdane - Développeur & Product Designer",
       "description": "Découvrez mon parcours. Je suis AMADOU Ruchdane, développeur et designer originaire du Bénin. J'étudie à HÉTIC et recherche une alternance en UX/UI Design."
+    },
+    "not_found": {
+      "title": "Portfolio de AMADOU Ruchdane - 404 la page que vous cherchez n'existe pas ?",
+      "description": "Ce que vous cherchez n'est pas là mais vous pouvez trouver ceux dont vous avez besoin.",
+      "header": "Vous semblez être perdu, voici quelque projet qui devraient vous intéresser"
     }
   },
   "image": {
