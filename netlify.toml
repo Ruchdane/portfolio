@@ -3,10 +3,6 @@
 #   [headers.values]
 #     Content-Security-Policy = "default-src 'self';"
 #
-[[redirects]]
-  from = "/*"
-  to = "/404"
-  status = 404
 
 [[redirects]]
   from = "https://ruchdane.dev/*"
@@ -40,3 +36,7 @@
   status = 200
   force = true
   
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
