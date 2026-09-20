@@ -78,7 +78,7 @@ export function CarouselProvider({
       scrollSnap,
       state,
     }),
-    []
+    [],
   );
   return (
     <Context.Provider value={value}>
@@ -93,7 +93,6 @@ export function CarouselContent({ children }: { children: ComponentChildren }) {
       {({ ref, scrollSnap }) => (
         <div
           ref={ref}
-          // @ts-expect-error this event handler does not exist ? WHO DECIDED THAT 🌞
           onScrollSnapChange={scrollSnap}
           class="flex flex-nowrap overscroll-x-contain hide-scroll overflow-x-scroll snap-x snap-mandatory"
         >
